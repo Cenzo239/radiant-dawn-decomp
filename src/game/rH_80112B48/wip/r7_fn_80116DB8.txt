@@ -1,0 +1,26 @@
+/* NOT MATCHING. fn_80116DB8: 4 words, the original tests the bool a second time (neg; or; srwi twice). */
+static inline u8 DirOf(s8 x0, s8 y0, s8 x1, s8 y1) {
+    if (x0 < x1) {
+        return 2;
+    }
+    if (x0 > x1) {
+        return 1;
+    }
+    if (y0 < y1) {
+        return 4;
+    }
+    if (y0 > y1) {
+        return 8;
+    }
+    return 0x40;
+}
+
+static inline u32 Pass(Map* m, s8 x, s8 y, u8 d) { return (m->flags[x + y * 0x40] & d) != 0; }
+BOOL fn_80116DB8(Map* m, s8 x0, s8 y0, s8 x1, s8 y1) {
+    if (ABS(x0 - x1) + ABS(y0 - y1) != 1) {
+        return 0;
+    }
+    return Pass(m, x0, y0, DirOf(x0, y0, x1, y1)) != 0;
+}
+
+}

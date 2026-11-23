@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+"""Run the MWCC compiler through wibo with a machine-wide limit and a hang watchdog.
+
+Usage: tools/wibo_guard <windows exe> [args...]   (drop-in for build/tools/wibo)
+
+Why: wibo is an x86_64 program that runs on Apple Silicon through Rosetta 2. Under
+very many short parallel compiles (several agents at once) the compiler processes
+have twice hung for good in the kernel (state "U", unkillable) until the Mac was
+restarted. This wrapper
+  1. allows at most WIBO_SLOTS compiles at once across all processes on the machine
+     (default 10; slots are flock'ed files in build/tmp/wibo_slots, released
+     automatically when a process exits), and
+  2. stops a compile that runs longer than WIBO_TIMEOUT seconds (default 120): it
+     writes build/tmp/WIBO_HANG, prints a warning and fails. While that file exists
+     every new compile fails at once instead of piling up more stuck processes.
+     The file is ignored (and removed) once the Mac has been restarted after it was
+     written; delete it by hand to resume without a restart.
+"""
+import datetime
+import fcntl
+import os
+import re
+import subprocess
+import sys
+import time
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+WIBO = os.path.join(ROOT, "build/tools/wibo")
+SLOTS_DIR = os.path.join(ROOT, "build/tmp/wibo_slots")
+HANG = os.path.join(ROOT, "build/tmp/WIBO_HANG")
+SLOTS = int(os.environ.get("WIBO_SLOTS", "10"))
+TIMEOUT = float(os.environ.get("WIBO_TIMEOUT", "120"))
+
+
+def boot_time():
+    try:
+        out = subprocess.run(["sysctl", "-n", "kern.boottime"], capture_output=True, text=True).stdout
+        m = re.search(r"sec = (\d+)", out)
+        return int(m.group(1)) if m else 0
+    except OSError:
+        return 0
+
+
+def check_hang_marker():
+    if not os.path.exists(HANG):
+        return
+    try:
+        if os.path.getmtime(HANG) < boot_time():
+            os.remove(HANG)   # written before the last restart: stale
+            return
+    except OSError:
+        return
+    sys.stderr.write(f"wibo_guard: a compiler hang was detected earlier, see {HANG}.\n"
+                     "wibo_guard: no new compiles until the Mac is restarted or that file is deleted.\n")
+    sys.exit(99)
+
+
+def acquire_slot():
+    os.makedirs(SLOTS_DIR, exist_ok=True)
+    while True:
+        for i in range(SLOTS):
+            f = open(os.path.join(SLOTS_DIR, f"slot{i}.lock"), "w")
+            try:
+                fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                return f
+            except OSError:
+                f.close()
+        time.sleep(0.02)
+
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit("usage: wibo_guard <exe> [args...]")
+    check_hang_marker()
+    slot = acquire_slot()
+    try:
+        check_hang_marker()
+        p = subprocess.Popen([WIBO, *sys.argv[1:]])
+        # The linker of the whole DOL takes much longer than one compile.
+        limit = TIMEOUT * 5 if "mwld" in os.path.basename(sys.argv[1]).lower() else TIMEOUT
+        try:
+            sys.exit(p.wait(timeout=limit))
+        except subprocess.TimeoutExpired:
+            p.kill()
+            try:
+                p.wait(timeout=5)
+                state = "killed"
+            except subprocess.TimeoutExpired:
+                state = "could not be killed (probably stuck in the kernel; a restart is needed)"
+            msg = (f"{datetime.datetime.now().isoformat(timespec='seconds')} compiler pid {p.pid} ran over "
+                   f"{limit:.0f} s and {state}\ncommand: {' '.join(sys.argv[1:])[:2000]}\n")
+            with open(HANG, "a") as f:
+                f.write(msg)
+            sys.stderr.write("wibo_guard: COMPILER HANG. " + msg +
+                             f"wibo_guard: further compiles are refused until a restart or until {HANG} is deleted.\n")
+            sys.exit(98)
+    finally:
+        slot.close()
+
+
+if __name__ == "__main__":
+    main()

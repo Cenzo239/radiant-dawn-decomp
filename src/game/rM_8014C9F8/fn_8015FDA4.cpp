@@ -1,0 +1,78 @@
+/* AI: walk toward a trap tile, fn_8015FDA4. */
+#include "game/rM_8014C9F8/ai.h"
+#define ABS(a) ((a) < 0 ? -(a) : (a))
+extern "C" {
+extern u8 lbl_803CAB38[];
+extern u8 lbl_803CB770[];
+extern u8 fn_8010E314(int, int);
+extern int fn_801658E4(Unit*, int, int);
+extern u8* fn_80066130(void*, int, int, int);
+extern void fn_8016EFC8(Unit*, int, int, int, u16, int, int, int);
+
+#pragma use_lmw_stmw on
+u8 fn_8015FDA4(Unit* u) {
+    
+    s16 bx;
+    int ux;
+    int uy;
+    int rng;
+    int x0;
+    int x1;
+    int y1;
+    int y;
+    int x;
+    s16 by;
+    
+    if (lbl_804183F0.flags & 4) {
+        return 0;
+    }
+    if ((lbl_804183F0.flags & 2) || (u->w3B4 & 0x7000000)) {
+        return 0;
+    }
+    if ((u8)fn_8010E314(0, lbl_803CAB38[0x11]) != 1) {
+        return 0;
+    }
+    bx = -1;
+    by = -1;
+    fn_80165F94(u, 6, -1);
+    ux = u->x;
+    uy = u->y;
+    rng = fn_8012408C(u);
+    x0 = ux - rng;
+    if (x0 < lbl_803EC898.x0) {
+        x0 = lbl_803EC898.x0;
+    }
+    y = uy - rng;
+    if (y < lbl_803EC898.y0) {
+        y = lbl_803EC898.y0;
+    }
+    x1 = ux + rng;
+    if (x1 > lbl_803EC898.x1 - 1) {
+        x1 = lbl_803EC898.x1 - 1;
+    }
+    y1 = uy + rng;
+    if (y1 > lbl_803EC898.y1 - 1) {
+        y1 = lbl_803EC898.y1 - 1;
+    }
+    for (; y <= y1; y++) {
+        for (x = x0; x <= x1; x++) {
+            if (rng >= ABS(ux - x) + ABS(uy - y)) {
+                if ((s16)lbl_803EC898.cur[(s8)x + (s8)y * 0x40] >= 0 && ((Map*)&lbl_803EC898)->b5S[(s8)x + (s8)y * 0x40] == 0 && !fn_801658E4(u, (s8)x, (s8)y)) {
+                    if (((Map*)&lbl_803EC898)->ter[0][(s8)x + (s8)y * 0x40] == 0) {
+                        if (fn_80066130(lbl_803CB770, (s8)x, (s8)y, 0x14)) {
+                            bx = x;
+                            by = y;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (bx >= 0) {
+        int k = 0x10000;
+        fn_8016EFC8(u, bx, by, 1, k - 1, 0, 0, -1);
+    }
+    return lbl_804183F0.done;
+}
+}

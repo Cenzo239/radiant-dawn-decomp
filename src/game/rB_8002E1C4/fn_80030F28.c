@@ -1,0 +1,181 @@
+/* fn_80030F28: tween update (round 19, exact). The interpolate helper takes the mode first:
+   fn_8017F68C(u8 mode, f32 from, f32 to, f32 t, f32 dur); that gives the mode load before from/to. */
+#include "game/rB_8002E1C4/types.h"
+
+/* skill ids (pointers in .sdata) */
+extern void* lbl_804CA5E4;
+extern void* lbl_804CA5E8;
+extern void* lbl_804CA5EC;
+extern void* lbl_804CA5F0;
+extern void* lbl_804CA5F4;
+extern void* lbl_804CA5F8;
+extern void* lbl_804CA5FC;
+extern void* lbl_804CA600;
+extern void* lbl_804CA604;
+extern void* lbl_804CA608;
+extern void* lbl_804CA60C;
+extern void* lbl_804CA610;
+extern void* lbl_804CA614;
+extern void* lbl_804CA618;
+extern void* lbl_804CA61C;
+extern void* lbl_804CA620;
+extern void* lbl_804CA624;
+extern void* lbl_804CA628;
+extern void* lbl_804CA634;
+extern void* lbl_804CA638;
+extern void* lbl_804CA640;
+extern void* lbl_804CA644;
+extern void* lbl_804CA648;
+extern void* lbl_804CA64C;
+extern void* lbl_804CA5DC;
+extern void* lbl_804CA670;
+extern void* lbl_804CA674;
+extern void* lbl_804CA680;
+extern void* lbl_804CA684;
+extern void* lbl_804CA688;
+extern void* lbl_804CA68C;
+extern void* lbl_804CA690;
+extern void* lbl_804CA694;
+extern void* lbl_804CA698;
+extern void* lbl_804CA6E0;
+extern void* lbl_804CA6E4;
+extern void* lbl_804CA6E8;
+extern void* lbl_804CA6EC;
+
+int fn_8011B77C(void* skills, void* sid);  /* SkillList::has */
+void fn_8011B430(void* skills, void* sid); /* SkillList::remove */
+void fn_8011A36C(void* skills);
+void fn_8002EBF0(BUnit* p);
+
+#define REMOVE_SKILL(sid) \
+    if (fn_8011B77C(p->x12c, sid)) { \
+        fn_8011B430(p->x12c, sid); \
+        removed = 1; \
+    }
+
+int fn_800300B4(BUnit* p);
+
+int fn_8003065C(BUnit* p);
+
+
+s16 fn_801237EC(BUnit* p);
+void fn_8003092C(BUnit* p);
+
+void fn_80030988(void);
+
+
+extern BattleState lbl_803C8E80;
+extern Item lbl_803EC368;
+ItemData* fn_801116B8(Item* it);
+int fn_800D7D74(void);
+int fn_80110744(ItemData* d);
+void fn_8002600C(void* obj, int id, int arg);
+
+static inline Item* bunit_weapon(BUnit* u)
+{
+    if (u->x47c <= 0) return &lbl_803EC368;
+    if (u->x47d != 0) return &lbl_803EC368;
+    return &u->item;
+}
+void fn_8003098C(BUnit* p, void* anim, int flag);
+
+
+/* use up n durability points */
+#pragma use_lmw_stmw on
+
+void fn_80030B58(BUnit* p, void* anim, int n, int flag);
+
+
+#pragma use_lmw_stmw reset
+
+void fn_80030C78(BUnit* p, void* anim, int flag);
+
+Item* fn_80030CB4(BUnit* p);
+
+Item* fn_80030CBC(BUnit* p);
+
+Item* fn_80030CF4(BUnit* p);
+
+
+extern void* lbl_804CA5A0;
+extern void* lbl_804CA4E8;
+extern void* lbl_804CA4EC;
+int fn_80030CFC(BUnit* p);
+
+int fn_80030D84(BUnit* p);
+
+
+typedef struct Faction { u8 pad[8]; u8 x8; } Faction;
+int fn_801284C4(BUnit* p);
+void fn_8012857C(BUnit* p, u8 v);
+void fn_80128558(BUnit* p, int v);
+int fn_80067858(int a, int b, int c);
+void fn_80030D98(BUnit* p);
+
+void fn_80030E54(BUnit* p, s8 d);
+
+
+/* colour/fog tween helper (screen effect) */
+typedef struct Tween {
+    u8 pad0[0x28];
+    s16 x28;
+    u8 pad2a[0x30 - 0x2a];
+    f32 cur[3];      /* 0x30 */
+    u8 x3c;
+    u8 pad3d[3];
+    f32 from[3];     /* 0x40 */
+    f32 to[3];       /* 0x4c */
+    u8 t;            /* 0x58 */
+    u8 dur;          /* 0x59 */
+    u8 mode;         /* 0x5a */
+    u8 x5b;
+    u8 x5c[0x8b - 0x5c];
+    u8 x8b;
+} Tween;
+
+f32 fn_8017F68C(u8 mode, f32 from, f32 to, f32 t, f32 dur); /* interpolate */
+int fn_80068D74(void);
+void fn_80072488(int a, int b, u8 c, u8 d, u8 e, u8* f);
+void fn_8007E7F4(void);
+void fn_80031078(Tween* w);
+
+
+/* stack of on-screen popup messages (Tween objects with a text at 0x5c) */
+extern Tween* lbl_803CA6E0[16];
+extern int lbl_804CB180;
+extern u8 lbl_80379448[];
+int fn_80291188(const char* a, const char* b); /* strcmp */
+char* strcpy(char* d, const char* s);
+#if TARGET_PC
+FE10_PROTO Tween* fn_80081050(void* pool, void *);
+#else
+Tween* fn_80081050(void* pool, int a);
+#endif
+void fn_80083B78(Tween* w);
+void fn_800310E4(const char* s, u8 flag, int y, u32 side);
+
+void fn_800312BC(void);
+
+void fn_800312E8(void);
+
+void fn_80031344(void);
+
+
+void fn_800846BC(void* pool);
+void fn_80031490(void);
+
+
+/* ---- from build/tmp/r19hpbs/frag_f28.c ---- */
+void fn_80030F28(Tween* w)
+{
+    if (w->t <= w->dur) {
+        w->cur[0] = fn_8017F68C(w->mode, w->from[0], w->to[0], w->t, w->dur);
+        w->cur[1] = fn_8017F68C(w->mode, w->from[1], w->to[1], w->t, w->dur);
+        w->cur[2] = fn_8017F68C(0, w->from[2], w->to[2], w->t, w->dur);
+        w->t++;
+    }
+    if (w->x5b != 0 || fn_80068D74() != 0) {
+        fn_80072488(w->cur[0], w->cur[1], w->cur[2], w->x8b, w->x3c, w->x5c);
+        fn_8007E7F4();
+    }
+}

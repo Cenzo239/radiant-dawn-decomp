@@ -1,0 +1,77 @@
+#include "game/rI_801DD7D4/types.h"
+#pragma auto_inline off
+extern "C" {
+void* memset(void*, int, u32);
+void fn_800453B4(void*, int);
+void fn_80114B44(void*, int, int);
+void fn_80114888(void*, int);
+void fn_80165F94(void*, int, int);
+void fn_8016CB18(void*, void*);
+s8* fn_800CFD18(void*, int);
+u8* fn_800CFB0C(s8*);
+u8 fn_8010E398(void*, void*);
+int fn_8011EDC4(void*, void*);
+void fn_80160610(u8, int, int, void*, int, int, int, int, int);
+extern u8 lbl_803CA870[0x130];
+extern u8 lbl_804183F0[0x300];
+extern int lbl_803E7320[0x100];
+extern u8 lbl_803EC898[0x20000];
+class FL { public: virtual int v08(void*); virtual int v0C(void*, int, int); };
+struct Best { s8 x; u8 y; u16 a12; u8* u; int sc; u8 a1c; u8 p1d[3]; };
+#define BODY(EXTRA) \
+    u8* g = *(u8**)lbl_803CA870; \
+    u8* map = lbl_803EC898; \
+    Best b; \
+    int i; \
+    fn_800453B4(lbl_803CA870, (u8)mode); \
+    memset(&b, 0, 0x10); \
+    b.sc = 0x7fffffff; \
+    b.u = NULL; \
+    if ((lbl_804183F0[2] & 2) || (*(u32*)(g + 0x3b4) & 0x07000000)) { \
+        fn_80114B44(map, 6, -1); \
+        fn_80114888(map, 6); \
+        (*(s16**)(map + 0x15190))[(s8)g[0x102] + ((s8)g[0x103] << 6)] = 0; \
+    } else { \
+        fn_80165F94(g, 6, -1); \
+    } \
+    fn_8016CB18(g, f); \
+    for (i = 0; i < lbl_803E7320[0]; i++) { \
+        s8* e = fn_800CFD18(lbl_803E7320, i); \
+        u8* t = fn_800CFB0C(e); \
+        if (f->v08(t) != 0) { \
+            EXTRA \
+            if (fn_8011EDC4(g, t) != 0) { \
+                u32 v = *(u32*)(t + 0x10c); \
+                if (!(v & 6) && !(v & 0x10000dc)) { \
+                    u8 ty = t[0x103]; \
+                    if (!outBox(t[0x102], ty)) { \
+                        if (sc->v0C(t, e[0], e[1]) != 0) { \
+                            int d = *(s16*)(lbl_803EC898 + (e[0] + (e[1] << 6)) * 2 + 0x710e); \
+                            if (d < b.sc) { b.u = t; b.x = e[0]; b.y = e[1]; b.sc = d; } \
+                        } \
+                    } \
+                } \
+            } \
+        } \
+    } \
+    if (b.u != NULL) { \
+        fn_80160610(lbl_803CA870[0xc], b.x, (s8)b.y, b.u, (s8)b.u[0x102], (s8)b.u[0x103], (s8)b.a12, 0, 0); \
+        g[0x3bc] |= b.a1c; \
+        *(s16*)(g + 0x3be) = b.sc; \
+    } \
+    return lbl_804183F0[0x22c];
+static inline BOOL outBox(s8 x, u8 y) {
+    BOOL r = FALSE;
+    if (x < (s8)lbl_803EC898[8] || (s8)lbl_803EC898[10] - 1 < x || (s8)y < (s8)lbl_803EC898[9] || (s8)lbl_803EC898[11] - 1 < (s8)y) r = TRUE;
+    return r;
+}
+#pragma push
+#pragma use_lmw_stmw on
+u8 fn_80234954(FL* f, FL* sc, int mode) {
+    BODY(BOOL q = (u8)fn_8010E398(*(void**)(g + 0xf4), *(void**)(t + 0xf4)) == 1; if (q) continue;)
+}
+u8 fn_80234C48(FL* f, FL* sc, int mode) {
+    BODY()
+}
+#pragma pop
+}

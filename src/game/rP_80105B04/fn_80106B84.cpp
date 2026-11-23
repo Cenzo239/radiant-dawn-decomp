@@ -1,0 +1,53 @@
+/* System save header ("SYSF", version 0x20050201) reset with a fresh seed, then marked invalid. */
+#include "game/rP_80105B04/rp.h"
+extern "C" {
+struct SysF {
+    u32 magic, ver;
+    u64 seed;
+    u16 x10;
+    u8 s12[0x1E];
+    void* p30;
+    u32 w34, w38, w3c, w40;
+    u8 x44, x45, x46, x47;
+    u8 x48;
+    u8 x49[2];
+    u8 x4b;
+};
+extern SysF lbl_803EC180;
+extern u8 lbl_8037F7E0[];
+void fn_802F56CC(int, u64*);
+s64 OSGetTime(void);
+u32 fn_80331194(void);
+u8 fn_80105E98(void);
+void* memset(void* p, int v, u32 n);
+static inline void SysInit(SysF* h) {
+    u64 t;
+    h->magic = 0x53595346;
+    h->ver = 0x20050201;
+    t = 0;
+    fn_802F56CC(0, &t);
+    t += OSGetTime();
+    t += fn_80331194() * 0x7b;
+    h->x10 = 0;
+    h->seed = t;
+    h->x44 = 0;
+    h->x45 = 0;
+    h->x46 = 0x40;
+    h->x47 = 0;
+    h->x48 = fn_80105E98();
+    h->x4b = 0;
+    memset(h->s12, 0, 0x1e);
+    memset(h->x49, 0, 2);
+    h->w34 = 0;
+    h->w38 = 0;
+    h->w3c = 0;
+    h->w40 = 0;
+}
+void fn_80106B84(void) {
+    lbl_803EC180.p30 = lbl_8037F7E0;
+    SysInit(&lbl_803EC180);
+    lbl_803EC180.magic = 0xFFFFFFFF;
+    lbl_803EC180.ver = 0xFFFFFFFF;
+    lbl_803EC180.x48 = 1;
+}
+}

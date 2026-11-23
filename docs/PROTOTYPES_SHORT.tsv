@@ -1,0 +1,13 @@
+# function	what	shape	original code	certain	files	file list	files that call it with this declaration	those files
+fn_8001D024	declaration	V(III)	reads 3 int, 7 float	yes	1	src/game/rA_800068A0/wip/fn_8001CD78.cpp	1	src/game/rA_800068A0/wip/fn_8001CD78.cpp
+fn_8001D144	declaration	V(III)	reads 3 int, 7 float	yes	1	src/game/rA_800068A0/wip/fn_8001CD78.cpp	1	src/game/rA_800068A0/wip/fn_8001CD78.cpp
+fn_8001D2FC	declaration	V(IIII)	reads 4 int, 7 float	yes	1	src/game/rA_800068A0/wip/fn_8001CD78.cpp	1	src/game/rA_800068A0/wip/fn_8001CD78.cpp
+fn_8017FA84	definition	V(SIII)	reads 5 int, 0 float	yes	1	src/game/rF_8017F400/fn_8017F990.cpp	0	
+fn_801B092C	definition	I()	reads 1 int, 0 float	yes	1	src/game/rF_8017F400/fn_801B00C0.cpp	0	
+fn_801B092C	declaration	I()	reads 1 int, 0 float	yes	2	src/game/rF_8017F400/equiv/fn_801B0E88.cpp; src/game/rF_8017F400/fn_801B10B0.cpp	1	src/game/rF_8017F400/fn_801B10B0.cpp
+fn_801E3B58	definition	V(I)	reads 1 int, 2 float	yes	1	src/game/rI_801DD7D4/fn_801E2E00.cpp	0	
+fn_801E3C18	definition	V(I)	reads 1 int, 4 float	yes	1	src/game/rI_801DD7D4/fn_801E41E4.cpp	0	
+fn_8026806C	definition	I(I)	reads 5 int, 0 float	yes	1	src/game/rN_8025EEF0/equiv/fn_8026806C.cpp	0	
+fn_8028C764	declaration	F(I)	reads 2 int, 0 float	yes	1	src/game/rF_8017F400/equiv/fn_801D820C.cpp	1	src/game/rF_8017F400/equiv/fn_801D820C.cpp
+fn_80320978	declaration	V(I)	reads 2 int, 0 float	yes	4	src/game/rG_800A3D88/equiv/fn_800A6DE4.cpp; src/game/rG_800A3D88/equiv/fn_800A75E8.cpp; src/game/rG_800A3D88/equiv/fn_800A84A4.cpp; src/game/rG_800A3D88/fn_800A7528.cpp	1	src/game/rG_800A3D88/fn_800A7528.cpp
+fn_80348D9C	declaration	V()	reads 1 int, 0 float	yes	2	src/game/rN_8025EEF0/fn_8028B84C.cpp; src/game/rN_8025EEF0/wip/fn_8028B84C.cpp	2	src/game/rN_8025EEF0/fn_8028B84C.cpp; src/game/rN_8025EEF0/wip/fn_8028B84C.cpp

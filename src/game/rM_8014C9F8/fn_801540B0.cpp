@@ -1,0 +1,171 @@
+/* AI: best attack by trap, fn_801540B0. */
+#include "game/rM_8014C9F8/ai.h"
+#define ABS(a) ((a) < 0 ? -(a) : (a))
+class TF {
+public:
+    virtual int check(Unit*);
+    virtual int at(Unit*, s16, s16);
+};
+struct Vis { void* vt; void* arg; int pad[2]; };
+extern "C" {
+extern u8 lbl_803CB770[];
+extern u8 lbl_803E7320[];
+extern u8 lbl_80386ED0[];
+extern void* lbl_804CA510;
+extern int fn_8011B77C(void*, void*);
+extern int fn_801658E4(Unit*, int, int);
+extern u16 fn_801676D8(int, int);
+extern int fn_8016D11C(Unit*);
+extern u8* fn_80066130(void*, int, int, int);
+extern void* fn_80066D18(u8*);
+extern u32* fn_801116B8(void*);
+extern void fn_800CFB34(void*);
+extern u8* fn_8010B204(int);
+extern void fn_80117E30(Map*, int, int, int);
+extern void fn_800398E0(Vis*, int);
+extern void fn_800392FC(void*, int, int);
+extern u8 lbl_80386EC0[];
+extern u8 lbl_80386EB0[];
+extern u8* fn_800CFD18(void*, int);
+extern int fn_80157548(Unit*, AiBest*, TF*);
+
+static inline u8* Tr(s16 x, s16 y) { return fn_80066130(lbl_803CB770, (s8)x, (s8)y, 7); }
+
+
+struct Sc { void* vt; u8* t1; Unit* u; AiBest* cur; };
+static inline void Scan(Unit* u, TF* f, void* vt, void* arg, int x, int y, u8* t1, AiBest& cur, AiBest& best, s16& bx, s16& by) {
+    
+    int r;
+    u8* t2;
+    u8 tx;
+    u8 ty;
+    u8* it;
+    int i;
+    
+    Sc s;
+    Vis v;
+    t2 = Tr(x, y);
+    v.vt = lbl_80386EC0;
+    v.arg = arg;
+    fn_800CFB34(lbl_803E7320);
+    fn_80114888(&lbl_803EC898, 7);
+    it = fn_8010B204(t2[4]);
+    ty = t2[1];
+    tx = t2[0];
+    r = (u8)fn_801107C0(it, u);
+    fn_801663E0((s8)tx, (s8)ty, (u8)fn_801107A0(it, u), r, 7);
+    fn_80117E30(&lbl_803EC898, (s8)t2[0], (s8)t2[1], t2[3]);
+    fn_800398E0(&v, (s8)fn_801107A0(it, u));
+    if (*(int*)lbl_803E7320) {
+        cur.item = t1[4];
+        for (i = 0; i < *(int*)lbl_803E7320; i++) {
+            u8* q = fn_800CFD18(lbl_803E7320, i);
+            int qy;
+            int qx;
+            cur.x = q[0];
+            qx = (s8)cur.x;
+            cur.y = q[1];
+            qy = (s8)cur.y;
+            s.vt = lbl_80386EB0;
+            s.t1 = t1;
+            s.u = u;
+            s.cur = &cur;
+            cur.score = 0;
+            {
+                int w = ((Map*)&lbl_803EC898)->ter[0][qx + qy * 0x40];
+                if (w) {
+                    ((Filter*)&s)->check(UnitGet(w));
+                }
+            }
+            fn_800392FC(&s, qx, qy);
+            if (cur.score > best.score) {
+                bx = x;
+                by = y;
+                best = cur;
+            }
+        }
+    }
+}
+
+#pragma use_lmw_stmw on
+u8 fn_801540B0(void* arg, TF* f, int ac) {
+    
+    int dy;
+    Unit* u;
+    s16 bx;
+    s16 by;
+    int y;
+    int x;
+    u8* t1;
+    int rng;
+    Map* m;
+    int ndy;
+    s16 ux;
+    s16 uy;
+    int x0;
+    int x1;
+    int y1;
+    
+    AiBest cur;
+    AiBest best;
+    m = &lbl_803EC898;
+    u = lbl_803CA870.unit;
+    fn_800453B4(&lbl_803CA870, ac);
+    if (fn_8011B77C((u8*)u + 0x12C, lbl_804CA510) == 0) {
+        return 0;
+    }
+    if ((lbl_804183F0.flags & 2) || (u->w3B4 & 0x7000000)) {
+        fn_80114B44(m, 6, -1);
+        fn_80114888(m, 6);
+        m->cur[u->x + u->y * 0x40] = 0;
+    } else {
+        fn_80165F94(u, 6, -1);
+    }
+    memset(&cur, 0, 0x10);
+    memset(&best, 0, 0x10);
+    best.score = 0x80000000;
+    best.t = NULL;
+    ux = u->x;
+    uy = u->y;
+    rng = fn_8012408C(u);
+    x0 = ux - rng;
+    if (x0 < lbl_803EC898.x0) {
+        x0 = lbl_803EC898.x0;
+    }
+    y = uy - rng;
+    if (y < lbl_803EC898.y0) {
+        y = lbl_803EC898.y0;
+    }
+    x1 = ux + rng;
+    if (x1 > lbl_803EC898.x1 - 1) {
+        x1 = lbl_803EC898.x1 - 1;
+    }
+    y1 = uy + rng;
+    if (y1 > lbl_803EC898.y1 - 1) {
+        y1 = lbl_803EC898.y1 - 1;
+    }
+    for (; y <= y1; y++) {
+        for (x = x0; x <= x1; x++) {
+            if (rng >= ABS(ux - x) + ABS(uy - y)) {
+                if (((Map*)&lbl_803EC898)->costS[(s8)x + (s8)y * 0x40] >= 0 && ((Map*)&lbl_803EC898)->b5S[(s8)x + (s8)y * 0x40] == 0 && !fn_801658E4(u, (s8)x, (s8)y)) {
+                    if (((Map*)&lbl_803EC898)->ter[0][(s8)x + (s8)y * 0x40] == 0) {
+                        t1 = fn_80066130(lbl_803CB770, (s8)x, (s8)y, 7);
+                        if (t1 && t1[5] && (*fn_801116B8(fn_80066D18(t1)) & 0x200)) {
+                            int cost = fn_801676D8((s8)x, (s8)y);
+                            if (fn_8016D11C(u) >= cost && f->at(0, x, y)) {
+                                Scan(u, f, 0, arg, x, y, t1, cur, best, bx, by);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (best.score != 0x80000000) {
+        fn_80160610(lbl_803CA870.action, (s8)bx, (s8)by, 0, (s8)best.x, (s8)best.y, (s8)best.item, 0, 0);
+        u->b3BC |= best.fl;
+        u->h3BE = best.score;
+    }
+    return lbl_804183F0.done;
+}
+}

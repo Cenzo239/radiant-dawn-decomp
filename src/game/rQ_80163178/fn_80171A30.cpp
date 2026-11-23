@@ -1,0 +1,106 @@
+#include "game/rQ_80163178/common.h"
+struct Ar { void* vt; };
+extern "C" {
+extern ListHdr lbl_803E7320[];
+extern s16 lbl_8036B278[];
+extern u8 lbl_80387308[];
+extern u8 lbl_803877F0[];
+extern u8 lbl_803CB770[];
+void fn_80165E18(Unit*, int, int);
+int fn_801658E4(Unit*, s8, s8);
+void fn_800CFB34(ListHdr*);
+void fn_800395F4(void*, int, int);
+int fn_801148D8(Map*, int);
+void* fn_80079958(int, int);
+void fn_80114944(Map*, int, void*);
+#if TARGET_PC
+FE10_PROTO struct Trap * fn_80066130(void*, int, int, int);
+#else
+int fn_80066130(void*, int, int, int);
+#endif
+void fn_80113794(Map*, int, int, int);
+void fn_80114A44(Map*, int, void*);
+void fn_80079978(void*);
+}
+static inline BOOL SameT(Unit* a, Unit* b, int w) {
+    return (u8)fn_8010E398(a->team, b->team) == w;
+}
+static inline s16 C2A(int x, int y) { return ((Map*)&lbl_803EC898)->cost2S[(s8)x + (s8)y * 0x40]; }
+static inline s16 C2(Map* m, int x, int y) { return m->cost2S[(s8)x + (s8)y * 0x40]; }
+static inline s8 B5(int x, int y) { return ((Map*)&lbl_803EC898)->b5S[(s8)x + (s8)y * 0x40]; }
+static inline u8 T0(Map* m, int x, int y) { return m->ter[0][(s8)x + (s8)y * 0x40]; }
+static inline int Cnt(Unit* u, s16 y, s16 x, Filt& g) {
+    int n = 0;
+    s16* d;
+    g.u = u;
+    g.vt = lbl_80387308;
+    for (d = lbl_8036B278; *d != 0x7FFF; d += 2) {
+        int py = y + d[1];
+        int px = x + d[0];
+        BOOL o = 0;
+        if (px < ((Map*)&lbl_803EC898)->x0 || ((Map*)&lbl_803EC898)->x1 - 1 < px || py < ((Map*)&lbl_803EC898)->y0 || ((Map*)&lbl_803EC898)->y1 - 1 < py) {
+            o = 1;
+        }
+        if (!o && T0((Map*)&lbl_803EC898, px, py) && ((Filter*)&g)->check(UnitGet(T0((Map*)&lbl_803EC898, px, py)))) {
+            n++;
+        }
+    }
+    return n;
+}
+extern "C" BOOL fn_80171A30(Unit* u, u32 fl, s16* ox, s16* oy) {
+    Map* m;
+    s16 best;
+    int y;
+    int yy;
+    int xx;
+    int x;
+    s16 bx;
+    s16 by;
+    void* tmp;
+    Filt g;
+    Ar a;
+    Ar a2;
+    m = &lbl_803EC898;
+    fn_80165E18(u, 7, lbl_803EC898.w * m->h);
+    best = 0x7FFF;
+    tmp = fn_80079958(fn_801148D8(m, 5), 0x40);
+    fn_80114944(m, 5, tmp);
+    for (yy = m->y0; yy < m->y1; yy++) {
+        for (xx = m->x0; xx < m->x1; xx++) {
+            if (fn_80066130(lbl_803CB770, (s8)xx, (s8)yy, 4)) {
+                fn_80113794(m, (s8)xx, (s8)yy, 0xF00);
+            }
+        }
+    }
+    for (y = ((Map*)&lbl_803EC898)->y0; y <= ((Map*)&lbl_803EC898)->y1 - 1; y++) {
+        for (x = ((Map*)&lbl_803EC898)->x0; x <= ((Map*)&lbl_803EC898)->x1 - 1; x++) {
+            if (C2A(x, y) >= 0 && B5(x, y) == 0 && !fn_801658E4(u, (s8)x, (s8)y) && (!(fl & 1) || T0(m, x, y) == 0)) {
+                if ((fl & 2) && T0(m, x, y)) {
+                    Unit* v = UnitGet(T0(m, x, y));
+                    if (SameT(u, v, 1)) continue;
+                }
+                if ((fl & 4) && Cnt(u, y, x, g)) continue;
+                a.vt = lbl_803877F0;
+                fn_800CFB34(lbl_803E7320);
+                fn_800395F4(&a, (s8)x, (s8)y);
+                if (lbl_803E7320->n && C2(m, x, y) < best) {
+                    bx = x;
+                    by = y;
+                    best = C2(m, x, y);
+                }
+            }
+        }
+    }
+    if (best != 0x7FFF) {
+        a2.vt = lbl_803877F0;
+        fn_800CFB34(lbl_803E7320);
+        fn_800395F4(&a2, (s8)bx, (s8)by);
+        *ox = bx;
+        *oy = by;
+    } else {
+        fn_800CFB34(lbl_803E7320);
+    }
+    fn_80114A44(m, 5, tmp);
+    fn_80079978(tmp);
+    return best != 0x7FFF;
+}

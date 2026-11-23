@@ -1,0 +1,45 @@
+#include "game/auto/m2c_prelude.h"
+void fn_8010B478(s8 *arg0) {
+    M2C_FIELD(arg0, s32 *, 0x14) = 0;
+    M2C_FIELD(arg0, s32 *, 0x18) = 0;
+    M2C_FIELD(arg0, s32 *, 0x1C) = 0;
+    M2C_FIELD(arg0, s32 *, 0x20) = 0;
+    M2C_FIELD(arg0, s32 *, 0x24) = 0;
+    M2C_FIELD(arg0, s32 *, 0x28) = 0;
+    M2C_FIELD(arg0, s32 *, 0x2C) = 0;
+    M2C_FIELD(arg0, s32 *, 0x30) = 0;
+    M2C_FIELD(arg0, s32 *, 0x34) = 0;
+    M2C_FIELD(arg0, s32 *, 0x38) = 0;
+    M2C_FIELD(arg0, s32 *, 0x3C) = 0;
+    M2C_FIELD(arg0, s32 *, 0x40) = 0;
+    M2C_FIELD(arg0, s32 *, 4) = 0;
+    M2C_FIELD(arg0, s32 *, 8) = 0;
+    M2C_FIELD(arg0, s16 *, 2) = 0;
+    M2C_FIELD(arg0, s8 *, 0xC) = 0;
+    M2C_FIELD(arg0, s8 *, 0xD) = 0;
+    M2C_FIELD(arg0, s8 *, 0xE) = 0;
+    M2C_FIELD(arg0, s8 *, 0xF) = 0;
+    M2C_FIELD(arg0, s8 *, 0x10) = 0;
+    M2C_FIELD(arg0, s8 *, 0x11) = 0;
+    M2C_FIELD(arg0, s32 *, 0x44) = 0;
+    M2C_FIELD(arg0, s32 *, 0x48) = 0;
+    M2C_FIELD(arg0, s32 *, 0x4C) = 0;
+    M2C_FIELD(arg0, s32 *, 0x50) = 0;
+    M2C_FIELD(arg0, s32 *, 0x54) = 0;
+    M2C_FIELD(arg0, s8 *, 0x61) = 0;
+    M2C_FIELD(arg0, s8 *, 0x58) = 0;
+    M2C_FIELD(arg0, s8 *, 0x59) = 0;
+    M2C_FIELD(arg0, s8 *, 0x5A) = 0;
+    M2C_FIELD(arg0, s8 *, 0x5B) = 0;
+    M2C_FIELD(arg0, s8 *, 0x5C) = 0;
+    M2C_FIELD(arg0, s8 *, 0x5D) = 0;
+    M2C_FIELD(arg0, s8 *, 0x5E) = 0;
+    M2C_FIELD(arg0, s8 *, 0x5F) = 0;
+    M2C_FIELD(arg0, s8 *, 0x60) = 0;
+    M2C_FIELD(arg0, s8 *, 0x62) = 0;
+    M2C_FIELD(arg0, s8 *, 0x63) = 0;
+    M2C_FIELD(arg0, s8 *, 0x67) = 0;
+    M2C_FIELD(arg0, s8 *, 0x65) = 0;
+    M2C_FIELD(arg0, s8 *, 0x66) = 0;
+    M2C_FIELD(arg0, s16 *, 0) = 0;
+}

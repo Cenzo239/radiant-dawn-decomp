@@ -1,0 +1,38 @@
+# source	uncovered_functions	class	first_error (libdrv base, 2026-11-16)
+ogws/src/homebuttonMiniLib/HBMGUIManager.cpp	52	stripped	function __dt__Q310homebutton3gui9InterfaceFv not in symbols.txt
+ogws/src/homebuttonMiniLib/HBMBase.cpp	35	None	
+wii-ipl/libs/NW4R/src/ut_hbm/ut_CharWriter.cpp	27	ctors	function __ct__Q36nw4hbm2ut10CharWriterFv at 0x8035C07C breaks contiguity (expected 0x80351930)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_pane.cpp	26	stripped	function __dt__Q46nw4hbm3lyt6detail8PaneBaseFv not in symbols.txt
+xeno/libs/RVL_SDK/src/revolution/hbm/HBMController.cpp	24	codegen	reference to WPADGetRadioSensitivity: not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_material.cpp	23	dead-strip	.rodata: cannot derive a single base (0x80378620, 0x80378628)
+ogws/src/nw4r/ut/ut_ResFontBase.cpp	23	codegen	reference to ReadNextCharCP1252__Q34nw4r2ut14CharStrmReaderFv: not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_window.cpp	21	ctors	function __dt__Q36nw4hbm2ut5ColorFv at 0x803518F0 breaks contiguity (expected 0x803599D4)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_textBox.cpp	19	stripped	function __dt__Q36nw4hbm2ut5ColorFv at 0x803518F0 breaks contiguity (expected 0x803581E4)
+ogws/src/nw4r/ut/ut_DvdFileStream.cpp	18	stripped	function CanAsync__Q34nw4r2ut13DvdFileStreamCFv not in symbols.txt
+wii-ipl/libs/NW4R/src/ut_hbm/ut_TextWriterBase.cpp	18	dead-strip	.data: cannot derive a single base (no references from code)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_layout.cpp	15	dead-strip	reference to typeInfo__Q36nw4hbm3lyt7TextBox: not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_animation.cpp	11	stripped	function __dt__Q36nw4hbm3lyt13AnimTransformFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_picture.cpp	11	ctors	function __ct__Q36nw4hbm3lyt7PictureFPCQ46nw4hbm3lyt3res7PictureRCQ36nw4hbm3lyt11ResBlockSet at 0x80357BA0 breaks contiguity (expected 0x80351930)
+ogws/src/homebuttonMiniLib/HBMSound.cpp	8	codegen	.text+0x6A6: @1146+0x0 -> 0x803B4080, DOL has 0x80378250
+wii-ipl/libs/NW4R/src/ut_hbm/ut_TagProcessorBase.cpp	8	dead-strip	__ct__Q36nw4hbm2ut19TagProcessorBase<c>Fv is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+ogws/src/nw4r/ut/ut_DvdLockedFileStream.cpp	6	ctors	function GetBufferAlign__Q34nw4r2ut13DvdFileStreamCFv at 0x802A4D4C breaks contiguity (expected 0x802BCD54)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_bounding.cpp	6	dead-strip	reference to __ct__Q36nw4hbm3lyt4PaneFPCQ46nw4hbm3lyt3res4Pane: not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_group.cpp	5	extra-symbol	reference to EqualsPaneName__Q36nw4hbm3lyt6detailFPCcPCc: not in symbols.txt
+petari/src/nw4r/db/db_assert.cpp	4	other	.data range 0x80393B48-0x80393BB5 is not 4-aligned (dtk cannot split there)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_arcResourceAccessor.cpp	4	stripped	function __dt__Q36nw4hbm3lyt24MultiArcResourceAccessorFv not in symbols.txt
+ogws/src/nw4r/ut/ut_IOStream.cpp	3	stripped	function Write__Q34nw4r2ut8IOStreamFPCvUl not in symbols.txt
+ogws/src/nw4r/ut/ut_FileStream.cpp	3	dead-strip	.data: cannot derive a single base (no references from code)
+ogws/src/homebuttonMiniLib/HBMAnmController.cpp	3	codegen	.data: cannot derive a single base (0x803b39e8, 0x803b3a58)
+ogws/src/nw4r/ut/ut_ResFont.cpp	3	codegen	reference to GetEncoding__Q44nw4r2ut6detail11ResFontBaseCFv: not in symbols.txt
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/lyt/lyt_arcResourceAccessor.cpp	2	stripped	function __dt__Q36nw4hbm3lyt19ArcResourceAccessorFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_drawinfo.cpp	2	stripped	function __dt__Q36nw4hbm3lyt8DrawInfoFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt/lyt_pane.cpp	2	stripped	function __dt__Q44nw4r3lyt6detail8PaneBaseFv not in symbols.txt
+ogws/src/nw4r/lyt/lyt_resourceAccessor.cpp	2	codegen	.data: 1 words differ from the DOL (first at 0x803B51D0)
+ogws/src/nw4r/lyt/lyt_arcResourceAccessor.cpp	1	stripped	function FindNameResource__37@unnamed@lyt_arcResourceAccessor_cpp@FP9ARCHandlePCc size 0xCC, DOL has 0xDC
+ogws/src/nw4r/lyt/lyt_pane.cpp	1	stripped	function __dt__Q44nw4r3lyt6detail8PaneBaseFv not in symbols.txt
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/lyt/lyt_pane.cpp	1	None	
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_resourceAccessor.cpp	1	codegen	.data: cannot derive a single base (0x803b4e70, 0x803b51d0)
+ogws/src/nw4r/lyt/lyt_textBox.cpp	1	stripped	function __dt__Q34nw4r2ut5ColorFv not in symbols.txt
+ogws/src/nw4r/ut/ut_Font.cpp	1	extra-symbol	reference to ReadNextCharUTF8__Q34nw4r2ut14CharStrmReaderFv: not in symbols.txt
+wii-ipl/libs/NW4R/src/ut_hbm/ut_ResFont.cpp	1	shared-data	reference to __ct__Q46nw4hbm2ut6detail11ResFontBaseFv: not in symbols.txt
+wii-ipl/libs/NW4R/src/ut_hbm/ut_ResFontBase.cpp	1	stripped	function __dt__Q46nw4hbm2ut6detail11ResFontBaseFv not in symbols.txt

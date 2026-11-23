@@ -1,0 +1,64 @@
+# source	class	functions	first_error (libdrv 2026-11-16, round 2)
+ogws/src/revolution/WUD/WUD.c	codegen	64	.data: cannot derive a single base (0x803b2948, 0x803b2a44, 0x803b2b20, 0x803b2b54, 0x803b2b6c, 0x803b2b88, 0x803b2ca8, 0x803b2f04, 0x803b3080)
+wii-ipl/libs/RVL_SDK/src/wpad/WPAD.c	stripped	61	function OnShutdown not in symbols.txt
+petari/src/RVL_SDK/dvd/dvd.c	codegen	51	function DVDInit size 0x154, DOL has 0xE0
+petari/src/RVL_SDK/gx/GXTexture.c	codegen	28	function GXGetTexObjWidth at 0x80305DF8 breaks contiguity (expected 0x80305DEC)
+ogws/src/revolution/FS/fs.c	codegen	25	.data range 0x8039FF88-0x8039FFA9 is not 4-aligned (dtk cannot split there)
+petari/src/RVL_SDK/bte/btm_inq.c	codegen	25	.text: 44 words differ from the DOL (first at 0x802D1014)
+wii-ipl/libs/RVL_SDK/src/nand/NANDCore.c	codegen	24	function nandConvertErrorCode size 0x160, DOL has 0xD0
+petari/src/RVL_SDK/os/OSThread.c	stripped	23	function SleepAlarmHandler not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/dvd/dvd_broadway.c	codegen	23	.text: 71 words differ from the DOL (first at 0x802FBFC8)
+ogws/src/revolution/OS/OSThread.c	stripped	22	function OSIsThreadTerminated at 0x8031F6BC breaks contiguity (expected 0x8031F6A8)
+wii-ipl/libs/RVL_SDK/src/sc/scsystem.c	codegen	22	.data: cannot derive a single base (0x803aefc8, 0x803aefe0)
+ogws/src/revolution/OS/OS.c	dead-strip	20	.data: cannot derive a single base (0x803a16b0, 0x803a1858)
+wii-ipl/libs/RVL_SDK/src/gx/GXMisc.c	codegen	20	function GXSetDrawSyncCallback at 0x80303EAC breaks contiguity (expected 0x80303E8C)
+petari/src/RVL_SDK/os/OSCache.c	codegen	17	function LCStoreBlocks at 0x80318B04 breaks contiguity (expected 0x80318AE0)
+petari/src/RVL_SDK/gx/GXTransform.c	codegen	16	function __GXSetProjection at 0x80307D54 breaks contiguity (expected 0x80307D10)
+petari/src/RVL_SDK/mtx/mtx.c	codegen	16	function PSMTXInverse at 0x80312494 breaks contiguity (expected 0x80312444)
+wii-ipl/libs/RVL_SDK/src/gx/GXTransform.c	codegen	16	.sdata2: cannot derive a single base (0x804d1638, 0x804d163c)
+ogws/src/revolution/OS/OSContext.c	extra-symbol	15	reference to __RAS_OSDisableInterrupts_end: not in symbols.txt
+petari/src/RVL_SDK/vi/vi3in1.c	codegen	13	.sdata: cannot derive a single base (0x804cb03c, 0x804cb041, 0x804cb04c)
+ogws/src/revolution/NAND/NANDOpenClose.c	extra-symbol	12	.data range 0x803A14A0-0x803A14CF is not 4-aligned (dtk cannot split there)
+petari/src/RVL_SDK/arc/arc.c	codegen	12	function ARCGetLength at 0x802BDAA4 breaks contiguity (expected 0x802BDA9C)
+petari/src/RVL_SDK/gx/GXLight.c	codegen	12	function GXInitLightDistAttn at 0x80305354 breaks contiguity (expected 0x80305350)
+wii-ipl/libs/RVL_SDK/src/ax/AXOut.c	codegen	12	function __AXOutAiCallback size 0xB0, DOL has 0xA4
+ogws/src/runtime/runtime.c	dead-strip	11	function __cvt_dbl_ull at 0x8028C8E4 breaks contiguity (expected 0x8028C764)
+petari/src/RVL_SDK/bte/sdp_main.c	codegen	11	function sdp_connect_ind at 0x802EE284 breaks contiguity (expected 0x802EE27C)
+petari/src/RVL_SDK/gx/GXAttr.c	codegen	11	function __GXSetVCD at 0x80302FF0 breaks contiguity (expected 0x80302DE4)
+petari/src/RVL_SDK/os/OSExec.c	codegen	11	function __OSLaunchMenu at 0x8031A504 breaks contiguity (expected 0x8031A004)
+wii-ipl/libs/RVL_SDK/src/ai/ai.c	codegen	10	function AIGetDSPSampleRate at 0x802BCE64 breaks contiguity (expected 0x802BCE5C)
+wii-ipl/libs/RVL_SDK/src/axfx/AXFXReverbHiExp.c	codegen	10	function AXFXReverbHiExpCallback size 0x51C, DOL has 0x518
+petari/src/RVL_SDK/os/OSRtc.c	codegen	9	function UnlockSram at 0x8031EB58 breaks contiguity (expected 0x8031EB08)
+wiiplay/src/MSL/string.c	extab	9	function strtok at 0x8029135C breaks contiguity (expected 0x80291314)
+ogws/src/revolution/OS/OSNet.c	data-base	8	.data: cannot derive a single base (0x803aee10, 0x803aee9c, 0x803aeee4, 0x803aeefc)
+wii-ipl/libs/EGG/src/core/eggHeap.cpp	stripped	8	function alloc__Q23EGG4HeapFUliPQ23EGG4Heap not in symbols.txt
+wii-ipl/libs/MSL/src/MSL_Common/string.c	extab	8	function strcmp at 0x80291188 breaks contiguity (expected 0x8029113C)
+ogws/src/revolution/MEM/mem_expHeap.c	codegen	7	function AllocFromTail_ at 0x8030E064 breaks contiguity (expected 0x8030E024)
+ogws/src/revolution/OS/OSExec.c	codegen	7	function _ES_GetTicketViews at 0x8031AF98 breaks contiguity (expected 0x8031A74C)
+petari/src/RVL_SDK/axfx/AXFXReverbHiExp.c	codegen	7	function AXFXReverbHiExpShutdown at 0x802C1214 breaks contiguity (expected 0x802C1090)
+ogws/src/revolution/MTX/vec.c	codegen	6	function PSVECScale at 0x803134A8 breaks contiguity (expected 0x80313484)
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c	codegen	6	function InitMetroTRK size 0x98, DOL has 0x94
+wiiplay/src/MSL/ansi_fp.c	extab	6	extabindex entry 0x800066CC for fn_8028D084 is not emitted by the object (exception table)
+wiiplay/src/MSL/printf.c	extab	5	extabindex entry 0x800067D4 for fn_80290B48 is not emitted by the object (exception table)
+petari/src/RVL_SDK/dvd/dvdFatal.c	codegen	4	function __DVDShowFatalMessage size 0xF4, DOL has 0xB4
+wii-ipl/libs/MSL/src/MSL_Common/alloc.c	extab	4	extabindex entry 0x80006690 for fn_8028CA60 is not emitted by the object (exception table)
+wii-ipl/libs/MetroTRK/src/Export/targsupp.c	codegen	4	function TRKOpenFile at 0x8029A0F8 breaks contiguity (expected 0x8029A110)
+xd/libs/dolphin/src/syn/synenv.c	data-base	4	.sdata2: cannot derive a single base (0x804d1780, 0x804d1784, 0x804d1788, 0x804d1794)
+wiiplay/src/MSL/extras.c	codegen	3	function __msl_itoa at 0x8028E13C breaks contiguity (expected 0x80291CEC)
+wiiplay/src/MSL/mbstring.c	extab	3	extabindex entry 0x80006750 for wcstombs is not emitted by the object (exception table)
+ogws/src/revolution/MTX/mtx44.c	shared-data	2	lbl_804D16D0 (0x804D16D0) is referenced from outside the unit (fn_80313128) but the object does not define it
+petari/src/RVL_SDK/os/OSLaunch.c	codegen	2	function __OSRelaunchTitle size 0x200, DOL has 0x14C
+wii-ipl/libs/MSL/src/MSL_Common/math_api.c	extab	2	extabindex entry 0x80006768 for fn_8028E9FC is not emitted by the object (exception table)
+wii-ipl/libs/MetroTRK/src/Export/mslsupp.c	codegen	2	function __TRK_write_console at 0x8029A480 breaks contiguity (expected 0x8029A5F8)
+wii-ipl/libs/RVL_SDK/src/bte/bd.c	extra-symbol	2	.sbss2 range 0x804D1850-0x804D1856 is not 4-aligned (dtk cannot split there)
+wiiplay/src/MSL/scanf.c	extab	2	function parse_format size 0x6B4, DOL has 0x5FC
+wiiplay/src/MSL/strtoul.c	extab	2	extabindex entry 0x80006828 for fn_802914EC is not emitted by the object (exception table)
+ogws/src/MSL/e_pow.c	codegen	1	.rodata split edge 0x80374E20 lies inside symbol lbl_80374E10 (0x80374E10+0x30); fix its size in symbols.txt
+ogws/src/revolution/NWC24/NWC24Ipc.c	align	1	.sbss: base 0x804CC754 not aligned to 8
+ogws/src/revolution/VI/vi.c	shared-data	1	.sbss: base 0x804CC994 not aligned to 8
+ogws/src/RVLFaceLib/RFL_Model.c	extra-symbol	0	expected one .text section, found 0
+ogws/src/egg/audio/eggAudioArcPlayerMgr.cpp	extra-symbol	0	expected one .text section, found 0
+ogws/src/egg/core/eggDvdFile.cpp	extra-symbol	0	expected one .text section, found 0
+ogws/src/revolution/VF/pdm_dskmng.c	extra-symbol	0	expected one .text section, found 0
+ogws/src/revolution/VF/pf_errnum.c	extra-symbol	0	expected one .text section, found 0
+ogws/src/revolution/VF/pf_fat.c	extra-symbol	0	expected one .text section, found 0

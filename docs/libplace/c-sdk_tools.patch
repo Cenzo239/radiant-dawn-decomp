@@ -1,0 +1,156 @@
+diff --git a/tools/build/dolmodel.py b/tools/build/dolmodel.py
+index 72da911a..61d006e7 100644
+--- a/tools/build/dolmodel.py
++++ b/tools/build/dolmodel.py
+@@ -85,6 +85,18 @@ def current_aliases(syms):
+ def load_refs(syms, asm_dir=ASM_DIR):
+     """Fill .refs/.refby from the dtk asm."""
+     alias = current_aliases(syms)
++    # dtk appends _<ADDR> to local symbols whose name is not unique (PlayRecordCallback_803213C4)
++    _suffix = re.compile(r"^(.*)_([0-9A-F]{8})$")
++
++    def _norm(n):
++        n = alias.get(n, n)
++        if n not in syms:
++            m = _suffix.match(n)
++            if m:
++                for s_ in (syms.get(m.group(1)),):
++                    if s_ is not None and s_.addr == int(m.group(2), 16):
++                        return s_.name
++        return n
+     files = []
+     for dp, _dn, fn in os.walk(asm_dir):
+         files += [os.path.join(dp, f) for f in fn if f.endswith(".s")]
+@@ -93,7 +105,7 @@ def load_refs(syms, asm_dir=ASM_DIR):
+         for line in open(path, errors="replace"):
+             if line.startswith(".fn ") or line.startswith(".obj "):
+                 nm = line.split()[1].rstrip(",")
+-                cur = syms.get(alias.get(nm, nm))
++                cur = syms.get(_norm(nm))
+                 continue
+             if line.startswith(".endfn") or line.startswith(".endobj"):
+                 cur = None
+@@ -116,7 +128,7 @@ def load_refs(syms, asm_dir=ASM_DIR):
+                 m = re.match(r"^([^+@]+)(?:\+(0x[0-9A-Fa-f]+|\d+))?(?:@(ha|h|l|sda21))?$", tok)
+                 if not m:
+                     continue
+-                tname = alias.get(m.group(1), m.group(1))
++                tname = _norm(m.group(1))
+                 if tname in syms:
+                     add = int(m.group(2), 0) if m.group(2) else 0
+                     cur.refs.append((tname, add))
+diff --git a/tools/build/gen_units.py b/tools/build/gen_units.py
+index b7cc1b37..e0485770 100644
+--- a/tools/build/gen_units.py
++++ b/tools/build/gen_units.py
+@@ -171,10 +171,12 @@ def lib_unit(key, lib_map, manifest):
+     dropped = []
+     drops = []
+     keep_data = []
++    natural = False
+     try:
+         P = PL.place(obj, inv)
+         if any((e.startswith("function ") and "not in symbols.txt" in e) or "breaks contiguity" in e
+-               or (e.startswith("function ") and " size 0x" in e) for e in P.errors):
++               or (e.startswith("function ") and " size 0x" in e) or "no references from code" in e or "cannot derive a single base" in e
++               for e in P.errors):
+             # (not on size/contiguity errors: a weak copy that the model drops because its DOL
+             # twin lies elsewhere may be the copy MWLD links, the first in link order;
+             # snd_DisposeCallbackManager.cpp's __dt__Q34nw4r2ut12LinkListNodeFv shifted 0x40)
+@@ -186,12 +188,16 @@ def lib_unit(key, lib_map, manifest):
+                 return S[t].addr if t in S and not t.startswith("@") and (n in inv or not n.startswith("@")) else None
+             # MWLD keeps the unreferenced data of some objects: try the model without data
+             # stripping, then with .bss/.sbss kept, then with all data kept
+-            for kd in ((), (".bss", ".sbss"), (".bss", ".sbss", ".data", ".sdata", ".rodata", ".sdata2")):
+-                parsed, dropped = PL.strip_object(obj, in_dol, kd)
++            for nat, kd in ((False, ()), (False, (".bss", ".sbss")),
++                            (False, (".bss", ".sbss", ".data", ".sdata", ".rodata", ".sdata2")),
++                            (False, (".bss", ".sbss", ".data", ".sdata")),
++                            (True, ()), (True, (".bss", ".sbss"))):
++                parsed, dropped = PL.strip_object(obj, in_dol, kd, nat)
+                 inv2 = dict(inv, **parsed[5])     # functions found in the DOL by position and bytes
+                 P2 = PL.place(parsed, inv2)
+                 if not P2.errors:
+                     keep_data = list(kd)
++                    natural = nat
+                     break
+             drops = []
+             if not P2.errors:
+@@ -208,7 +214,7 @@ def lib_unit(key, lib_map, manifest):
+                         P2.errors.append("dropfn: " + (r.stderr.strip().splitlines() or ["failed"])[-1])
+                     else:
+                         try:
+-                            parsed3, _d3 = PL.strip_object(tmp, in_dol, kd)
++                            parsed3, _d3 = PL.strip_object(tmp, in_dol, kd, natural)
+                             P3 = PL.place(parsed3, dict(inv, **parsed3[5]))
+                         finally:
+                             os.unlink(tmp)
+diff --git a/tools/build/place.py b/tools/build/place.py
+index 4afc0cb1..7ccf8dc1 100644
+--- a/tools/build/place.py
++++ b/tools/build/place.py
+@@ -110,9 +110,15 @@ def pad_end(sec, end):
+     S, dol, by_addr = dolmodel()
+     i = bisect.bisect_left(by_addr, (end, ""))
+     nxt = next((x for x, n in by_addr[i:i + 50] if S[n].sec == sec), None)
++    if nxt is None and sec in M.SECTIONS and M.SECTIONS[sec][0] <= end <= M.SECTIONS[sec][1]:
++        nxt = M.SECTIONS[sec][1]      # last object of the section: padding up to the section end
+     # only alignment padding: the next symbol must sit at the next 4- or 8-byte boundary
+-    if nxt is None or nxt == end or nxt not in ((end + 3) // 4 * 4, (end + 7) // 8 * 8):
++    if nxt is None or nxt == end:
+         return end
++    if nxt not in ((end + 3) // 4 * 4, (end + 7) // 8 * 8):
++        # zero padding up to a 16/32-byte boundary (MWLD pads .data/.rodata objects like that)
++        if sec in (".bss", ".sbss", ".sbss2") or nxt not in ((end + 15) // 16 * 16, (end + 31) // 32 * 32):
++            return end
+     if sec not in (".bss", ".sbss", ".sbss2") and any(dol.read(end, nxt - end)):
+         return end
+     return nxt
+@@ -188,7 +194,7 @@ def parse_elf(obj):
+ LAST_ELSE = set()   # weak functions of the last strip_object run whose DOL copy lies in another object
+ 
+ 
+-def strip_object(obj, in_dol, keep_data=()):
++def strip_object(obj, in_dol, keep_data=(), natural=False):
+     """Model MWLD's dead-stripping of one object: keep every symbol for which in_dol(name)
+     gives a DOL address and everything they reference, transitively; drop the rest and close
+     the gaps (each kept symbol keeps the alignment its old offset had, up to the section
+@@ -371,7 +377,11 @@ def strip_object(obj, in_dol, keep_data=()):
+             if k not in keep:
+                 continue
+             _s, a, b = spans[k]
++            if natural and secs[si]["name"] != ".text" and 0 < syms[k]["size"] < b - a:
++                b = a + syms[k]["size"]     # drop the alignment padding behind the object
+             al = min(aligns[si] or 1, a & -a if a else (aligns[si] or 1))
++            if natural and al > 4 and 4 <= (syms[k]["size"] or (b - a)) and (syms[k]["size"] or (b - a)) % 8:
++                al = 4      # 4-byte pool entries/strings only need 4; the old offset happened to be 8-aligned
+             npos = (pos + al - 1) // al * al
+             if secs[si]["type"] != 8:
+                 out += b"\0" * (npos - pos) + data[a:b]
+@@ -384,7 +394,7 @@ def strip_object(obj, in_dol, keep_data=()):
+ 
+     starts = {si: [a for a, _b, _n in m] for si, m in remap.items()}
+ 
+-    def new_off(si, off):
++    def new_off(si, off, strict=False):
+         if si not in remap:
+             return off
+         m = remap[si]
+@@ -392,7 +402,7 @@ def strip_object(obj, in_dol, keep_data=()):
+         for j in (i, i - 1):
+             if 0 <= j < len(m):
+                 a, b, n = m[j]
+-                if a <= off < b or (off == b and a < b):
++                if a <= off < b or (off == b and a < b and not strict):
+                     return n + off - a
+         return None
+     syms2 = []
+@@ -416,7 +426,7 @@ def strip_object(obj, in_dol, keep_data=()):
+         for off, rtype, tname, addend, tsym in rl:
+             tk = sid.get(id(tsym))
+             if si in remap:
+-                no = new_off(si, off)
++                no = new_off(si, off, True)   # a reloc inside a dropped symbol belongs to nobody
+                 if no is None:
+                     continue
+             else:

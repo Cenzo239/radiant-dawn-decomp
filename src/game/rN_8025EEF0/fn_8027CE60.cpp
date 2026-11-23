@@ -1,0 +1,96 @@
+/* Conversation room setup (normal and FE8 data) */
+#include "game/rN_8025EEF0/prim2d.h"
+
+struct C4 { u8 r, g, b, a; };
+struct RoomA { u8 pad[0x40]; s16 m40, m42, m44, m46; f32 m48, m4C, m50; s16 m54; u8 pad56[2]; void* m58; };
+struct RoomB { s16 m[8]; };
+struct RoomC { f32 m[8]; };
+struct Bar { u8 pad[0x28]; void* vt; };
+
+extern "C" {
+
+extern u8* lbl_804CC06C;
+extern u8* lbl_804CC074;
+extern char lbl_8037359C[];
+void* memset(void* p, int v, u32 n);
+RoomA* fn_80272A14(void);
+u8* fn_80272A8C(void);
+f32* fn_80272B08(void);
+void fn_80272FAC(int a, int b, int c);
+void* fn_8027D784(int n);
+void* fn_8027D790(void* p);
+void fn_801798A8(void* p, int a);
+C4* fn_800CD204(int i);
+void fn_80179A58(void* p, C4* c);
+void fn_801C6EAC(const char* a, const char* b, char* c);
+void fn_800068A0(void* a, char* b);
+void* fn_80076F54(const char* s);
+void fn_80274A14(void);
+void fn_802732FC(int a, int b, int c);
+int fn_8027D6F8(void* p);
+void fn_8027D700(void* p);
+void fn_8027D728(void* p);
+void fn_8027D708(void* p);
+int fn_80272E3C(int id);
+int fn_802401F4(void* p);
+f32 fn_80272D58(void);
+int fn_80272B84(void);
+
+void fn_8027CE60(void) {
+    char buf[0x60];
+/*P*/
+    int off;
+    void* rr;
+    int i;
+    int* f;
+    f32 c;
+    f32 n;
+/*E*/
+    memset(lbl_804CC06C, 0, 0x1F0);
+    *(s16*)(lbl_804CC06C + 0x1E8) = 0xFF;
+    fn_80272A14()->m48 = 304.0f;
+    fn_80272A14()->m4C = 244.0f;
+    fn_80272A14()->m50 = 1.0f;
+    fn_80272A14()->m54 = 5;
+    fn_80272FAC(-100, -100, 0);
+    *(u8**)(lbl_804CC06C + 8) = fn_8024BC94();
+    *(void**)(lbl_804CC06C + 4) = fn_80075D78(lbl_8037359C + 0xEC);
+    {
+        int* fp = *(int**)(lbl_804CC06C + 4);
+        int j;
+        *(int*)(lbl_804CC06C + 0x14) = *fp++;
+        *(int**)(lbl_804CC06C + 0x18) = fp;
+        for (j = 0; j < *(int*)(lbl_804CC06C + 0x14); j++, fp++) {
+        }
+        *(int*)(lbl_804CC06C + 0x1C) = *fp;
+        *(int**)(lbl_804CC06C + 0x20) = fp + 1;
+    }
+    {
+        rr = fn_8027D784(0x2C);
+        if (rr != 0) rr = fn_8027D790(rr);
+        fn_80272A14()->m58 = rr;
+    }
+    fn_801798A8(fn_80272A14()->m58, 1);
+    {
+        C4 cc = *fn_800CD204(4);
+        fn_80179A58(fn_80272A14()->m58, &cc);
+    }
+    fn_801C6EAC(lbl_8037359C + 0x101, lbl_8037359C + 0x12A, buf);
+    fn_800068A0(lbl_804CC06C + 0x164, buf);
+    f = (int*)fn_80076F54(lbl_8037359C + 0x12F);
+    *(int*)(lbl_804CC06C + 0xC) = *f;
+    *(int**)(lbl_804CC06C + 0x10) = f + 1;
+    fn_80274A14();
+    *(s16*)(fn_80272A8C() + 0xC) = 1;
+    fn_802732FC(0, 0, 0);
+    i = 0;
+    off = 0;
+    c = 0.0f;
+    n = *(int*)(lbl_804CC06C + 0xC);
+    for (; i < *(int*)(lbl_804CC06C + 0xC); off += 0x30, i++) {
+        if (fn_80272E3C(fn_8027D6F8(*(u8**)(lbl_804CC06C + 0x10) + off)) != 0) c += 1.0f;
+    }
+    *(int*)(lbl_804CC06C + 0x1EC) = (int)(100.0f * (c / n));
+}
+
+}

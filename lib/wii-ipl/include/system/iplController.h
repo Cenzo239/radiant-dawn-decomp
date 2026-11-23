@@ -1,0 +1,213 @@
+#ifndef IPL_CONTROLLER_H
+#define IPL_CONTROLLER_H
+
+#include <decomp.h>
+
+#include <revolution.h>
+#include <revolution/kpad.h>
+#include <revolution/pad.h>
+#include <revolution/wpad.h>
+
+#include <egg/core.h>
+
+#include "iplMath.h"
+#include "math/iplMathTypes.h"
+#include "revolution/os/OSTime.h"
+
+namespace ipl {
+    namespace controller {
+#define __iplWpadCl(btn) ((btn) << 16)
+
+        // clang-format off
+        /* Revolution Controller (Wii Remote) */
+        enum {
+            REVO_BTN_UP     = WPAD_BUTTON_UP,
+            REVO_BTN_DOWN   = WPAD_BUTTON_DOWN,
+            REVO_BTN_LEFT   = WPAD_BUTTON_LEFT,
+            REVO_BTN_RIGHT  = WPAD_BUTTON_RIGHT,
+            REVO_BTN_A      = WPAD_BUTTON_A,
+            REVO_BTN_B      = WPAD_BUTTON_B,
+            REVO_BTN_PLUS   = WPAD_BUTTON_PLUS,
+            REVO_BTN_MINUS  = WPAD_BUTTON_MINUS,
+            REVO_BTN_HOME   = WPAD_BUTTON_HOME,
+            REVO_BTN_1      = WPAD_BUTTON_1,
+            REVO_BTN_2      = WPAD_BUTTON_2,
+        };
+        /* Classic Controller */
+        enum {
+            CL_BTN_PAD_UP       = __iplWpadCl(WPAD_BUTTON_CL_UP),
+            CL_BTN_PAD_DOWN     = __iplWpadCl(WPAD_BUTTON_CL_DOWN),
+            CL_BTN_PAD_LEFT     = __iplWpadCl(WPAD_BUTTON_CL_LEFT),
+            CL_BTN_PAD_RIGHT    = __iplWpadCl(WPAD_BUTTON_CL_RIGHT),
+            CL_BTN_A            = __iplWpadCl(WPAD_BUTTON_CL_A),
+            CL_BTN_B            = __iplWpadCl(WPAD_BUTTON_CL_B),
+            CL_BTN_PLUS         = __iplWpadCl(WPAD_BUTTON_CL_PLUS),
+            CL_BTN_MINUS        = __iplWpadCl(WPAD_BUTTON_CL_MINUS),
+            CL_BTN_L            = __iplWpadCl(WPAD_BUTTON_CL_FULL_R),
+            CL_BTN_R            = __iplWpadCl(WPAD_BUTTON_CL_FULL_L),
+            CL_BTN_HOME         = __iplWpadCl(WPAD_BUTTON_CL_HOME),
+        };
+        /* Common button inputs */
+        enum {
+            BTN_UP          = REVO_BTN_UP       | CL_BTN_PAD_UP,                /* 0x00010008 */
+            BTN_DOWN        = REVO_BTN_DOWN     | CL_BTN_PAD_DOWN,              /* 0x40000004 */
+            BTN_LEFT        = REVO_BTN_LEFT     | CL_BTN_PAD_LEFT,              /* 0x00020001 */
+            BTN_RIGHT       = REVO_BTN_RIGHT    | CL_BTN_PAD_RIGHT,             /* 0x80000002 */
+            BTN_INTERACT    = REVO_BTN_A        | CL_BTN_A,                     /* 0x00100800 */
+            BTN_BACK        = REVO_BTN_B        | CL_BTN_B,                     /* 0x00400400 */
+            BTN_DRAG        = REVO_BTN_A        | REVO_BTN_B,                   /* 0x00000C00 */
+            BTN_NEXT_RIGHT  = REVO_BTN_PLUS     | CL_BTN_PLUS       | CL_BTN_L, /* 0x06000010 */
+            BTN_NEXT_LEFT   = REVO_BTN_MINUS    | CL_BTN_MINUS      | CL_BTN_R, /* 0x30001000 */
+            BTN_HOME        = REVO_BTN_HOME     | CL_BTN_HOME,                  /* 0x08008000 */
+        };
+        // clang-format on
+
+        class Base {
+        public:
+            Base(int chan, KPADStatus& arg1) {
+                mButton = 0;
+                unk_0x08 = 0;
+                mLastRumbleTime = 0;
+                mRumbleType = -1;
+                mChan = chan;
+                mType = 2;
+                unk_0x1C = 0;
+
+                KPADEnableDPD(chan);
+
+                unk_0x1D = 0;
+                unk_0x1E = 0;
+                unk_0x20 = &arg1;
+            }
+
+            virtual ~Base();                            // 0x08
+            virtual int getType() const;                // 0x0C
+            virtual int getChannel() const;             // 0x10
+            virtual int down(u32 button) const;         // 0x14
+            virtual int downTrg(u32 button) const;      // 0x18
+            virtual int upTrg(u32 button) const;        // 0x1C
+            virtual int pinch() const;                  // 0x20
+            virtual int pinchTrg() const;               // 0x24
+            virtual int pinchOffTrg() const;            // 0x28
+            virtual int decide() const;                 // 0x2C
+            virtual int repeat(u32 button) const;       // 0x30
+            virtual BOOL rumble(int timer = 0);         // 0x34
+            virtual void cancelRumbling();              // 0x38
+            virtual int getHoldFlag() const;            // 0x3C
+            virtual int getTrigFlag() const;            // 0x40
+            virtual int getReleaseFlag() const;         // 0x44
+            virtual int getClassicHoldFlag() const;     // 0x48
+            virtual int getClassicTrigFlag() const;     // 0x4C
+            virtual int getClassicReleaseFlag() const;  // 0x50
+            virtual math::VEC2 getDpdPos() const;       // 0x54
+            /**
+             * @brief Gets the IR sensor position of the Wii Remote.
+             * @return The IR sensor X and Y as `ipl::math::VEC2`.
+             */
+            virtual math::VEC2 getDpdProjectionPos() const;  // 0x58
+            /**
+             * @brief Gets the Horizon of the Wii Remote.
+             * @return The Horizon X and Y as `ipl::math::VEC2`.
+             */
+            virtual math::VEC2 getHorizon() const;      // 0x5C
+            virtual int getDpdDistance() const;         // 0x60
+            virtual KPADStatus* getKPADStatus() const;  // 0x64
+            virtual PADStatus* getPADStatus() const;    // 0x68
+            virtual bool isValidBtn() const;            // 0x6C
+            virtual bool isValidDpd() const;            // 0x70
+
+            virtual bool setForceInvalid(bool flag);  // 0x74
+
+            virtual f32 getMainStickX() const;  // 0x78
+            virtual f32 getMainStickY() const;  // 0x7C
+
+            virtual f32 getSubStickX() const;  // 0x80
+            virtual f32 getSubStickY() const;  // 0x84
+
+            virtual void read();  // 0x88
+
+            // protected:
+            u8 mButton;              // 0x4
+            u32 unk_0x08;            // 0x8
+            OSTick mLastRumbleTime;  // 0xC
+            s32 mRumbleType;         // 0x10
+            u32 mChan;               // 0x14
+            u32 mType;               // 0x18
+            u8 unk_0x1C;
+            u8 unk_0x1D;           // 0x1D
+            u8 unk_0x1E;           // 0x1E
+            KPADStatus* unk_0x20;  // 0x20
+        };
+
+        class Interface : public Base {
+        public:
+            Interface(int chan, KPADStatus& arg1) : Base(chan, arg1) {}
+
+            ~Interface() {}
+
+            virtual int down(u32 button) const override;         // 0x10
+            virtual int downTrg(u32 button) const override;      // 0x18
+            virtual int pinch() const override;                  // 0x1C
+            virtual int getClassicHoldFlag() const override;     // 0x48
+            virtual int getClassicTrigFlag() const override;     // 0x4C
+            virtual int getClassicReleaseFlag() const override;  // 0x50
+            virtual KPADStatus* getKPADStatus() const override;  // 0x64
+            virtual bool isValidBtn() const override;            // 0x6C
+        };
+
+        class Revolution : public Interface {
+        public:
+            Revolution(int chan, KPADStatus& arg1) : Interface(chan, arg1) {}
+
+            virtual ~Revolution();
+
+            virtual int down(u32 button) const override;  // 0x10
+
+            virtual math::VEC2 getDpdProjectionPos() const override;  // 0x58
+
+            virtual bool isValidBtn() const override;  // 0x6C
+            virtual bool isValidDpd() const override;  // 0x70
+
+            virtual void read() override;  // 0x88
+        };
+
+        class Classic : public Revolution {
+        public:
+            Classic(int arg0, KPADStatus& arg1);
+
+            virtual int getClassicHoldFlag() const override;     // 0x48
+            virtual int getClassicTrigFlag() const override;     // 0x4C
+            virtual int getClassicReleaseFlag() const override;  // 0x50
+
+            virtual math::VEC2 getDpdPos() const override;            // 0x54
+            virtual math::VEC2 getDpdProjectionPos() const override;  // 0x58
+            virtual math::VEC2 getHorizon() const override;           // 0x5C
+
+            virtual bool isValidDpd() const override; // 0x70
+
+            virtual void read() override;  // 0x88
+
+            virtual BOOL isValidDpdClassic() const;  // 0x8C
+
+        private:
+            math::VEC2 unk_0x24;
+            int unk_0x2C;
+        };
+
+        class Manager {
+        public:
+            Manager(EGG::Heap* heap);
+
+            void read();
+
+            Interface* getController(int chan);
+            Interface* getMasterController();
+            Interface* getYoungController();
+
+        private:
+            // u8 dummy[0x2F8];
+        };
+    }  // namespace controller
+}  // namespace ipl
+
+#endif  // IPL_CONTROLLER_H

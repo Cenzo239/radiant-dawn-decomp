@@ -1,0 +1,109 @@
+#include "game/rQ_80163178/common.h"
+#define ABS(a) ((a) < 0 ? -(a) : (a))
+extern "C" {
+void fn_80160610(u8, int, int, Unit*, int, int, int, int, int);
+void fn_80165B48(int, int, Unit*, int, int);
+void fn_80165CB0(int, int, Unit*, int, int);
+s8 fn_8012408C(Unit*);
+int fn_801658E4(Unit*, s8, s8);
+u16 fn_801676D8(int, int);
+}
+static inline int Cst(int x, int y) {
+    return ((Map*)&lbl_803EC898)->cost2[(s8)x + (s8)y * 0x40];
+}
+static inline s16 CostAt(int ux, s16 uy, int x, int y) {
+    if (lbl_803EC898.costS[(s8)x + (s8)y * 0x40] < 0) {
+        return 0x7FFF;
+    }
+    return lbl_803EC898.cost2S[(s8)ux + (s8)uy * 0x40];
+}
+extern "C" void fn_8016FA34(int ux, s16 uy, Unit* u, int x_, int y_, u8 act, u32 thr, int fl, u8 f9, int rng) {
+    int d;
+    s16 d24;
+    u16 bd;
+    int b22;
+    int x1;
+    int y;
+    int x;
+    s16 bx;
+    s16 by;
+    s16 ax;
+    s16 ay;
+    s16 cx;
+    s16 cy;
+    int x0;
+    int y1;
+    if (ux == x_ && uy == y_) {
+        fn_80160610(act, (s8)x_, (s8)y_, 0, (s8)x_, (s8)y_, -1, 0, 0);
+        return;
+    }
+    if (fl) {
+        fn_80165B48(x_, y_, u, 7, lbl_803EC898.w * lbl_803EC898.h);
+    } else {
+        fn_80165CB0(x_, y_, u, 7, lbl_803EC898.w * lbl_803EC898.h);
+    }
+    fn_80165CB0(ux, uy, u, 6, rng);
+    d = CostAt(ux, uy, x_, y_);
+    bd = 0xFFFF;
+    d24 = -1;
+    bx = -1;
+    b22 = 0x7FFF;
+    if (rng < 0) {
+        rng = fn_8012408C(u);
+    }
+    x0 = ux - rng;
+    if (x0 < lbl_803EC898.x0) {
+        x0 = lbl_803EC898.x0;
+    }
+    y = uy - rng;
+    if (y < lbl_803EC898.y0) {
+        y = lbl_803EC898.y0;
+    }
+    x1 = ux + rng;
+    if (x1 > lbl_803EC898.x1 - 1) {
+        x1 = lbl_803EC898.x1 - 1;
+    }
+    y1 = uy + rng;
+    if (y1 > lbl_803EC898.y1 - 1) {
+        y1 = lbl_803EC898.y1 - 1;
+    }
+    for (; y <= y1; y++) {
+        for (x = x0; x <= x1; x++) {
+            if (rng >= ABS(ux - x) + ABS(uy - y)) {
+                if (((Map*)&lbl_803EC898)->costS[(s8)x + (s8)y * 0x40] >= 0 && ((Map*)&lbl_803EC898)->b5S[(s8)x + (s8)y * 0x40] == 0 && !fn_801658E4(u, (s8)x, (s8)y)) {
+                    u8 t = ((Map*)&lbl_803EC898)->ter[0][(s8)x + (s8)y * 0x40];
+                    if ((t == 0 || t == u->tid) && ((Map*)&lbl_803EC898)->cost2S[(s8)x + (s8)y * 0x40] >= 0) {
+                        if (thr < fn_801676D8((s8)x, (s8)y)) {
+                            if (bd > fn_801676D8((s8)x, (s8)y)) {
+                                bd = fn_801676D8((s8)x, (s8)y);
+                                ax = x;
+                                ay = y;
+                            }
+                        } else {
+                            int c = (s16)((Map*)&lbl_803EC898)->cost2[(s8)x + (s8)y * 0x40];
+if ((s16)d < c) {
+if ((s16)b22 > c) {
+                                    b22 = c;
+                                    cx = x;
+                                    cy = y;
+                                }
+                            } else if (c < (s16)d || fn_801676D8((s8)x, (s8)y) < d24) {
+                                d = (s16)((Map*)&lbl_803EC898)->cost2[(s8)x + (s8)y * 0x40];
+                                d24 = fn_801676D8((s8)x, (s8)y);
+                                by = y;
+                                bx = x;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (bx != -1) {
+        fn_80160610(act, (s8)bx, (s8)by, 0, (s8)bx, (s8)by, -1, 0, 0);
+    } else if (f9 && (s16)b22 != 0x7FFF) {
+        fn_80160610(act, (s8)cx, (s8)cy, 0, (s8)cx, (s8)cy, -1, 0, 0);
+    } else if (f9 && bd != 0xFFFF) {
+        fn_80160610(act, (s8)ax, (s8)ay, 0, (s8)ax, (s8)ay, -1, 0, 0);
+    }
+}

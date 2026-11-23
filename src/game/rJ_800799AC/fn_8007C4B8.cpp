@@ -1,0 +1,416 @@
+/* Classic Controller and Wii Remote sideways sample readers, all ending in the
+ * SDK PADClamp stick and trigger clamps. */
+#include "game/rJ_800799AC/pad.h"
+extern "C" {
+extern u32 lbl_804CB5BC;
+
+/* The ClampStick of the SDK's PADClamp, widened to s16 */
+static inline void ClampStick(s16* px, s16* py, s16 max, s16 xy, s16 min) {
+    int d;
+    int signY;
+    int signX;
+    int y;
+    int x;
+    x = *px;
+    y = *py;
+
+    if (0 <= x) {
+        signX = 1;
+    } else {
+        signX = -1;
+        x = -x;
+    }
+
+    if (0 <= y) {
+        signY = 1;
+    } else {
+        signY = -1;
+        y = -y;
+    }
+
+    if (x <= min) {
+        x = 0;
+    } else {
+        x -= min;
+    }
+    if (y <= min) {
+        y = 0;
+    } else {
+        y -= min;
+    }
+
+    if (x == 0 && y == 0) {
+        *px = *py = 0;
+        return;
+    }
+
+    if (xy * y <= xy * x) {
+        d = xy * x + (max - xy) * y;
+        if (xy * max < d) {
+            x = (s16)(xy * max * x / d);
+            y = (s16)(xy * max * y / d);
+        }
+    } else {
+        d = xy * y + (max - xy) * x;
+        if (xy * max < d) {
+            x = (s16)(xy * max * x / d);
+            y = (s16)(xy * max * y / d);
+        }
+    }
+
+    *px = (s16)(signX * x);
+    *py = (s16)(signY * y);
+}
+
+static inline void trigClamp(s16* t) {
+    if (*t <= 0x1E) {
+        *t = 0;
+    } else {
+        if (*t > 0xB4) {
+            *t = 0xB4;
+        }
+        *t -= 0x1E;
+    }
+}
+
+/* Read a Classic Controller sample */
+void fn_8007C4B8(Pad* p, u8* wii, void* arg) {
+    p->vBC();
+    if (*(u32*)(wii + 0x60) & 0x2) {
+        p->raw |= 0x1;
+    }
+    if (*(u32*)(wii + 0x60) & 0x8000) {
+        p->raw |= 0x2;
+    }
+    if (*(u32*)(wii + 0x60) & 0x4000) {
+        p->raw |= 0x4;
+    }
+    if (*(u32*)(wii + 0x60) & 0x1) {
+        p->raw |= 0x8;
+    }
+    if ((*(u32*)(wii + 0x60) & 4) || (*(u32*)(wii + 0x60) & 0x80)) {
+        p->raw |= 0x10;
+    }
+    if (*(u32*)(wii + 0x60) & 0x2000) {
+        p->raw |= 0x40;
+    }
+    if (*(u32*)(wii + 0x60) & 0x200) {
+        p->raw |= 0x100;
+    }
+    if (*(u32*)(wii + 0x60) & 0x10) {
+        p->raw |= 0x400;
+    }
+    if (*(u32*)(wii + 0x60) & 0x40) {
+        p->raw |= 0x800;
+    }
+    if (*(u32*)(wii + 0x60) & 0x8) {
+        p->raw |= 0x1000;
+    }
+    if (*(u32*)(wii + 0x60) & 0x20) {
+        p->raw |= 0x2000;
+    }
+    if (*(u32*)(wii + 0x60) & 0x1000) {
+        p->raw |= 0x8000;
+    }
+    if (*(u32*)(wii + 0x60) & 0x400) {
+        p->raw |= 0x4000;
+    }
+    if (*(u32*)(wii + 0x60) & 0x800) {
+        p->raw |= 0x30000;
+    }
+    if (*(u32*)wii & 0x8000) {
+        p->raw |= 0x10000;
+    }
+    p->axis[0] = 127.0f * *(f32*)(wii + 0x6C);
+    p->axis[1] = 127.0f * *(f32*)(wii + 0x70);
+    p->axis[2] = 127.0f * *(f32*)(wii + 0x74);
+    p->axis[3] = 127.0f * *(f32*)(wii + 0x78);
+    p->axis[4] = 255.0f * *(f32*)(wii + 0x7C);
+    p->axis[5] = 0;
+    p->axis[6] = 255.0f * *(f32*)(wii + 0x80);
+    p->axis[7] = 0;
+    if (p->vE8() != 0) {
+        p->vD4(p->v14());
+    } else if (p->vE4(arg) != 0) {
+        p->vD4(3);
+    }
+    ClampStick(&p->axis[0], &p->axis[1], 72, 47, 15);
+    ClampStick(&p->axis[2], &p->axis[3], 59, 31, 15);
+    trigClamp(&p->axis[4]);
+    trigClamp(&p->axis[5]);
+    trigClamp(&p->axis[6]);
+    trigClamp(&p->axis[7]);
+}
+
+#define W (*(u32*)wii)
+#define TRG(m) ((p->raw & (m)) ? 0xFF : 0)
+#define TAIL \
+    if (p->vE8() != 0) { \
+        p->vD4(p->v14()); \
+    } else if (p->vE4(arg) != 0) { \
+        p->vD4(3); \
+    } \
+    ClampStick(&p->axis[0], &p->axis[1], 72, 47, 15); \
+    ClampStick(&p->axis[2], &p->axis[3], 59, 31, 15); \
+    trigClamp(&p->axis[4]); \
+    trigClamp(&p->axis[5]); \
+    trigClamp(&p->axis[6]); \
+    trigClamp(&p->axis[7]);
+
+void fn_8007CC1C(Pad* p, u8* wii, void* arg) {
+    p->vBC();
+    if (!(lbl_804CB5BC & 1)) {
+        if (!(W & 0x100) && (W & 0x1)) {
+            p->raw |= 0x1;
+        }
+        if (!(W & 0x100) && (W & 0x2)) {
+            p->raw |= 0x2;
+        }
+        if (!(W & 0x100) && (W & 0x4)) {
+            p->raw |= 0x4;
+        }
+        if (!(W & 0x100) && (W & 0x8)) {
+            p->raw |= 0x8;
+        }
+        if ((W & 0x100) && (W & 0x200)) {
+            p->raw |= 0x10;
+        }
+        if ((W & 0x100) && (W & 0x800)) {
+            p->raw |= 0x40;
+        }
+        if ((W & 0x100) && (W & 0x400)) {
+            p->raw |= 0x100;
+        }
+        if (!(W & 0x100) && (W & 0x800)) {
+            p->raw |= 0x400;
+        }
+        if (!(W & 0x100) && (W & 0x400)) {
+            p->raw |= 0x800;
+        }
+        if (W & 0x10) {
+            p->raw |= 0x1000;
+        }
+        if (W & 0x1000) {
+            p->raw |= 0x2000;
+        }
+        if (!(W & 0x100) && (W & 0x200)) {
+            p->raw |= 0x4000;
+        }
+        if (W & 0x8000) {
+            p->raw |= 0x10000;
+        }
+        p->axis[0] = 0;
+        p->axis[1] = 0;
+        if (W & 0x100) {
+            if (W & 1) {
+                p->axis[2] = -0x80;
+            } else if (W & 2) {
+                p->axis[2] = 0x7F;
+            }
+            if (W & 4) {
+                p->axis[3] = -0x80;
+            } else if (W & 8) {
+                p->axis[3] = 0x7F;
+            }
+        } else {
+            p->axis[2] = 0;
+            p->axis[3] = 0;
+        }
+        p->axis[4] = TRG(0x40);
+        p->axis[5] = 0;
+        p->axis[6] = TRG(0x100);
+        p->axis[7] = 0;
+    } else {
+        if (!(W & 0x400) && (W & 0x1)) {
+            p->raw |= 0x4;
+        }
+        if (!(W & 0x400) && (W & 0x2)) {
+            p->raw |= 0x8;
+        }
+        if (!(W & 0x400) && (W & 0x8)) {
+            p->raw |= 0x1;
+        }
+        if (!(W & 0x400) && (W & 0x4)) {
+            p->raw |= 0x2;
+        }
+        if (!(W & 0x400) && (W & 0x800)) {
+            p->raw |= 0x10;
+        }
+        if ((W & 0x400) && (W & 0x800)) {
+            p->raw |= 0x40;
+        }
+        if (W & 0x1000) {
+            p->raw |= 0x100;
+        }
+        if (!(W & 0x400) && (W & 0x100)) {
+            p->raw |= 0x400;
+        }
+        if (!(W & 0x400) && (W & 0x200)) {
+            p->raw |= 0x800;
+        }
+        if ((W & 0x400) && (W & 0x100)) {
+            p->raw |= 0x1000;
+        }
+        if ((W & 0x400) && (W & 0x200)) {
+            p->raw |= 0x2000;
+        }
+        if (W & 0x10) {
+            p->raw |= 0x4000;
+        }
+        if (W & 0x8000) {
+            p->raw |= 0x10000;
+        }
+        p->axis[0] = 0;
+        p->axis[1] = 0;
+        if (W & 0x400) {
+            if (W & 1) {
+                p->axis[3] = -0x80;
+            } else if (W & 2) {
+                p->axis[3] = 0x7F;
+            }
+            if (W & 4) {
+                p->axis[2] = 0x80;
+            } else if (W & 8) {
+                p->axis[2] = -0x7F;
+            }
+        } else {
+            p->axis[2] = 0;
+            p->axis[3] = 0;
+        }
+        p->axis[4] = TRG(0x40);
+        p->axis[5] = 0;
+        p->axis[6] = TRG(0x100);
+        p->axis[7] = 0;
+    }
+    TAIL
+}
+
+void fn_8007D5B8(Pad* p, u8* wii, void* arg) {
+    p->vBC();
+    if (!(lbl_804CB5BC & 1)) {
+        if (!(W & 0x100) && (W & 0x1)) {
+            p->raw |= 0x1;
+        }
+        if (!(W & 0x100) && (W & 0x2)) {
+            p->raw |= 0x2;
+        }
+        if (!(W & 0x100) && (W & 0x4)) {
+            p->raw |= 0x4;
+        }
+        if (!(W & 0x100) && (W & 0x8)) {
+            p->raw |= 0x8;
+        }
+        if ((W & 0x100) && (W & 0x200)) {
+            p->raw |= 0x10;
+        }
+        if ((W & 0x100) && (W & 0x800)) {
+            p->raw |= 0x40;
+        }
+        if ((W & 0x100) && (W & 0x400)) {
+            p->raw |= 0x100;
+        }
+        if (!(W & 0x100) && (W & 0x800)) {
+            p->raw |= 0x400;
+        }
+        if (!(W & 0x100) && (W & 0x400)) {
+            p->raw |= 0x800;
+        }
+        if (W & 0x10) {
+            p->raw |= 0x1000;
+        }
+        if (W & 0x1000) {
+            p->raw |= 0x2000;
+        }
+        if (!(W & 0x100) && (W & 0x200)) {
+            p->raw |= 0x4000;
+        }
+        if (W & 0x8000) {
+            p->raw |= 0x10000;
+        }
+        p->axis[0] = 0;
+        p->axis[1] = 0;
+        if (W & 0x100) {
+            if (W & 1) {
+                p->axis[2] = -0x80;
+            } else if (W & 2) {
+                p->axis[2] = 0x7F;
+            }
+            if (W & 4) {
+                p->axis[3] = -0x80;
+            } else if (W & 8) {
+                p->axis[3] = 0x7F;
+            }
+        } else {
+            p->axis[2] = 0;
+            p->axis[3] = 0;
+        }
+        p->axis[4] = TRG(0x40);
+        p->axis[5] = 0;
+        p->axis[6] = TRG(0x100);
+        p->axis[7] = 0;
+    } else {
+        if (!(W & 0x400) && (W & 0x1)) {
+            p->raw |= 0x4;
+        }
+        if (!(W & 0x400) && (W & 0x2)) {
+            p->raw |= 0x8;
+        }
+        if (!(W & 0x400) && (W & 0x8)) {
+            p->raw |= 0x1;
+        }
+        if (!(W & 0x400) && (W & 0x4)) {
+            p->raw |= 0x2;
+        }
+        if (!(W & 0x400) && (W & 0x800)) {
+            p->raw |= 0x10;
+        }
+        if ((W & 0x400) && (W & 0x800)) {
+            p->raw |= 0x40;
+        }
+        if (W & 0x1000) {
+            p->raw |= 0x100;
+        }
+        if (!(W & 0x400) && (W & 0x100)) {
+            p->raw |= 0x400;
+        }
+        if (!(W & 0x400) && (W & 0x200)) {
+            p->raw |= 0x800;
+        }
+        if ((W & 0x400) && (W & 0x100)) {
+            p->raw |= 0x1000;
+        }
+        if ((W & 0x400) && (W & 0x200)) {
+            p->raw |= 0x2000;
+        }
+        if (W & 0x10) {
+            p->raw |= 0x4000;
+        }
+        if (W & 0x8000) {
+            p->raw |= 0x10000;
+        }
+        p->axis[0] = 0;
+        p->axis[1] = 0;
+        if (W & 0x400) {
+            if (W & 1) {
+                p->axis[3] = -0x80;
+            } else if (W & 2) {
+                p->axis[3] = 0x7F;
+            }
+            if (W & 4) {
+                p->axis[2] = 0x80;
+            } else if (W & 8) {
+                p->axis[2] = -0x7F;
+            }
+        } else {
+            p->axis[2] = 0;
+            p->axis[3] = 0;
+        }
+        p->axis[4] = TRG(0x40);
+        p->axis[5] = 0;
+        p->axis[6] = TRG(0x100);
+        p->axis[7] = 0;
+    }
+    TAIL
+}
+
+}

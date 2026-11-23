@@ -1,0 +1,604 @@
+diff --git a/config/RFEE01/symbols.base.txt b/config/RFEE01/symbols.base.txt
+index 9d8b1d04..3af52379 100644
+--- a/config/RFEE01/symbols.base.txt
++++ b/config/RFEE01/symbols.base.txt
+@@ -8952,8 +8952,8 @@ fn_8025F1D4 = .text:0x8025F1D4; // type:function size:0x58
+ fn_8025F22C = .text:0x8025F22C; // type:function size:0x8
+ fn_8025F234 = .text:0x8025F234; // type:function size:0x4
+ fn_8025F238 = .text:0x8025F238; // type:function size:0x68
+-fn_8025F2A0 = .text:0x8025F2A0; // type:function size:0x7C
+-fn_8025F31C = .text:0x8025F31C; // type:function size:0x7C
++__dt__Q34nw4r3snd10FxReverbHiFv = .text:0x8025F2A0; // type:function size:0x7C
++__dt__Q34nw4r3snd8FxChorusFv = .text:0x8025F31C; // type:function size:0x7C
+ fn_8025F398 = .text:0x8025F398; // type:function size:0x20
+ fn_8025F3B8 = .text:0x8025F3B8; // type:function size:0x8
+ fn_8025F3C0 = .text:0x8025F3C0; // type:function size:0x8
+@@ -9664,7 +9664,7 @@ fn_8029C20C = .text:0x8029C20C; // type:function size:0x94
+ fn_8029C2A0 = .text:0x8029C2A0; // type:function size:0x20
+ fn_8029C2C0 = .text:0x8029C2C0; // type:function size:0x4A0
+ fn_8029C760 = .text:0x8029C760; // type:function size:0x20
+-fn_8029C780 = .text:0x8029C780; // type:function size:0x58
++__dt__Q34nw4r2ut30LinkList<Q34nw4r3snd6FxBase,4>Fv = .text:0x8029C780; // type:function size:0x58
+ fn_8029C7D8 = .text:0x8029C7D8; // type:function size:0x64
+ fn_8029C83C = .text:0x8029C83C; // type:function size:0x78
+ fn_8029C8B4 = .text:0x8029C8B4; // type:function size:0xD4
+@@ -9684,7 +9684,7 @@ fn_8029D598 = .text:0x8029D598; // type:function size:0x2D8
+ fn_8029D870 = .text:0x8029D870; // type:function size:0xC8
+ fn_8029D938 = .text:0x8029D938; // type:function size:0x128
+ fn_8029DA60 = .text:0x8029DA60; // type:function size:0x44
+-fn_8029DAA4 = .text:0x8029DAA4; // type:function size:0x40
++__dt__Q44nw4r3snd6detail7AxVoiceFv = .text:0x8029DAA4; // type:function size:0x40
+ fn_8029DAE4 = .text:0x8029DAE4; // type:function size:0x80
+ fn_8029DB64 = .text:0x8029DB64; // type:function size:0x140
+ fn_8029DCA4 = .text:0x8029DCA4; // type:function size:0x124
+@@ -9783,15 +9783,14 @@ fn_802A306C = .text:0x802A306C; // type:function size:0x3C
+ fn_802A30A8 = .text:0x802A30A8; // type:function size:0x3C
+ fn_802A30E4 = .text:0x802A30E4; // type:function size:0x3C
+ fn_802A3120 = .text:0x802A3120; // type:function size:0xCC
+-fn_802A31EC = .text:0x802A31EC; // type:function size:0x34
+-fn_802A3220 = .text:0x802A3220; // type:function size:0x4
++fn_802A31EC = .text:0x802A31EC; // type:function size:0x38
+ fn_802A3224 = .text:0x802A3224; // type:function size:0x14
+ fn_802A3238 = .text:0x802A3238; // type:function size:0x14
+ fn_802A324C = .text:0x802A324C; // type:function size:0x8
+ fn_802A3254 = .text:0x802A3254; // type:function size:0x8
+ fn_802A325C = .text:0x802A325C; // type:function size:0x40
+-fn_802A329C = .text:0x802A329C; // type:function size:0x40
+-fn_802A32DC = .text:0x802A32DC; // type:function size:0x8
++__dt__Q44nw4r3snd6detail10BasicSoundFv = .text:0x802A329C; // type:function size:0x40
++GetRuntimeTypeInfo__Q44nw4r3snd6detail10BasicSoundCFv = .text:0x802A32DC; // type:function size:0x8
+ fn_802A32E4 = .text:0x802A32E4; // type:function size:0xC
+ fn_802A32F0 = .text:0x802A32F0; // type:function size:0x7C
+ fn_802A336C = .text:0x802A336C; // type:function size:0x60
+@@ -9870,7 +9869,7 @@ fn_802A5BE8 = .text:0x802A5BE8; // type:function size:0xCC
+ fn_802A5CB4 = .text:0x802A5CB4; // type:function size:0x224
+ fn_802A5ED8 = .text:0x802A5ED8; // type:function size:0xC
+ fn_802A5EE4 = .text:0x802A5EE4; // type:function size:0x40
+-fn_802A5F24 = .text:0x802A5F24; // type:function size:0x4
++OnChangeOutputMode__Q34nw4r3snd6FxBaseFv = .text:0x802A5F24; // type:function size:0x4
+ fn_802A5F28 = .text:0x802A5F28; // type:function size:0x90
+ fn_802A5FB8 = .text:0x802A5FB8; // type:function size:0x2C
+ fn_802A5FE4 = .text:0x802A5FE4; // type:function size:0x8
+@@ -9899,14 +9898,14 @@ fn_802A6B48 = .text:0x802A6B48; // type:function size:0x9C
+ fn_802A6BE4 = .text:0x802A6BE4; // type:function size:0x11C
+ fn_802A6D00 = .text:0x802A6D00; // type:function size:0x4
+ fn_802A6D04 = .text:0x802A6D04; // type:function size:0x10
+-fn_802A6D14 = .text:0x802A6D14; // type:function size:0x4
+-fn_802A6D18 = .text:0x802A6D18; // type:function size:0x4
++InvalidateWaveData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv = .text:0x802A6D14; // type:function size:0x4
++OnUpdateVoiceSoundThread__Q54nw4r3snd6detail11SoundThread14PlayerCallbackFv = .text:0x802A6D18; // type:function size:0x4
+ fn_802A6D1C = .text:0x802A6D1C; // type:function size:0x8
+ fn_802A6D24 = .text:0x802A6D24; // type:function size:0x8
+ fn_802A6D2C = .text:0x802A6D2C; // type:function size:0x8
+-fn_802A6D34 = .text:0x802A6D34; // type:function size:0x8
++@208@InvalidateWaveData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv = .text:0x802A6D34; // type:function size:0x8
+ fn_802A6D3C = .text:0x802A6D3C; // type:function size:0x8
+-fn_802A6D44 = .text:0x802A6D44; // type:function size:0x8
++@220@OnShutdownSoundThread__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A6D44; // type:function size:0x8
+ fn_802A6D4C = .text:0x802A6D4C; // type:function size:0x8
+ fn_802A6D54 = .text:0x802A6D54; // type:function size:0x630
+ fn_802A7384 = .text:0x802A7384; // type:function size:0x744
+@@ -9918,12 +9917,13 @@ fn_802A7CB4 = .text:0x802A7CB4; // type:function size:0x58
+ fn_802A7D0C = .text:0x802A7D0C; // type:function size:0x68
+ fn_802A7D74 = .text:0x802A7D74; // type:function size:0x68
+ fn_802A7DDC = .text:0x802A7DDC; // type:function size:0xC
+-fn_802A7DE8 = .text:0x802A7DE8; // type:function size:0x8
++GetAllocatableTrackCount__Q44nw4r3snd6detail20MmlSeqTrackAllocatorCFv = .text:0x802A7DE8; // type:function size:0x8
+ fn_802A7DF0 = .text:0x802A7DF0; // type:function size:0x40
+ fn_802A7E30 = .text:0x802A7E30; // type:function size:0x8
+ fn_802A7E38 = .text:0x802A7E38; // type:function size:0xC
+ fn_802A7E44 = .text:0x802A7E44; // type:function size:0x84
+-fn_802A7EC8 = .text:0x802A7EC8; // type:function size:0xD4
++fn_802A7EC8 = .text:0x802A7EC8; // type:function size:0x34
++ExecCommand__Q34nw4r3snd13RemoteSpeakerFQ44nw4r3snd13RemoteSpeaker14SpeakerCommand = .text:0x802A7EFC; // type:function size:0xA0
+ fn_802A7F9C = .text:0x802A7F9C; // type:function size:0x314
+ fn_802A82B0 = .text:0x802A82B0; // type:function size:0x10C
+ fn_802A83BC = .text:0x802A83BC; // type:function size:0xE8
+@@ -9960,9 +9960,9 @@ fn_802A97C4 = .text:0x802A97C4; // type:function size:0x10C
+ fn_802A98D0 = .text:0x802A98D0; // type:function size:0x264
+ fn_802A9B34 = .text:0x802A9B34; // type:function size:0x2A0
+ fn_802A9DD4 = .text:0x802A9DD4; // type:function size:0x28
+-fn_802A9DFC = .text:0x802A9DFC; // type:function size:0x4
+-fn_802A9E00 = .text:0x802A9E00; // type:function size:0x8
+-fn_802A9E08 = .text:0x802A9E08; // type:function size:0x8
++ChannelCallback__Q44nw4r3snd6detail9SeqPlayerFPQ44nw4r3snd6detail7Channel = .text:0x802A9DFC; // type:function size:0x4
++@208@__dt__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A9E00; // type:function size:0x8
++@220@__dt__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A9E08; // type:function size:0x8
+ fn_802A9E10 = .text:0x802A9E10; // type:function size:0x9C
+ fn_802A9EAC = .text:0x802A9EAC; // type:function size:0x58
+ fn_802A9F04 = .text:0x802A9F04; // type:function size:0x34
+@@ -9972,8 +9972,8 @@ fn_802AA01C = .text:0x802AA01C; // type:function size:0xF4
+ fn_802AA110 = .text:0x802AA110; // type:function size:0x74
+ fn_802AA184 = .text:0x802AA184; // type:function size:0xDC
+ fn_802AA260 = .text:0x802AA260; // type:function size:0x6C
+-fn_802AA2CC = .text:0x802AA2CC; // type:function size:0x8
+-fn_802AA2D4 = .text:0x802AA2D4; // type:function size:0x8
++SetChannelPriority__Q44nw4r3snd6detail8SeqSoundFi = .text:0x802AA2CC; // type:function size:0x8
++SetReleasePriorityFix__Q44nw4r3snd6detail8SeqSoundFb = .text:0x802AA2D4; // type:function size:0x8
+ fn_802AA2DC = .text:0x802AA2DC; // type:function size:0xE4
+ fn_802AA3C0 = .text:0x802AA3C0; // type:function size:0x50
+ fn_802AA410 = .text:0x802AA410; // type:function size:0x34
+@@ -10123,7 +10123,7 @@ fn_802AFE04 = .text:0x802AFE04; // type:function size:0x10
+ fn_802AFE14 = .text:0x802AFE14; // type:function size:0x150
+ fn_802AFF64 = .text:0x802AFF64; // type:function size:0x14C
+ fn_802B00B0 = .text:0x802B00B0; // type:function size:0x14
+-fn_802B00C4 = .text:0x802B00C4; // type:function size:0xA04
++detail_SetupSoundImpl__Q34nw4r3snd18SoundArchivePlayerFPQ34nw4r3snd11SoundHandleUlPQ54nw4r3snd6detail10BasicSound14AmbientArgInfoPQ34nw4r3snd10SoundActorbPCQ44nw4r3snd14SoundStartable9StartInfo = .text:0x802B00C4; // type:function size:0xA04
+ fn_802B0AC8 = .text:0x802B0AC8; // type:function size:0x2BC
+ fn_802B0D84 = .text:0x802B0D84; // type:function size:0x1B8
+ fn_802B0F3C = .text:0x802B0F3C; // type:function size:0x140
+@@ -10194,7 +10194,7 @@ fn_802B34D4 = .text:0x802B34D4; // type:function size:0x18C
+ fn_802B3660 = .text:0x802B3660; // type:function size:0x1A4
+ fn_802B3804 = .text:0x802B3804; // type:function size:0xF8
+ fn_802B38FC = .text:0x802B38FC; // type:function size:0x58
+-fn_802B3954 = .text:0x802B3954; // type:function size:0x58
++__dt__Q54nw4r3snd6detail10StrmPlayer16StrmDataLoadTaskFv = .text:0x802B3954; // type:function size:0x58
+ fn_802B39AC = .text:0x802B39AC; // type:function size:0x100
+ fn_802B3AAC = .text:0x802B3AAC; // type:function size:0x218
+ fn_802B3CC4 = .text:0x802B3CC4; // type:function size:0x90
+@@ -10254,7 +10254,7 @@ fn_802B6790 = .text:0x802B6790; // type:function size:0x8
+ fn_802B6798 = .text:0x802B6798; // type:function size:0x8
+ fn_802B67A0 = .text:0x802B67A0; // type:function size:0xC
+ fn_802B67AC = .text:0x802B67AC; // type:function size:0x38
+-fn_802B67E4 = .text:0x802B67E4; // type:function size:0x40
++__dt__Q44nw4r3snd6detail4TaskFv = .text:0x802B67E4; // type:function size:0x40
+ fn_802B6824 = .text:0x802B6824; // type:function size:0x9C
+ fn_802B68C0 = .text:0x802B68C0; // type:function size:0x64
+ fn_802B6924 = .text:0x802B6924; // type:function size:0x58
+@@ -10342,7 +10342,7 @@ fn_802BA6A8 = .text:0x802BA6A8; // type:function size:0x8
+ fn_802BA6B0 = .text:0x802BA6B0; // type:function size:0x214
+ fn_802BA8C4 = .text:0x802BA8C4; // type:function size:0x24
+ fn_802BA8E8 = .text:0x802BA8E8; // type:function size:0x68
+-fn_802BA950 = .text:0x802BA950; // type:function size:0x40
++__dt__Q44nw4r3snd6detail9WsdPlayerFv = .text:0x802BA950; // type:function size:0x40
+ fn_802BA990 = .text:0x802BA990; // type:function size:0xA0
+ fn_802BAA30 = .text:0x802BAA30; // type:function size:0x9C
+ fn_802BAACC = .text:0x802BAACC; // type:function size:0x40
+@@ -10540,7 +10540,7 @@ fn_802C1780 = .text:0x802C1780; // type:function size:0x174
+ fn_802C18F4 = .text:0x802C18F4; // type:function size:0x124
+ fn_802C1A18 = .text:0x802C1A18; // type:function size:0x114
+ fn_802C1B2C = .text:0x802C1B2C; // type:function size:0x324
+-fn_802C1E50 = .text:0x802C1E50; // type:function size:0xC
++AXFXChorusExpGetMemSize = .text:0x802C1E50; // type:function size:0xC
+ fn_802C1E5C = .text:0x802C1E5C; // type:function size:0x25C
+ fn_802C20B8 = .text:0x802C20B8; // type:function size:0x1B0
+ fn_802C2268 = .text:0x802C2268; // type:function size:0x90
+@@ -16768,8 +16768,8 @@ lbl_80393BC8 = .data:0x80393BC8; // type:object size:0x28
+ lbl_80393BF0 = .data:0x80393BF0; // type:object size:0x38
+ lbl_80393C28 = .data:0x80393C28; // type:object size:0x68
+ lbl_80393C90 = .data:0x80393C90; // type:object size:0x20
+-lbl_80393CB0 = .data:0x80393CB0; // type:object size:0x28
+-lbl_80393CD8 = .data:0x80393CD8; // type:object size:0x28
++__vt__Q34nw4r3snd8FxChorus = .data:0x80393CB0; // type:object size:0x28
++__vt__Q34nw4r3snd10FxReverbHi = .data:0x80393CD8; // type:object size:0x28
+ lbl_80393D00 = .data:0x80393D00; // type:object size:0x27 data:string
+ jumptable_80393D28 = .data:0x80393D28; // type:object size:0x1F4 scope:local
+ lbl_80393F20 = .data:0x80393F20; // type:object size:0x10
+@@ -19751,10 +19751,10 @@ lbl_804CC208 = .sbss:0x804CC208; // type:object size:0x8 data:byte
+ lbl_804CC210 = .sbss:0x804CC210; // type:object size:0x8 data:4byte
+ lbl_804CC218 = .sbss:0x804CC218; // type:object size:0x8 data:byte
+ lbl_804CC220 = .sbss:0x804CC220; // type:object size:0x8 data:byte
+-lbl_804CC228 = .sbss:0x804CC228; // type:object size:0x8 data:4byte
++typeInfo__Q44nw4r3snd6detail9WaveSound = .sbss:0x804CC228; // type:object size:0x8 data:4byte
+ lbl_804CC230 = .sbss:0x804CC230; // type:object size:0x8 data:4byte
+-lbl_804CC238 = .sbss:0x804CC238; // type:object size:0x8 data:4byte
+-lbl_804CC240 = .sbss:0x804CC240; // type:object size:0x8 data:4byte
++typeInfo__Q34nw4r2ut10FileStream = .sbss:0x804CC238; // type:object size:0x8 data:4byte
++typeInfo__Q34nw4r2ut13DvdFileStream = .sbss:0x804CC240; // type:object size:0x8 data:4byte
+ lbl_804CC248 = .sbss:0x804CC248; // type:object size:0x4 data:4byte
+ lbl_804CC24C = .sbss:0x804CC24C; // type:object size:0x1 data:byte
+ lbl_804CC250 = .sbss:0x804CC250; // type:object size:0x4 data:4byte
+@@ -23738,7 +23738,7 @@ lbl_804D11A4 = .sdata2:0x804D11A4; // type:object size:0x4 align:4 data:float
+ lbl_804D11A8 = .sdata2:0x804D11A8; // type:object size:0x4 align:4 data:float
+ lbl_804D11B0 = .sdata2:0x804D11B0; // type:object size:0x8 align:8 data:double
+ lbl_804D11B8 = .sdata2:0x804D11B8; // type:object size:0x8 align:8 data:double
+-lbl_804D11C0 = .sdata2:0x804D11C0; // type:object size:0x4 align:4 data:float
++VOLUME_INIT__Q44nw4r3snd6detail12EnvGenerator = .sdata2:0x804D11C0; // type:object size:0x4 align:4 data:float
+ lbl_804D11C4 = .sdata2:0x804D11C4; // type:object size:0x4 align:4 data:float
+ lbl_804D11C8 = .sdata2:0x804D11C8; // type:object size:0x4 align:4 data:float
+ lbl_804D11CC = .sdata2:0x804D11CC; // type:object size:0x4 align:4 data:float
+diff --git a/config/RFEE01/symbols.txt b/config/RFEE01/symbols.txt
+index 93cd4a72..88649468 100644
+--- a/config/RFEE01/symbols.txt
++++ b/config/RFEE01/symbols.txt
+@@ -8952,8 +8952,8 @@ fn_8025F1D4 = .text:0x8025F1D4; // type:function size:0x58
+ fn_8025F22C = .text:0x8025F22C; // type:function size:0x8
+ fn_8025F234 = .text:0x8025F234; // type:function size:0x4
+ fn_8025F238 = .text:0x8025F238; // type:function size:0x68
+-fn_8025F2A0 = .text:0x8025F2A0; // type:function size:0x7C
+-fn_8025F31C = .text:0x8025F31C; // type:function size:0x7C
++__dt__Q34nw4r3snd10FxReverbHiFv = .text:0x8025F2A0; // type:function size:0x7C
++__dt__Q34nw4r3snd8FxChorusFv = .text:0x8025F31C; // type:function size:0x7C
+ fn_8025F398 = .text:0x8025F398; // type:function size:0x20
+ fn_8025F3B8 = .text:0x8025F3B8; // type:function size:0x8
+ fn_8025F3C0 = .text:0x8025F3C0; // type:function size:0x8
+@@ -9664,7 +9664,7 @@ Panic__Q24nw4r2dbFPCciPCce = .text:0x8029C20C; // type:function size:0x94
+ MTX34Zero__Q24nw4r4mathFPQ34nw4r4math5MTX34 = .text:0x8029C2A0; // type:function size:0x20
+ __ct__Q44nw4r3snd6detail9AxManagerFv = .text:0x8029C2C0; // type:function size:0x4A0
+ __ct__Q34nw4r2ut30LinkList<Q34nw4r3snd6FxBase,4>Fv = .text:0x8029C760; // type:function size:0x20
+-__dt__Q34nw4r2ut58LinkList<Q54nw4r3snd6detail9AxManager16CallbackListNode,0>Fv = .text:0x8029C780; // type:function size:0x58
++__dt__Q34nw4r2ut30LinkList<Q34nw4r3snd6FxBase,4>Fv = .text:0x8029C780; // type:function size:0x58
+ GetInstance__Q44nw4r3snd6detail9AxManagerFv = .text:0x8029C7D8; // type:function size:0x64
+ __dt__Q44nw4r3snd6detail9AxManagerFv = .text:0x8029C83C; // type:function size:0x78
+ Init__Q44nw4r3snd6detail9AxManagerFv = .text:0x8029C8B4; // type:function size:0xD4
+@@ -9684,7 +9684,7 @@ AuxCallbackFunc__Q44nw4r3snd6detail9AxManagerFPvPv = .text:0x8029D598; // type:f
+ PrepareReset__Q44nw4r3snd6detail9AxManagerFv = .text:0x8029D870; // type:function size:0xC8
+ AiDmaCallbackFunc__Q44nw4r3snd6detail9AxManagerFv = .text:0x8029D938; // type:function size:0x128
+ __ct__Q44nw4r3snd6detail7AxVoiceFv = .text:0x8029DA60; // type:function size:0x44
+-fn_8029DAA4 = .text:0x8029DAA4; // type:function size:0x40
++__dt__Q44nw4r3snd6detail7AxVoiceFv = .text:0x8029DAA4; // type:function size:0x40
+ Setup__Q44nw4r3snd6detail7AxVoiceFPCvQ54nw4r3snd6detail7AxVoice6Formati = .text:0x8029DAE4; // type:function size:0x80
+ IsPlayFinished__Q44nw4r3snd6detail7AxVoiceCFv = .text:0x8029DB64; // type:function size:0x140
+ SetLoopStart__Q44nw4r3snd6detail7AxVoiceFPCvUl = .text:0x8029DCA4; // type:function size:0x124
+@@ -9783,15 +9783,14 @@ SetRemoteFilter__Q44nw4r3snd6detail10BasicSoundFi = .text:0x802A306C; // type:fu
+ SetPanMode__Q44nw4r3snd6detail10BasicSoundFQ44nw4r3snd6detail7PanMode = .text:0x802A30A8; // type:function size:0x3C
+ SetPanCurve__Q44nw4r3snd6detail10BasicSoundFQ44nw4r3snd6detail8PanCurve = .text:0x802A30E4; // type:function size:0x3C
+ SetAmbientInfo__Q44nw4r3snd6detail10BasicSoundFRCQ54nw4r3snd6detail10BasicSound14AmbientArgInfo = .text:0x802A3120; // type:function size:0xCC
+-GetAmbientPriority__Q44nw4r3snd6detail10BasicSoundFRCQ54nw4r3snd6detail10BasicSound14AmbientArgInfoUl = .text:0x802A31EC; // type:function size:0x34
+-fn_802A3220 = .text:0x802A3220; // type:function size:0x4
++GetAmbientPriority__Q44nw4r3snd6detail10BasicSoundFRCQ54nw4r3snd6detail10BasicSound14AmbientArgInfoUl = .text:0x802A31EC; // type:function size:0x38
+ IsAttachedGeneralHandle__Q44nw4r3snd6detail10BasicSoundFv = .text:0x802A3224; // type:function size:0x14
+ IsAttachedTempGeneralHandle__Q44nw4r3snd6detail10BasicSoundFv = .text:0x802A3238; // type:function size:0x14
+ DetachGeneralHandle__Q44nw4r3snd6detail10BasicSoundFv = .text:0x802A324C; // type:function size:0x8
+ DetachTempGeneralHandle__Q44nw4r3snd6detail10BasicSoundFv = .text:0x802A3254; // type:function size:0x8
+ SetId__Q44nw4r3snd6detail10BasicSoundFUl = .text:0x802A325C; // type:function size:0x40
+-__dt__Q34nw4r2ut8IOStreamFv = .text:0x802A329C; // type:function size:0x40
+-GetRuntimeTypeInfo__Q34nw4r2ut8IOStreamCFv = .text:0x802A32DC; // type:function size:0x8
++__dt__Q44nw4r3snd6detail10BasicSoundFv = .text:0x802A329C; // type:function size:0x40
++GetRuntimeTypeInfo__Q44nw4r3snd6detail10BasicSoundCFv = .text:0x802A32DC; // type:function size:0x8
+ fn_802A32E4 = .text:0x802A32E4; // type:function size:0xC
+ GetInstance__Q44nw4r3snd6detail14ChannelManagerFv = .text:0x802A32F0; // type:function size:0x7C
+ __dt__Q44nw4r3snd6detail14ChannelManagerFv = .text:0x802A336C; // type:function size:0x60
+@@ -9870,7 +9869,7 @@ SaveState__Q44nw4r3snd6detail9FrameHeapFv = .text:0x802A5BE8; // type:function s
+ LoadState__Q44nw4r3snd6detail9FrameHeapFi = .text:0x802A5CB4; // type:function size:0x224
+ GetCurrentLevel__Q44nw4r3snd6detail9FrameHeapCFv = .text:0x802A5ED8; // type:function size:0xC
+ GetFreeSize__Q44nw4r3snd6detail9FrameHeapCFv = .text:0x802A5EE4; // type:function size:0x40
+-UpdateBuffer__Q34nw4r3snd6FxBaseFiPPvUlQ34nw4r3snd12SampleFormatfQ34nw4r3snd10OutputMode = .text:0x802A5F24; // type:function size:0x4
++OnChangeOutputMode__Q34nw4r3snd6FxBaseFv = .text:0x802A5F24; // type:function size:0x4
+ __ct__Q34nw4r3snd8FxChorusFv = .text:0x802A5F28; // type:function size:0x90
+ GetRequiredMemSize__Q34nw4r3snd8FxChorusFv = .text:0x802A5FB8; // type:function size:0x2C
+ AssignWorkBuffer__Q34nw4r3snd8FxChorusFPvUl = .text:0x802A5FE4; // type:function size:0x8
+@@ -9899,14 +9898,14 @@ Update__Q44nw4r3snd6detail3LfoFi = .text:0x802A6B48; // type:function size:0x9C
+ GetValue__Q44nw4r3snd6detail3LfoCFv = .text:0x802A6BE4; // type:function size:0x11C
+ OnUpdateFrameSoundThread__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A6D00; // type:function size:0x4
+ OnShutdownSoundThread__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A6D04; // type:function size:0x10
+-Shutdown__Q34nw4r3snd6FxBaseFv = .text:0x802A6D14; // type:function size:0x4
+-fn_802A6D18 = .text:0x802A6D18; // type:function size:0x4
++InvalidateWaveData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv = .text:0x802A6D14; // type:function size:0x4
++OnUpdateVoiceSoundThread__Q54nw4r3snd6detail11SoundThread14PlayerCallbackFv = .text:0x802A6D18; // type:function size:0x4
+ IsPause__Q44nw4r3snd6detail9SeqPlayerCFv = .text:0x802A6D1C; // type:function size:0x8
+ IsStarted__Q44nw4r3snd6detail9SeqPlayerCFv = .text:0x802A6D24; // type:function size:0x8
+ IsActive__Q44nw4r3snd6detail9SeqPlayerCFv = .text:0x802A6D2C; // type:function size:0x8
+-fn_802A6D34 = .text:0x802A6D34; // type:function size:0x8
++@208@InvalidateWaveData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv = .text:0x802A6D34; // type:function size:0x8
+ @208@InvalidateData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv = .text:0x802A6D3C; // type:function size:0x8
+-fn_802A6D44 = .text:0x802A6D44; // type:function size:0x8
++@220@OnShutdownSoundThread__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A6D44; // type:function size:0x8
+ @220@OnUpdateFrameSoundThread__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A6D4C; // type:function size:0x8
+ Parse__Q44nw4r3snd6detail9MmlParserCFPQ44nw4r3snd6detail11MmlSeqTrackb = .text:0x802A6D54; // type:function size:0x630
+ CommandProc__Q44nw4r3snd6detail9MmlParserCFPQ44nw4r3snd6detail11MmlSeqTrackUlll = .text:0x802A7384; // type:function size:0x744
+@@ -9918,12 +9917,13 @@ __dt__Q44nw4r3snd6detail11MmlSeqTrackFv = .text:0x802A7CB4; // type:function siz
+ AllocTrack__Q44nw4r3snd6detail20MmlSeqTrackAllocatorFPQ44nw4r3snd6detail9SeqPlayer = .text:0x802A7D0C; // type:function size:0x68
+ FreeTrack__Q44nw4r3snd6detail20MmlSeqTrackAllocatorFPQ44nw4r3snd6detail8SeqTrack = .text:0x802A7D74; // type:function size:0x68
+ Create__Q44nw4r3snd6detail20MmlSeqTrackAllocatorFPvUl = .text:0x802A7DDC; // type:function size:0xC
+-Destroy__Q44nw4r3snd6detail20MmlSeqTrackAllocatorFPvUl = .text:0x802A7DE8; // type:function size:0x8
++GetAllocatableTrackCount__Q44nw4r3snd6detail20MmlSeqTrackAllocatorCFv = .text:0x802A7DE8; // type:function size:0x8
+ __dt__Q44nw4r3snd6detail20MmlSeqTrackAllocatorFv = .text:0x802A7DF0; // type:function size:0x40
+ AttachSound__Q44nw4r3snd6detail10PlayerHeapFPQ44nw4r3snd6detail10BasicSound = .text:0x802A7E30; // type:function size:0x8
+ DetachSound__Q44nw4r3snd6detail10PlayerHeapFPQ44nw4r3snd6detail10BasicSound = .text:0x802A7E38; // type:function size:0xC
+ __ct__Q34nw4r3snd13RemoteSpeakerFv = .text:0x802A7E44; // type:function size:0x84
+-Update__Q34nw4r3snd13RemoteSpeakerFv = .text:0x802A7EC8; // type:function size:0xD4
++Update__Q34nw4r3snd13RemoteSpeakerFv = .text:0x802A7EC8; // type:function size:0x34
++ExecCommand__Q34nw4r3snd13RemoteSpeakerFQ44nw4r3snd13RemoteSpeaker14SpeakerCommand = .text:0x802A7EFC; // type:function size:0xA0
+ UpdateStreamData__Q34nw4r3snd13RemoteSpeakerFPCs = .text:0x802A7F9C; // type:function size:0x314
+ SpeakerOnCallback__Q34nw4r3snd13RemoteSpeakerFll = .text:0x802A82B0; // type:function size:0x10C
+ SpeakerPlayCallback__Q34nw4r3snd13RemoteSpeakerFll = .text:0x802A83BC; // type:function size:0xE8
+@@ -9960,9 +9960,9 @@ Update__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A97C4; // type:function size
+ UpdateTick__Q44nw4r3snd6detail9SeqPlayerFi = .text:0x802A98D0; // type:function size:0x264
+ SkipTick__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A9B34; // type:function size:0x2A0
+ NoteOn__Q44nw4r3snd6detail9SeqPlayerFiRCQ44nw4r3snd6detail10NoteOnInfo = .text:0x802A9DD4; // type:function size:0x28
+-InvalidateWaveData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv = .text:0x802A9DFC; // type:function size:0x4
+-@208@InvalidateWaveData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv = .text:0x802A9E00; // type:function size:0x8
+-@220@OnShutdownSoundThread__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A9E08; // type:function size:0x8
++ChannelCallback__Q44nw4r3snd6detail9SeqPlayerFPQ44nw4r3snd6detail7Channel = .text:0x802A9DFC; // type:function size:0x4
++@208@__dt__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A9E00; // type:function size:0x8
++@220@__dt__Q44nw4r3snd6detail9SeqPlayerFv = .text:0x802A9E08; // type:function size:0x8
+ __ct__Q44nw4r3snd6detail8SeqSoundFPQ44nw4r3snd6detail49SoundInstanceManager<Q44nw4r3snd6detail8SeqSound>ii = .text:0x802A9E10; // type:function size:0x9C
+ __dt__Q54nw4r3snd6detail8SeqSound11SeqLoadTaskFv = .text:0x802A9EAC; // type:function size:0x58
+ InitParam__Q44nw4r3snd6detail8SeqSoundFv = .text:0x802A9F04; // type:function size:0x34
+@@ -9972,8 +9972,8 @@ Prepare__Q44nw4r3snd6detail8SeqSoundFPQ34nw4r2ut10FileStreamlQ54nw4r3snd6detail9
+ NotifyLoadAsyncEndSeqData__Q44nw4r3snd6detail8SeqSoundFbPCvPv = .text:0x802AA110; // type:function size:0x74
+ Shutdown__Q44nw4r3snd6detail8SeqSoundFv = .text:0x802AA184; // type:function size:0xDC
+ __dt__Q44nw4r3snd6detail8SeqSoundFv = .text:0x802AA260; // type:function size:0x6C
+-SetTempoRatio__Q44nw4r3snd6detail8SeqSoundFf = .text:0x802AA2CC; // type:function size:0x8
+-SetChannelPriority__Q44nw4r3snd6detail8SeqSoundFi = .text:0x802AA2D4; // type:function size:0x8
++SetChannelPriority__Q44nw4r3snd6detail8SeqSoundFi = .text:0x802AA2CC; // type:function size:0x8
++SetReleasePriorityFix__Q44nw4r3snd6detail8SeqSoundFb = .text:0x802AA2D4; // type:function size:0x8
+ OnUpdatePlayerPriority__Q44nw4r3snd6detail8SeqSoundFv = .text:0x802AA2DC; // type:function size:0xE4
+ ReadVariable__Q44nw4r3snd6detail8SeqSoundCFiPs = .text:0x802AA3C0; // type:function size:0x50
+ ReadGlobalVariable__Q44nw4r3snd6detail8SeqSoundFiPs = .text:0x802AA410; // type:function size:0x34
+@@ -10106,7 +10106,7 @@ __ct__Q34nw4r3snd18SoundArchivePlayerFv = .text:0x802AEFEC; // type:function siz
+ __dt__Q34nw4r2ut11NonCopyableFv = .text:0x802AF118; // type:function size:0x40
+ __dt__Q34nw4r2ut12LinkListNodeFv = .text:0x802AF158; // type:function size:0x40
+ fn_802AF198 = .text:0x802AF198; // type:function size:0x20
+-__dt__Q34nw4r2ut30LinkList<Q34nw4r3snd6FxBase,4>Fv = .text:0x802AF1B8; // type:function size:0x58
++fn_802AF1B8 = .text:0x802AF1B8; // type:function size:0x58
+ __ct__Q34nw4r2ut42LinkList<Q44nw4r3snd6detail9StrmSound,220>Fv = .text:0x802AF210; // type:function size:0x20
+ fn_802AF230 = .text:0x802AF230; // type:function size:0x58
+ __ct__Q34nw4r2ut42LinkList<Q44nw4r3snd6detail9WaveSound,220>Fv = .text:0x802AF288; // type:function size:0x20
+@@ -10123,7 +10123,7 @@ GetSoundPlayer__Q34nw4r3snd18SoundArchivePlayerFUl = .text:0x802AFE04; // type:f
+ fn_802AFE14 = .text:0x802AFE14; // type:function size:0x150
+ detail_GetFileWaveDataAddress__Q34nw4r3snd18SoundArchivePlayerCFUl = .text:0x802AFF64; // type:function size:0x14C
+ detail_SetupSound__Q34nw4r3snd18SoundArchivePlayerFPQ34nw4r3snd11SoundHandleUlbPCQ44nw4r3snd14SoundStartable9StartInfo = .text:0x802B00B0; // type:function size:0x14
+-fn_802B00C4 = .text:0x802B00C4; // type:function size:0xA04
++detail_SetupSoundImpl__Q34nw4r3snd18SoundArchivePlayerFPQ34nw4r3snd11SoundHandleUlPQ54nw4r3snd6detail10BasicSound14AmbientArgInfoPQ34nw4r3snd10SoundActorbPCQ44nw4r3snd14SoundStartable9StartInfo = .text:0x802B00C4; // type:function size:0xA04
+ PrepareSeqImpl__Q34nw4r3snd18SoundArchivePlayerFPQ44nw4r3snd6detail8SeqSoundPCQ44nw4r3snd12SoundArchive9SoundInfoPCQ44nw4r3snd12SoundArchive12SeqSoundInfoQ54nw4r3snd14SoundStartable9StartInfo15StartOffsetTypei = .text:0x802B0AC8; // type:function size:0x2BC
+ PrepareStrmImpl__Q34nw4r3snd18SoundArchivePlayerFPQ44nw4r3snd6detail9StrmSoundPCQ44nw4r3snd12SoundArchive9SoundInfoPCQ44nw4r3snd12SoundArchive13StrmSoundInfoQ54nw4r3snd14SoundStartable9StartInfo15StartOffsetTypei = .text:0x802B0D84; // type:function size:0x1B8
+ PrepareWaveSoundImpl__Q34nw4r3snd18SoundArchivePlayerFPQ44nw4r3snd6detail9WaveSoundPCQ44nw4r3snd12SoundArchive9SoundInfoPCQ44nw4r3snd12SoundArchive13WaveSoundInfoQ54nw4r3snd14SoundStartable9StartInfo15StartOffsetTypei = .text:0x802B0F3C; // type:function size:0x140
+@@ -10194,7 +10194,7 @@ ReadAdpcmInfo__Q44nw4r3snd6detail14StrmFileLoaderCFPQ44nw4r3snd6detail9AdpcmInfo
+ ReadAdpcBlockData__Q44nw4r3snd6detail14StrmFileLoaderFPUsPUsii = .text:0x802B3660; // type:function size:0x1A4
+ __ct__Q44nw4r3snd6detail10StrmPlayerFv = .text:0x802B3804; // type:function size:0xF8
+ __dt__Q54nw4r3snd6detail10StrmPlayer18StrmHeaderLoadTaskFv = .text:0x802B38FC; // type:function size:0x58
+-__dt__Q34nw4r2ut61LinkList<Q54nw4r3snd6detail10StrmPlayer16StrmDataLoadTask,44>Fv = .text:0x802B3954; // type:function size:0x58
++__dt__Q54nw4r3snd6detail10StrmPlayer16StrmDataLoadTaskFv = .text:0x802B3954; // type:function size:0x58
+ __dt__Q44nw4r3snd6detail10StrmPlayerFv = .text:0x802B39AC; // type:function size:0x100
+ Setup__Q44nw4r3snd6detail10StrmPlayerFPQ44nw4r3snd6detail14StrmBufferPooliUsi = .text:0x802B3AAC; // type:function size:0x218
+ Shutdown__Q44nw4r3snd6detail10StrmPlayerFv = .text:0x802B3CC4; // type:function size:0x90
+@@ -10254,7 +10254,7 @@ IsPrepared__Q44nw4r3snd6detail9StrmSoundCFv = .text:0x802B6790; // type:function
+ GetRuntimeTypeInfo__Q44nw4r3snd6detail9StrmSoundCFv = .text:0x802B6798; // type:function size:0x8
+ fn_802B67A0 = .text:0x802B67A0; // type:function size:0xC
+ DetachSound__Q34nw4r3snd15StrmSoundHandleFv = .text:0x802B67AC; // type:function size:0x38
+-fn_802B67E4 = .text:0x802B67E4; // type:function size:0x40
++__dt__Q44nw4r3snd6detail4TaskFv = .text:0x802B67E4; // type:function size:0x40
+ GetInstance__Q44nw4r3snd6detail11TaskManagerFv = .text:0x802B6824; // type:function size:0x9C
+ __dt__Q44nw4r3snd6detail11TaskManagerFv = .text:0x802B68C0; // type:function size:0x64
+ __dt__Q34nw4r2ut35LinkList<Q44nw4r3snd6detail4Task,4>Fv = .text:0x802B6924; // type:function size:0x58
+@@ -10342,7 +10342,7 @@ __ct__Q44nw4r3snd6detail14WaveFileReaderFPCQ54nw4r3snd6detail8WaveFile8WaveInfo
+ ReadWaveParam__Q44nw4r3snd6detail14WaveFileReaderCFPQ44nw4r3snd6detail8WaveDataPCv = .text:0x802BA6B0; // type:function size:0x214
+ GetAxVoiceFormatFromWaveFileFormat__Q44nw4r3snd6detail14WaveFileReaderFUl = .text:0x802BA8C4; // type:function size:0x24
+ __ct__Q44nw4r3snd6detail9WaveSoundFPQ44nw4r3snd6detail50SoundInstanceManager<Q44nw4r3snd6detail9WaveSound>ii = .text:0x802BA8E8; // type:function size:0x68
+-__dt__Q44nw4r3snd6detail10BasicSoundFv = .text:0x802BA950; // type:function size:0x40
++__dt__Q44nw4r3snd6detail9WsdPlayerFv = .text:0x802BA950; // type:function size:0x40
+ Prepare__Q44nw4r3snd6detail9WaveSoundFPCvlQ54nw4r3snd6detail9WsdPlayer15StartOffsetTypelPCQ54nw4r3snd6detail9WsdPlayer11WsdCallbackUl = .text:0x802BA990; // type:function size:0xA0
+ Shutdown__Q44nw4r3snd6detail9WaveSoundFv = .text:0x802BAA30; // type:function size:0x9C
+ __dt__Q44nw4r3snd6detail9WaveSoundFv = .text:0x802BAACC; // type:function size:0x40
+@@ -10540,7 +10540,7 @@ __AllocDelayLine = .text:0x802C1780; // type:function size:0x174
+ __BzeroDelayLines = .text:0x802C18F4; // type:function size:0x124
+ __FreeDelayLine = .text:0x802C1A18; // type:function size:0x114
+ fn_802C1B2C = .text:0x802C1B2C; // type:function size:0x324
+-fn_802C1E50 = .text:0x802C1E50; // type:function size:0xC
++AXFXChorusExpGetMemSize = .text:0x802C1E50; // type:function size:0xC
+ AXFXChorusExpInit = .text:0x802C1E5C; // type:function size:0x25C
+ AXFXChorusExpSettingsUpdate = .text:0x802C20B8; // type:function size:0x1B0
+ AXFXChorusExpShutdown = .text:0x802C2268; // type:function size:0x90
+@@ -16768,8 +16768,8 @@ lbl_80393BC8 = .data:0x80393BC8; // type:object size:0x28
+ lbl_80393BF0 = .data:0x80393BF0; // type:object size:0x38
+ lbl_80393C28 = .data:0x80393C28; // type:object size:0x68
+ __vt__Q34nw4r3snd15DvdSoundArchive = .data:0x80393C90; // type:object size:0x20
+-lbl_80393CB0 = .data:0x80393CB0; // type:object size:0x28
+-lbl_80393CD8 = .data:0x80393CD8; // type:object size:0x28
++__vt__Q34nw4r3snd8FxChorus = .data:0x80393CB0; // type:object size:0x28
++__vt__Q34nw4r3snd10FxReverbHi = .data:0x80393CD8; // type:object size:0x28
+ lbl_80393D00 = .data:0x80393D00; // type:object size:0x27 data:string
+ jumptable_80393D28 = .data:0x80393D28; // type:object size:0x1F4 scope:local
+ lbl_80393F20 = .data:0x80393F20; // type:object size:0x10
+@@ -19752,10 +19752,10 @@ lbl_804CC208 = .sbss:0x804CC208; // type:object size:0x8 data:byte
+ lbl_804CC210 = .sbss:0x804CC210; // type:object size:0x8 data:4byte
+ lbl_804CC218 = .sbss:0x804CC218; // type:object size:0x8 data:byte
+ lbl_804CC220 = .sbss:0x804CC220; // type:object size:0x8 data:byte
+-lbl_804CC228 = .sbss:0x804CC228; // type:object size:0x8 data:4byte
++typeInfo__Q44nw4r3snd6detail9WaveSound = .sbss:0x804CC228; // type:object size:0x8 data:4byte
+ typeInfo__Q34nw4r2ut8IOStream = .sbss:0x804CC230; // type:object size:0x8 data:4byte
+-lbl_804CC238 = .sbss:0x804CC238; // type:object size:0x8 data:4byte
+-lbl_804CC240 = .sbss:0x804CC240; // type:object size:0x8 data:4byte
++typeInfo__Q34nw4r2ut10FileStream = .sbss:0x804CC238; // type:object size:0x8 data:4byte
++typeInfo__Q34nw4r2ut13DvdFileStream = .sbss:0x804CC240; // type:object size:0x8 data:4byte
+ typeInfo__Q34nw4r2ut19DvdLockedFileStream = .sbss:0x804CC248; // type:object size:0x4 data:4byte
+ sInitialized__Q34nw4r2ut19DvdLockedFileStream = .sbss:0x804CC24C; // type:object size:0x1 data:byte
+ __AI_init_flag = .sbss:0x804CC250; // type:object size:0x4 data:4byte
+@@ -23750,7 +23750,7 @@ lbl_804D11A4 = .sdata2:0x804D11A4; // type:object size:0x4 align:4 data:float
+ lbl_804D11A8 = .sdata2:0x804D11A8; // type:object size:0x4 align:4 data:float
+ lbl_804D11B0 = .sdata2:0x804D11B0; // type:object size:0x8 align:8 data:double
+ lbl_804D11B8 = .sdata2:0x804D11B8; // type:object size:0x8 align:8 data:double
+-lbl_804D11C0 = .sdata2:0x804D11C0; // type:object size:0x4 align:4 data:float
++VOLUME_INIT__Q44nw4r3snd6detail12EnvGenerator = .sdata2:0x804D11C0; // type:object size:0x4 align:4 data:float
+ lbl_804D11C4 = .sdata2:0x804D11C4; // type:object size:0x4 align:4 data:float
+ lbl_804D11C8 = .sdata2:0x804D11C8; // type:object size:0x4 align:4 data:float
+ lbl_804D11CC = .sdata2:0x804D11CC; // type:object size:0x4 align:4 data:float
+diff --git a/tools/build/dolmodel.py b/tools/build/dolmodel.py
+index 72da911a..7fdba9c1 100644
+--- a/tools/build/dolmodel.py
++++ b/tools/build/dolmodel.py
+@@ -92,7 +92,7 @@ def load_refs(syms, asm_dir=ASM_DIR):
+         cur = None
+         for line in open(path, errors="replace"):
+             if line.startswith(".fn ") or line.startswith(".obj "):
+-                nm = line.split()[1].rstrip(",")
++                nm = (re.match(r'^\.\w+ ("[^"]*"|[^,\s]+)', line).group(1)).strip('"')
+                 cur = syms.get(alias.get(nm, nm))
+                 continue
+             if line.startswith(".endfn") or line.startswith(".endobj"):
+@@ -110,10 +110,11 @@ def load_refs(syms, asm_dir=ASM_DIR):
+             parts = body.split(None, 1)
+             if len(parts) < 2:
+                 continue
+-            for tok in re.split(r"[,\s()]+", parts[1]):
++            for tok in re.findall(r'"[^"]*"(?:\+\w+)?(?:@\w+)?|[^,\s()]+', parts[1]):
++                tok = tok.replace('"', '')
+                 if not tok or tok.startswith(".L_") or tok.startswith("0x") or tok[0].isdigit() or tok[0] == "-":
+                     continue
+-                m = re.match(r"^([^+@]+)(?:\+(0x[0-9A-Fa-f]+|\d+))?(?:@(ha|h|l|sda21))?$", tok)
++                m = re.match(r"^(@?[^+@]+(?:@[^+@]+)*?)(?:\+(0x[0-9A-Fa-f]+|\d+))?(?:@(ha|h|l|sda21))?$", tok)
+                 if not m:
+                     continue
+                 tname = alias.get(m.group(1), m.group(1))
+diff --git a/tools/build/gen_units.py b/tools/build/gen_units.py
+index b7cc1b37..f1d5aea0 100644
+--- a/tools/build/gen_units.py
++++ b/tools/build/gen_units.py
+@@ -154,6 +154,8 @@ def lib_unit(key, lib_map, manifest):
+         addr_name.setdefault((s.sec, s.addr), s.name)
+     names = {}
+     for fn, (addr, size, st) in lib_map["sources"][key]["functions"].items():
++        if "@unnamed@" in fn and "NonCopyable" in fn:
++            continue   # a TU-local dtor the original link dead-stripped; remap.py matched it to another TU's copy
+         n = addr_name.get((".text", addr))
+         if n:
+             names[fn] = n
+@@ -174,7 +176,8 @@ def lib_unit(key, lib_map, manifest):
+     try:
+         P = PL.place(obj, inv)
+         if any((e.startswith("function ") and "not in symbols.txt" in e) or "breaks contiguity" in e
+-               or (e.startswith("function ") and " size 0x" in e) for e in P.errors):
++               or (e.startswith("function ") and " size 0x" in e)
++               or "no references from code" in e for e in P.errors):
+             # (not on size/contiguity errors: a weak copy that the model drops because its DOL
+             # twin lies elsewhere may be the copy MWLD links, the first in link order;
+             # snd_DisposeCallbackManager.cpp's __dt__Q34nw4r2ut12LinkListNodeFv shifted 0x40)
+@@ -183,7 +186,7 @@ def lib_unit(key, lib_map, manifest):
+             # strips the same functions (nothing references them)
+             def in_dol(n):
+                 t = inv.get(n, n)
+-                return S[t].addr if t in S and not t.startswith("@") and (n in inv or not n.startswith("@")) else None
++                return S[t].addr if t in S and (not t.startswith("@") or PL._THUNK.match(t)) and (n in inv or not n.startswith("@") or PL._THUNK.match(n)) else None
+             # MWLD keeps the unreferenced data of some objects: try the model without data
+             # stripping, then with .bss/.sbss kept, then with all data kept
+             for kd in ((), (".bss", ".sbss"), (".bss", ".sbss", ".data", ".sdata", ".rodata", ".sdata2")):
+diff --git a/tools/build/place.py b/tools/build/place.py
+index 4afc0cb1..de697787 100644
+--- a/tools/build/place.py
++++ b/tools/build/place.py
+@@ -41,6 +41,7 @@ ALLOC_SECS = (".text", ".rodata", ".data", ".bss", ".sdata", ".sbss", ".sdata2",
+               "extab", "extabindex", ".init")
+ 
+ _cache = {}
++_THUNK = re.compile(r"@\d+@")   # this-adjust thunks (@208@name) are real functions; plain @N are compiler locals
+ 
+ 
+ def dolmodel():
+@@ -68,6 +69,7 @@ class Placement:
+         self.errors = []
+         self.notes = []
+         self.functions = []  # (name, addr, size)
++        self.ref_targets = []   # debugging: (section, target name, addend, DOL address, code address)
+         self.base_votes = {}  # data section -> {candidate base: [code addresses that imply it]}
+         self.size_fixes = {}  # symbols.txt name -> corrected size (sizes that covered padding)
+         self.static_outside = {}  # symbols.txt name the object defines static -> outside referencers
+@@ -292,7 +294,53 @@ def strip_object(obj, in_dol, keep_data=()):
+         while j is not None:
+             own_j.add(j)
+             j = prev[j]
++        # weak (bind 2) copies must not decide the sequence: a weak copy whose DOL twin lies in another
++        # object can tie with a real function of this one (BasicSound/Voice: LinkListNode dtor)
++        if any(syms[mapped[j][0]].get("bind", 1) == 2 for j in range(len(mapped))):
++            nw = [j for j in range(len(mapped)) if syms[mapped[j][0]].get("bind", 1) != 2]
++            tails2, prev2 = [], {}
++            for jj, j in enumerate(nw):
++                ad = mapped[j][1]
++                lo_, hi_ = 0, len(tails2)
++                while lo_ < hi_:
++                    mid = (lo_ + hi_) // 2
++                    if mapped[nw[tails2[mid]]][1] < ad:
++                        lo_ = mid + 1
++                    else:
++                        hi_ = mid
++                prev2[jj] = tails2[lo_ - 1] if lo_ else None
++                if lo_ == len(tails2):
++                    tails2.append(jj)
++                else:
++                    tails2[lo_] = jj
++            own2 = []
++            jj = tails2[-1] if tails2 else None
++            while jj is not None:
++                own2.append(nw[jj])
++                jj = prev2[jj]
++            own2.sort()
++            # weak copies that sit between their own neighbours in address order stay in; at either end of
++            # the object a weak copy must touch its neighbour (chains of weak copies are followed in order)
++            own_j = set(own2)
++            for j in range(len(mapped)):
++                if j in own_j or syms[mapped[j][0]].get("bind", 1) != 2:
++                    continue
++                a_j, z_j = mapped[j][1], syms[mapped[j][0]]["size"]
++                before = [(mapped[x][1], syms[mapped[x][0]]["size"]) for x in sorted(own_j) if x < j]
++                after = [mapped[x][1] for x in own2 if x > j]
++                if before and after:
++                    fits = before[-1][0] + before[-1][1] <= a_j and a_j + z_j <= after[0]
++                elif after:
++                    fits = (a_j + z_j + 3) // 4 * 4 == after[0]
++                elif before:
++                    fits = (before[-1][0] + before[-1][1] + 3) // 4 * 4 == a_j
++                else:
++                    fits = True
++                if fits:
++                    own_j.add(j)
+         own = {mapped[j][0]: mapped[j][1] for j in own_j}
++        if __import__('os').environ.get('DBGOWN'):
++            print('OWNDBG', [(syms[mapped[j][0]]['name'][:40], hex(mapped[j][1]), syms[mapped[j][0]].get('bind')) for j in sorted(own_j)][-8:])
+         own_addrs = set(own.values())
+         own_names = {n for k_, a_ in mapped for n in [syms[k_]["name"]]}
+         for a_ in own_addrs:
+@@ -336,6 +384,10 @@ def strip_object(obj, in_dol, keep_data=()):
+                     cursor = c + (b0 - a0)
+     global LAST_ELSE
+     LAST_ELSE = {syms[k]["name"] for k in elsewhere}
++    if __import__('os').environ.get('DBGOWN'):
++        print('ELSE', sorted(n[:50] for n in LAST_ELSE))
++    if __import__('os').environ.get('DBGOWN'):
++        print('ELSE', sorted(n[:40] for n in LAST_ELSE))
+     fa = comment_flags(secs)     # force_active symbols are never stripped
+     roots |= {k for k in spans if fa.get(k, 0) & 0x08 and k not in elsewhere}
+     # data objects of these sections are kept although nothing references them (MWLD keeps
+@@ -384,7 +436,7 @@ def strip_object(obj, in_dol, keep_data=()):
+ 
+     starts = {si: [a for a, _b, _n in m] for si, m in remap.items()}
+ 
+-    def new_off(si, off):
++    def new_off(si, off, strict=False):
+         if si not in remap:
+             return off
+         m = remap[si]
+@@ -392,7 +444,7 @@ def strip_object(obj, in_dol, keep_data=()):
+         for j in (i, i - 1):
+             if 0 <= j < len(m):
+                 a, b, n = m[j]
+-                if a <= off < b or (off == b and a < b):
++                if a <= off < b or (off == b and a < b and not strict):
+                     return n + off - a
+         return None
+     syms2 = []
+@@ -416,7 +468,7 @@ def strip_object(obj, in_dol, keep_data=()):
+         for off, rtype, tname, addend, tsym in rl:
+             tk = sid.get(id(tsym))
+             if si in remap:
+-                no = new_off(si, off)
++                no = new_off(si, off, True)   # a relocation of a dropped span is dropped with it
+                 if no is None:
+                     continue
+             else:
+@@ -498,7 +550,7 @@ def place_game(obj, names):
+ 
+     def in_dol(n):
+         t = lookup_name(names, n)
+-        return S[t].addr if t in S and not t.startswith("@") else None
++        return S[t].addr if t in S and (not t.startswith("@") or _THUNK.match(t)) else None
+     parsed, dropped = strip_object(obj, in_dol)
+     if not dropped:
+         return P, []
+@@ -597,6 +649,7 @@ def place(obj, names=None, strip_check=True):
+                 b = want - tsym["value"] - addend
+                 if M.section_of(b) == secs[tsh]["name"] or M.section_of(want) == secs[tsh]["name"]:
+                     cand.setdefault(tsh, set()).add(b)
++                    P.ref_targets.append((secs[tsh]["name"], tname, addend, want, sb + off))
+                     if si == ti:
+                         P.base_votes.setdefault(secs[tsh]["name"], {}).setdefault(b, []).append(sb + off)
+ 
+@@ -747,6 +800,8 @@ def place(obj, names=None, strip_check=True):
+                 continue
+             if flags.get(k, 0) & 0x08 or sy["name"] in exempt:
+                 continue
++            if sy["name"].startswith("__sinit_"):
++                continue   # kept alive by the object's own .ctors entry (checked above)
+             o = S.get(orig_name(sy["name"]))
+             if o is not None and not (o.refby - {o.name}) and o.name not in ("__start",):
+                 P.errors.append(f"{sy['name']} is referenced nowhere in the DOL and not force_active "

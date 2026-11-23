@@ -1,0 +1,58 @@
+/* fn_8023FC50 and fn_8023FCC8 (round 22, agent r22b): both exact.
+ *
+ * A menu definition with five entries. The entries are global objects that hold only a
+ * vtable pointer (lbl_804CBFA8..lbl_804CBFB8, vtables lbl_80390E08, ...DB0, ...D58, ...D00,
+ * ...CA8, 0x58 bytes each, methods in rS_8023FD30); lbl_80390C90 is the NULL-terminated
+ * .data table of their addresses {804CBFA8, 804CBFAC, 804CBFB0, 804CBFB4, 804CBFB8, 0}.
+ * lbl_804CBFC0 is the menu definition object {Item** tbl; vptr} (base vtable lbl_80383F28,
+ * derived vtable lbl_803802CC), as in fn_802680FC's lbl_80430730; fn_8023FC40 passes it to
+ * fn_800D5448.
+ *
+ * fn_8023FC50 (proposed: AnyMenuItemSelectable): returns 1 when some entry's vfunc 0x24
+ *   returns 0 or 1. The binary passes the entry itself as the second argument (`mr r4,r3`);
+ *   the entry implementations seen (fn_8023FD70) ignore it.
+ * fn_8023FCC8 is the file's static initialiser. For the port it is the definitions
+ *     static ItemA s_a; ... static ItemE s_e;          // 804CBFA8..B8, vptr only
+ *     static Item* s_tbl[] = { &s_a, ..., &s_e, 0 };   // lbl_80390C90
+ *     static MenuDef s_def(s_tbl);                     // lbl_804CBFC0
+ *   written here as the stores the compiler emits (base vptr, table, derived vptr).
+ */
+typedef unsigned char u8;
+struct Item {
+    virtual void v08(); virtual void v0C(); virtual void v10(); virtual void v14();
+    virtual void v18(); virtual void v1C(); virtual void v20();
+    virtual u8 v24(Item* self);
+};
+struct VObj { void* vt; };
+struct MDef { void* tbl; void* vt; };
+extern "C" {
+extern Item* lbl_80390C90[];
+extern VObj lbl_804CBFA8, lbl_804CBFAC, lbl_804CBFB0, lbl_804CBFB4;
+extern VObj lbl_804CBFB8[2]; /* symbol size 8: needed for the li r5,sym@sda21 base */
+extern MDef lbl_804CBFC0;
+extern char lbl_80390E08[], lbl_80390DB0[], lbl_80390D58[], lbl_80390D00[], lbl_80390CA8[];
+extern char lbl_80383F28[], lbl_803802CC[];
+
+int fn_8023FC50(void) {
+    Item** p = lbl_80390C90;
+    for (; *p != 0; p++) {
+        switch ((*p)->v24(*p)) {
+        case 0:
+        case 1:
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void fn_8023FCC8(void) {
+    lbl_804CBFA8.vt = lbl_80390E08;
+    lbl_804CBFAC.vt = lbl_80390DB0;
+    lbl_804CBFB0.vt = lbl_80390D58;
+    lbl_804CBFB4.vt = lbl_80390D00;
+    lbl_804CBFB8[0].vt = lbl_80390CA8;
+    lbl_804CBFC0.vt = lbl_80383F28;
+    lbl_804CBFC0.tbl = lbl_80390C90;
+    lbl_804CBFC0.vt = lbl_803802CC;
+}
+}

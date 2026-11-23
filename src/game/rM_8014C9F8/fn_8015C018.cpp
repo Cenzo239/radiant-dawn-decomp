@@ -1,0 +1,174 @@
+/* AI: best tile and item over the inventory, fn_8015C018 and fn_8015C468. */
+#include "game/rM_8014C9F8/ai.h"
+#define ABS(a) ((a) < 0 ? -(a) : (a))
+extern "C" {
+extern int fn_8012BB08(Unit*, u8*);
+extern void fn_80165E18(Unit*, int, int);
+extern void fn_80166580(int, int, u8, u8, int);
+extern int fn_801658E4(Unit*, int, int);
+extern u16 fn_801676D8(int, int);
+extern int fn_8016D11C(Unit*);
+extern int fn_8015814C(Unit*, int, int, int);
+extern int fn_80158208(Unit*, int, int, int);
+extern u8 fn_80110DA8(Inv*);
+
+static inline int NZ(int v) { return v != 0; }
+static inline s16 CostAt(s16 x, s16 y) { return lbl_803EC898.costS[(s8)x + (s8)y * 0x40]; }
+
+static inline void Scan(Unit*& u, Inv* const& p, int& k, Map* const& m, int& best, s16& bx, s16& by, int& bi, int& ux, int& rng, int& x1, int& y, int& x, int& v, s16& uy, int& x0, int& y1) {
+            uy = u->y;
+            ux = u->x;
+            rng = fn_8012408C(u);
+            x0 = ux - rng;
+            if (x0 < lbl_803EC898.x0) {
+                x0 = lbl_803EC898.x0;
+            }
+            y = uy - rng;
+            if (y < lbl_803EC898.y0) {
+                y = lbl_803EC898.y0;
+            }
+            x1 = ux + rng;
+            if (x1 > lbl_803EC898.x1 - 1) {
+                x1 = lbl_803EC898.x1 - 1;
+            }
+            y1 = uy + rng;
+            if (y1 > lbl_803EC898.y1 - 1) {
+                y1 = lbl_803EC898.y1 - 1;
+            }
+            for (; y <= y1; y++) {
+                for (x = x0; x <= x1; x++) {
+                    if (rng >= ABS(ux - x) + ABS(uy - y)) {
+                        if (((Map*)&lbl_803EC898)->costS[(s8)x + (s8)y * 0x40] >= 0 && ((Map*)&lbl_803EC898)->b5S[(s8)x + (s8)y * 0x40] == 0 && !fn_801658E4(u, (s8)x, (s8)y)) {
+                            if (m->g4[(s8)x + (s8)y * 0x40]) {
+                                u32 t = m->ter[0][(s8)x + (s8)y * 0x40];
+                                if (t == 0 || t == u->padFC[0]) {
+                                    int cost = fn_801676D8((s8)x, (s8)y);
+                                    if (fn_8016D11C(u) >= cost) {
+                                        v = fn_8015814C(u, (s16)x, (s16)y, 0);
+                                        v += fn_80158208(u, (s16)x, (s16)y, 0);
+                                        v -= CostAt(x, y);
+                                        v -= fn_801676D8((s8)(s16)x, (s8)(s16)y) >> 4;
+                                        if (v < 0) {
+                                            v = 0;
+                                        }
+                                        {
+                                            int s = (u8)fn_80110DA8(p) + NZ(v);
+                                            if (s > best) {
+                                                best = s;
+                                                bx = x;
+                                                by = y;
+                                                bi = k;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+}
+#pragma use_lmw_stmw on
+u32 fn_8015C018(Unit* u, s16 tx, s16 ty, s16* ox, s16* oy, u8* oi) {
+    
+    int best;
+    int k;
+    int ux;
+    int rng;
+    int x1;
+    int y;
+    int x;
+    int r;
+    Map* m;
+    s16 bx;
+    s16 by;
+    int v;
+    s16 uy;
+    int x0;
+    int bi;
+    int y1;
+
+    m = &lbl_803EC898;
+    if ((lbl_804183F0.flags & 2) || (u->w3B4 & 0x7000000)) {
+        fn_80114B44(m, 6, -1);
+        fn_80114888(m, 6);
+        m->cur[u->x + u->y * 0x40] = 0;
+    } else {
+        fn_80165F94(u, 6, -1);
+    }
+    best = 0x80000000;
+    for (k = 0; k < 7; k++) {
+        Inv* p = &u->inv[k];
+        if (p == NULL || p->item == NULL) {
+            break;
+        }
+        if (fn_8012BA20(u, p->item)) {
+            fn_80114B44(m, 7, -1);
+            if (p->item != NULL) {
+                r = (u8)fn_801107C0(p->item, u);
+            } else {
+                r = 0;
+            }
+            fn_80166580(tx, ty, p->item != NULL ? (u8)fn_801107A0(p->item, u) : 0, r, 7);
+            Scan(u, p, k, m, best, bx, by, bi, ux, rng, x1, y, x, v, uy, x0, y1);
+        }
+    }
+    if (best != 0x80000000) {
+        *ox = bx;
+        *oy = by;
+        *oi = bi;
+    }
+    return best != 0x80000000;
+}
+u32 fn_8015C468(Unit* u, s16 tx, s16 ty, s16* ox, s16* oy, u8* oi) {
+    
+    int best;
+    int k;
+    int ux;
+    int rng;
+    int x1;
+    int y;
+    int x;
+    int r;
+    Map* m;
+    s16 bx;
+    s16 by;
+    int v;
+    s16 uy;
+    int x0;
+    int bi;
+    int y1;
+
+    m = &lbl_803EC898;
+    if ((lbl_804183F0.flags & 2) || (u->w3B4 & 0x7000000)) {
+        fn_80114B44(m, 6, -1);
+        fn_80114888(m, 6);
+        m->cur[u->x + u->y * 0x40] = 0;
+    } else {
+        fn_80165E18(u, 6, -1);
+    }
+    best = 0x80000000;
+    for (k = 0; k < 7; k++) {
+        Inv* p = &u->inv[k];
+        if (p == NULL || p->item == NULL) {
+            break;
+        }
+        if (fn_8012BB08(u, p->item)) {
+            fn_80114B44(m, 7, -1);
+            if (p->item != NULL) {
+                r = (u8)fn_801107C0(p->item, u);
+            } else {
+                r = 0;
+            }
+            fn_80166580(tx, ty, p->item != NULL ? (u8)fn_801107A0(p->item, u) : 0, r, 7);
+            Scan(u, p, k, m, best, bx, by, bi, ux, rng, x1, y, x, v, uy, x0, y1);
+        }
+    }
+    if (best != 0x80000000) {
+        *ox = bx;
+        *oy = by;
+        *oi = bi;
+    }
+    return best != 0x80000000;
+}
+}

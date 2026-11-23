@@ -1,0 +1,2 @@
+# symbol edits of round 2 (nw4r snd/ut/lyt, HBM)
+rename 0x802BC430 Write__Q34nw4r2ut8IOStreamFPCvUl   # IOStream slot 0x1C stub (li r3,0), was named ReadAsync (ReadAsync is pure in FE10)

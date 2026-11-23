@@ -1,0 +1,35 @@
+/* NOT MATCHING, not compiled. fn_8012152C: body of the inline Sc, about 80 words of colouring; extern set is in fn_801213D0.cpp. */
+static inline void Sc(Map* m, Unit* u, s8* ox, s8* oy) {
+    /*P*/
+    u16 best;
+    u8 keep = m->ter[0][u->x + u->y * 0x40];
+    int y;
+/*E*/
+    m->ter[0][u->x + u->y * 0x40] = 0;
+    fn_80114888(m, 6);
+    fn_8011567C(m, 0);
+    fn_8011540C(m, fn_8010B200(lbl_80369010 + 0x51));
+    fn_80115764(m, *ox, *oy, 0x40);
+    fn_801151BC(m, u);
+    best = 9999;
+    for (y = m->y0; y <= m->y1 - 1; y++) {
+        int x;
+        for (x = m->x0; x <= m->x1 - 1; x++) {
+            Map* q = (Map*)((u8*)m + (s8)y * 0x40 + (s8)x);
+            if ((s16)m->cur[(s8)x + (s8)y * 0x40] >= 0 && *(s8*)q->g5 == 0 && fn_801658E4(u, (s8)x, (s8)y) == 0 && q->ter[0][0] == 0) {
+                if (fn_80115CD8(m, (s8)x, (s8)y) <= 30000) {
+                    u16 c = m->cur[(s8)x + (s8)y * 0x40];
+                    if (best > c) {
+                        *ox = x;
+                        best = c;
+                        *oy = y;
+                    }
+                }
+            }
+        }
+    }
+    m->ter[0][u->x + u->y * 0x40] = keep;
+}
+void fn_8012152C(Unit* u, s8* ox, s8* oy) {
+    Sc(&lbl_803EC898, u, ox, oy);
+}

@@ -1,0 +1,71 @@
+/* AI: lowest-level target beside a pushable tile, fn_801557D0. */
+#include "game/rM_8014C9F8/ai.h"
+class TF {
+public:
+    virtual int check(Unit*);
+    virtual int at(Unit*, s16, s16);
+};
+extern "C" {
+extern u8 lbl_803E7320[];
+extern void fn_8017244C(Unit*, void*);
+extern u8* fn_800CFD18(void*, int);
+extern Unit* fn_800CFB0C(u8*);
+extern u16 fn_801676D8(int, int);
+extern int fn_8016D11C(Unit*);
+extern u8 fn_80126BA4(Unit*);
+
+#pragma use_lmw_stmw on
+u8 fn_801557D0(void* arg, TF* f, int ac) {
+    
+    u8* lst;
+    Unit* u;
+    Map* m;
+    int i;
+    TF* ff;
+    int cost;
+    
+    AiBest best;
+    AiBest cur;
+    m = &lbl_803EC898;
+    u = lbl_803CA870.unit;
+    fn_800453B4(&lbl_803CA870, ac);
+    memset(&best, 0, 0x10);
+    memset(&cur, 0, 0x10);
+    best.score = 0x7FFFFFFF;
+    best.t = NULL;
+    if ((lbl_804183F0.flags & 2) || (u->w3B4 & 0x7000000)) {
+        fn_80114B44(m, 6, -1);
+        fn_80114888(m, 6);
+        m->cur[u->x + u->y * 0x40] = 0;
+    } else {
+        fn_80165F94(u, 6, -1);
+    }
+    fn_8017244C(u, arg);
+    if (*(int*)lbl_803E7320) {
+        for (i = 0; i < *(int*)lbl_803E7320; i++) {
+            u8* q = fn_800CFD18(lbl_803E7320, i);
+            cur.x = q[0];
+            cur.y = q[1];
+            cur.t = fn_800CFB0C(q);
+            cost = fn_801676D8((s8)cur.x, (s8)cur.y);
+            if (fn_8016D11C(u) >= cost && f->at(cur.t, cur.x, cur.y)) {
+                Unit* t = cur.t;
+                int dx = (s8)(t->x - cur.x);
+                int dy = (s8)(t->y - cur.y);
+                if (m->ter[3][(s8)(dx + t->x) + (s8)(dy + t->y) * 0x40] & 2) {
+                    cur.score = fn_80126BA4(t);
+                    if (cur.score < best.score) {
+                        best = cur;
+                    }
+                }
+            }
+        }
+        if (best.score != 0x7FFFFFFF) {
+            fn_80160610(lbl_803CA870.action, (s8)best.x, (s8)best.y, best.t, best.t->x, (s8)*(u8*)&best.t->y, -1, 0, 0);
+            u->b3BC |= best.fl;
+            u->h3BE = best.score;
+        }
+    }
+    return lbl_804183F0.done;
+}
+}

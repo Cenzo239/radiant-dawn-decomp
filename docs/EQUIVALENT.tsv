@@ -1,0 +1,300 @@
+# function	class	words differing	size	file	symcheck --anon --xargs (flags are reviewed in docs/SCHED_REVIEW.md)
+fn_80009454	regs	17	656	src/game/rA_800068A0/equiv/fn_80009454.c	clean
+fn_80009A2C	regs	36	412	src/game/rA_800068A0/equiv/fn_80009A2C.c	clean
+fn_8000A838	regs	79	820	src/game/rA_800068A0/equiv/fn_8000A838.cpp	clean
+fn_8000AB6C	regs	32	716	src/game/rA_800068A0/equiv/fn_8000AB6C.cpp	clean
+fn_8000AE38	regs	32	712	src/game/rA_800068A0/equiv/fn_8000AB6C.cpp	clean
+fn_8000B100	regs	32	712	src/game/rA_800068A0/equiv/fn_8000AB6C.cpp	clean
+fn_8000B3C8	regs	32	712	src/game/rA_800068A0/equiv/fn_8000AB6C.cpp	clean
+fn_8000B690	regs	32	712	src/game/rA_800068A0/equiv/fn_8000AB6C.cpp	clean
+fn_8000B958	regs	32	712	src/game/rA_800068A0/equiv/fn_8000AB6C.cpp	clean
+fn_8000D228	regs	21	1324	src/game/rA_800068A0/wip/fn_8000D228.cpp	clean
+fn_8000DD0C	regs	81	2052	src/game/rA_800068A0/wip/fn_8000DD0C.cpp	clean
+fn_80010E38	regs	22	348	src/game/rA_800068A0/equiv/fn_80010E38.cpp	clean
+fn_800161E0	sched	1	392	src/game/rA_800068A0/equiv/fn_800161E0.c	clean
+fn_8001BD34	sched	3	3000	src/game/rA_800068A0/wip/fn_8001BD34.cpp	clean
+fn_8001CD78	regs	4	668	src/game/rA_800068A0/wip/fn_8001CD78.cpp	clean
+fn_8001EBC8	sched	1	284	src/game/rA_800068A0/wip/fn_8001EBC8_r16.cpp	clean
+fn_8001ECE4	regs	2	276	src/game/rA_800068A0/wip/fn_8001EBC8_r16.cpp	clean
+fn_8001F1D4	sched	1	772	src/game/rA_800068A0/wip/fn_8001F1D4.cpp	clean
+fn_80020F04	regs	44	1744	src/game/rA_800068A0/wip/fn_80020F04.cpp	1 blocks flagged
+fn_800244C4	regs	3	328	src/game/rA_800068A0/equiv/fn_800244C4.cpp	clean
+fn_8002AFBC	sched	1	752	src/game/rB_8002E1C4/wip/fn_8002AFBC.cpp	clean
+fn_8003DD6C	regs	7	6480	src/game/rB_8002E1C4/wip/fn_8003DD6C.cpp	clean
+fn_800437D0	regs	20	988	src/game/rT_80026898/equiv/fn_800437D0.cpp	clean
+fn_8004564C	sched	287	4200	src/game/rB_8002E1C4/equiv/fn_8004564C.cpp	clean
+fn_800487DC	regs	14	472	src/game/rB_8002E1C4/equiv/fn_800487DC.cpp	clean
+fn_80048A98	regs	14	472	src/game/rB_8002E1C4/equiv/fn_800487DC.cpp	clean
+fn_80048D54	regs	14	472	src/game/rB_8002E1C4/equiv/fn_800487DC.cpp	clean
+fn_80048FF8	regs	14	472	src/game/rB_8002E1C4/equiv/fn_800487DC.cpp	clean
+fn_800492B8	regs	14	472	src/game/rB_8002E1C4/equiv/fn_800487DC.cpp	clean
+fn_80054378	regs	14	292	src/game/rC2_8005259C/wip/fn_80054378_b.cpp	clean
+fn_8005586C	renamed	16	352	src/game/rC2_8005259C/equiv/fn_8005586C.cpp	clean
+fn_80055A64	regs	8	460	src/game/rC2_8005259C/wip/fn_80055A64.cpp	clean
+fn_800578FC	regs	4	320	src/game/rC2_8005259C/wip/fn_800578FC.cpp	clean
+fn_80057B7C	regs	4	320	src/game/rC2_8005259C/equiv/fn_80057B7C.cpp	clean
+fn_800581F4	regs	23	536	src/game/rC2_8005259C/equiv/fn_800581F4.cpp	clean
+fn_8005840C	regs	21	504	src/game/rC2_8005259C/equiv/fn_800581F4.cpp	clean
+fn_80063A80	renamed	7	312	src/game/rC2_8005259C/wip/fn_80063A80.cpp	clean
+fn_800642B4	renamed	6	184	src/game/auto/80060000/wip/fn_800642B4.cpp	clean
+fn_8006436C	regs	46	1600	src/game/rC2_8005259C/equiv/fn_8006436C.cpp	clean
+fn_800649AC	renamed	6	328	src/game/auto/80060000/wip/fn_800649AC.cpp	clean
+fn_80064AF4	sched	5	1512	src/game/rC2_8005259C/equiv/fn_80064AF4.cpp	clean
+fn_800650DC	regs	68	1168	src/game/rC2_8005259C/equiv/fn_800650DC.cpp	clean
+fn_800656BC	regs	6	756	src/game/auto/80060000/wip/fn_800656BC.cpp	clean
+fn_800659B0	regs	21	860	src/game/rC2_8005259C/equiv/fn_800659B0.cpp	clean
+fn_800665E4	regs	25	900	src/game/rO_80065D64/equiv/fn_800665E4.cpp	clean
+fn_80066C48	sched	12	208	src/game/rO_80065D64/equiv/fn_80066C48.cpp	clean
+fn_80066E24	regs	28	664	src/game/rO_80065D64/equiv/fn_80066E24.cpp	clean
+fn_8006758C	sched	9	312	src/game/rO_80065D64/equiv/fn_8006758C.cpp	clean
+fn_80068638	regs	65	924	src/game/rO_80065D64/equiv/fn_80068638.cpp	clean
+fn_80069428	sched	3	1036	src/game/rO_80065D64/equiv/fn_80069428.cpp	clean
+fn_8006B528	renamed	16	532	src/game/rO_80065D64/equiv/fn_8006B528.cpp	clean
+fn_8006D19C	regs	14	300	src/game/rO_80065D64/wip/r16_fn_8006D19C.cpp	clean
+fn_8006D380	sched	4	1040	src/game/rO_80065D64/equiv/fn_8006D380.cpp	clean
+fn_8006D790	sched	7	1376	src/game/rO_80065D64/equiv/fn_8006D790.cpp	6 blocks flagged
+fn_80075714	sched	1	352	src/game/rO_80065D64/equiv/fn_80075714.cpp	clean
+fn_800769D0	sched	4	600	src/game/rO_80065D64/equiv/fn_800769D0.cpp	clean
+fn_80076D48	regs	7	524	src/game/rO_80065D64/equiv/fn_80076D48.cpp	clean
+fn_800776F8	sched	2	432	src/game/rO_80065D64/equiv/fn_800776F8.cpp	clean
+fn_80077A58	regs	16	392	src/game/rJ_800799AC/equiv/fn_80077A58.cpp	clean
+fn_800785FC	regs	8	488	src/game/rJ_800799AC/equiv/fn_800785FC.cpp	clean
+fn_800787E4	regs	60	1096	src/game/rJ_800799AC/equiv/fn_800787E4.cpp	clean
+fn_8007A1CC	sched	7	276	src/game/rJ_800799AC/equiv/fn_8007A1CC.cpp	clean
+fn_80085FC4	renamed	56	1952	src/game/rJ_800799AC/equiv/fn_80085FC4.cpp	clean
+fn_80087F78	regs	47	1984	src/game/rJ_800799AC/equiv/fn_80087F78.cpp	clean
+fn_80088948	renamed	40	2204	src/game/rJ_800799AC/equiv/fn_80088948.cpp	clean
+fn_8008A868	regs	5	1600	src/game/rJ_800799AC/equiv/fn_8008A868.cpp	clean
+fn_8008D414	regs	15	724	src/game/rJ_800799AC/equiv/fn_8008D414.cpp	clean
+fn_8008D75C	sched	1	448	src/game/rJ_800799AC/equiv/fn_8008D75C.cpp	clean
+fn_8009167C	regs	30	472	src/game/rD_8008E3B4/equiv/fn_8009167C.c	clean
+fn_8009EEEC	regs	22	700	src/game/rD_8008E3B4/equiv/fn_8009EEEC.cpp	clean
+fn_8009F1A8	regs	22	488	src/game/rD_8008E3B4/equiv/fn_8009EEEC.cpp	clean
+fn_800A0998	regs	3	388	src/game/rD_8008E3B4/equiv/fn_800A0998.cpp	clean
+fn_800A47AC	sched	2	748	src/game/rG_800A3D88/wip/fn_800A47AC.cpp	clean
+fn_800A4D88	regs	7	920	src/game/rG_800A3D88/equiv/fn_800A4D88.cpp	clean
+fn_800A6978	regs	24	516	src/game/rG_800A3D88/wip/fn_800A6978.cpp	clean
+fn_800A75E8	regs	28	392	src/game/rG_800A3D88/equiv/fn_800A75E8.cpp	1 blocks flagged
+fn_800A84A4	regs	11	296	src/game/rG_800A3D88/equiv/fn_800A84A4.cpp	clean
+fn_800AC664	regs	23	2084	src/game/rG_800A3D88/wip/fn_800AC664.cpp	clean
+fn_800AF584	regs	13	1720	src/game/rG_800A3D88/wip/fn_800AF584_b.cpp	clean
+fn_800B1120	renamed	19	1056	src/game/rG_800A3D88/wip/fn_800B1120_b.cpp	clean
+fn_800B8BC4	sched	7	1076	src/game/rG_800A3D88/wip/fn_800B8BC4.cpp	2 blocks flagged
+fn_800BBE94	regs	56	3520	src/game/rG_800A3D88/wip/fn_800BBE94.cpp	clean
+fn_800C5EA4	renamed	26	628	src/game/rG_800A3D88/equiv/fn_800C5EA4.cpp	clean
+fn_800CB69C	sched	8	4224	src/game/rG_800A3D88/equiv/fn_800CB69C.cpp	6 blocks flagged
+fn_800D0BFC	sched	1	448	src/game/rK_800CF8BC/equiv/fn_800D0BFC.cpp	clean
+fn_800D1D14	regs	18	456	src/game/rK_800CF8BC/equiv/fn_800D1D14.cpp	clean
+fn_800D363C	slots	28	748	src/game/rK_800CF8BC/equiv/fn_800D363C.cpp	3 blocks flagged
+fn_800D4864	regs	19	428	src/game/rK_800CF8BC/equiv/fn_800D4864.cpp	clean
+fn_800D5DC4	slots	45	424	src/game/rK_800CF8BC/equiv/fn_800D5DC4.cpp	9 blocks flagged
+fn_800DA1FC	regs	19	564	src/game/rK_800CF8BC/equiv/fn_800DA1FC.cpp	clean
+fn_800DE044	regs	16	372	src/game/rK_800CF8BC/equiv/fn_800DE044.cpp	clean
+fn_800DE1B8	regs	16	364	src/game/rK_800CF8BC/equiv/fn_800DE1B8.cpp	clean
+fn_800DFD3C	sched	27	720	src/game/rK_800CF8BC/wip/fn_800DFD3C.cpp	clean
+fn_800EB048	sched	1	556	src/game/rE_800E5DE4/wip/fn_800EB048.c	clean
+fn_800EB988	regs	3	492	src/game/rE_800E5DE4/wip/fn_800EB988.cpp	clean
+fn_800F15AC	renamed	18	384	src/game/rE_800E5DE4/equiv/fn_800F15AC.cpp	clean
+fn_800F199C	sched	25	660	src/game/rE_800E5DE4/wip/fn_800F199C.cpp	clean
+fn_800F1C30	renamed	25	620	src/game/rE_800E5DE4/wip/fn_800F1C30.cpp	clean
+fn_800F6AEC	regs	17	2340	src/game/rE_800E5DE4/equiv/fn_800F6AEC.cpp	clean
+fn_800FA264	sched	3	812	src/game/rE_800E5DE4/wip/fn_800FA264.cpp	clean
+fn_800FBC90	sched	1	352	src/game/rE_800E5DE4/wip/fn_800FBC90.cpp	clean
+fn_800FF170	sched	19	688	src/game/rE_800E5DE4/wip/r18_fn_800FF170.cpp	clean
+fn_80103410	renamed	13	164	src/game/rE_800E5DE4/equiv/fn_80103410.cpp	clean
+fn_80105BBC	regs	32	508	src/game/rP_80105B04/equiv/fn_80105BBC.cpp	clean
+fn_801062C0	regs	23	1896	src/game/rP_80105B04/wip/r16_fn_801062C0.cpp	clean
+fn_8010830C	slots	20	780	src/game/rP_80105B04/equiv/fn_8010830C.cpp	4 blocks flagged
+fn_801095FC	sched	2	328	src/game/rP_80105B04/equiv/fn_801095FC.cpp	clean
+fn_80109DF8	sched	1	1284	src/game/rP_80105B04/equiv/fn_80109DF8.cpp	clean
+fn_8010A2FC	regs	8	1628	src/game/rP_80105B04/wip/fn_8010A2FC.cpp	clean
+fn_8010A958	regs	21	1396	src/game/rP_80105B04/equiv/fn_8010A958.cpp	clean
+fn_801116F4	regs	15	348	src/game/rP_80105B04/equiv/fn_801116F4.cpp	clean
+fn_80112CD4	regs	69	656	src/game/rH_80112B48/equiv/fn_80112CD4.cpp	clean
+fn_80114D00	sched	3	1212	src/game/rH_80112B48/equiv/fn_80114D00.cpp	clean
+fn_801151BC	regs	5	592	src/game/rH_80112B48/wip/r10_fn_801151BC.cpp	clean
+fn_80117A84	sched	56	940	src/game/rH_80112B48/equiv/fn_80117A84.cpp	clean
+fn_801197F4	sched	1	212	src/game/rH_80112B48/equiv/fn_801197F4.cpp	clean
+fn_8011A36C	regs	27	1176	src/game/rH_80112B48/wip/r10_fn_8011A36C.cpp	clean
+fn_8011A804	regs	37	812	src/game/rH_80112B48/equiv/fn_8011A804.cpp	clean
+fn_8011C330	regs	303	2704	src/game/rH_80112B48/equiv/fn_8011C330.cpp	clean
+fn_8011CDC0	regs	89	956	src/game/rH_80112B48/equiv/fn_8011CDC0.cpp	clean
+fn_8011D580	regs	5	2760	src/game/rH_80112B48/equiv/fn_8011D580.cpp	clean
+fn_8011E864	sched	1	744	src/game/rH_80112B48/equiv/fn_8011E864.cpp	clean
+fn_8011F70C	sched	7	696	src/game/rH_80112B48/equiv/fn_8011F70C.cpp	clean
+fn_8011FFD0	sched	14	936	src/game/rH_80112B48/equiv/fn_8011FFD0.cpp	1 blocks flagged
+fn_8012152C	sched	2	468	src/game/rH_80112B48/equiv/fn_8012152C.cpp	clean
+fn_801241F4	regs	15	512	src/game/rH_80112B48/wip/r14_fn_801241F4.cpp	clean
+fn_801252F8	regs	14	1504	src/game/rH_80112B48/wip/r14_fn_801252F8.cpp	clean
+fn_801258D8	regs	18	1504	src/game/rH_80112B48/wip/r7_fn_801252F8.cpp	clean
+fn_8012EDA0	regs	15	348	src/game/rH_80112B48/wip/r16_fn_8012EDA0.cpp	clean
+fn_8012FA44	renamed	37	520	src/game/rH_80112B48/wip/r10_fn_8012FA44.cpp	clean
+fn_80131DE4	sched	65	4688	src/game/rH_80112B48/equiv/fn_80131DE4.cpp	2 blocks flagged
+fn_80134F90	regs	9	908	src/game/rL_80133EB4/equiv/fn_80134F90.cpp	clean
+fn_80135C44	sched	9	836	src/game/rL_80133EB4/equiv/fn_80135C44.cpp	clean
+fn_80136E74	regs	100	2224	src/game/rL_80133EB4/equiv/fn_80136E74.cpp	clean
+fn_80138000	regs	45	396	src/game/rL_80133EB4/equiv/fn_80138000.cpp	1 blocks flagged
+fn_801386AC	sched	4	184	src/game/rL_80133EB4/equiv/fn_801386AC.cpp	clean
+fn_80138FF8	regs	194	2412	src/game/rL_80133EB4/equiv/fn_80138FF8.cpp	clean
+fn_8013E77C	sched	7	128	src/game/rL_80133EB4/equiv/fn_8013E77C.cpp	clean
+fn_8013EED0	regs	64	616	src/game/rL_80133EB4/equiv/fn_8013EED0.cpp	clean
+fn_80141334	regs	4	796	src/game/rL_80133EB4/equiv/fn_80141334.cpp	clean
+fn_80141650	sched	6	1916	src/game/rL_80133EB4/equiv/fn_80141650.cpp	clean
+fn_801420B0	sched	5	2964	src/game/rL_80133EB4/equiv/fn_801420B0.cpp	clean
+fn_80145078	regs	16	676	src/game/rL_80133EB4/equiv/fn_80145078.cpp	1 blocks flagged
+fn_80145980	sched	6	2136	src/game/rL_80133EB4/equiv/fn_80145980.cpp	clean
+fn_8014D808	regs	26	500	src/game/rM_8014C9F8/equiv/fn_8014D808.cpp	clean
+fn_8014D9FC	sched	3	524	src/game/rM_8014C9F8/equiv/fn_8014D9FC.cpp	clean
+fn_801507EC	regs	5	420	src/game/rM_8014C9F8/equiv/fn_801507EC.cpp	clean
+fn_80150B20	sched	1	44	src/game/rM_8014C9F8/wip/fn_80150B20.cpp	clean
+fn_80150F0C	slots	9	1052	src/game/rM_8014C9F8/equiv/fn_80150F0C.cpp	1 blocks flagged
+fn_801516AC	regs	9	364	src/game/rM_8014C9F8/equiv/fn_801516AC.cpp	clean
+fn_8015804C	sched	1	256	src/game/rM_8014C9F8/equiv/fn_8015804C.cpp	clean
+fn_80158354	regs	51	884	src/game/rM_8014C9F8/equiv/fn_80158354.cpp	clean
+fn_801586C8	renamed	40	344	src/game/rM_8014C9F8/equiv/fn_801586C8.cpp	clean
+fn_8015897C	sched	11	416	src/game/rM_8014C9F8/equiv/fn_8015897C.cpp	clean
+fn_8015B1C4	sched	28	708	src/game/rM_8014C9F8/equiv/fn_8015B1C4.cpp	clean
+fn_8015BD44	renamed	15	580	src/game/rM_8014C9F8/equiv/fn_8015BD44.cpp	clean
+fn_8015DC64	sched	14	484	src/game/rM_8014C9F8/equiv/fn_8015DC64.cpp	clean
+fn_8015F07C	regs	28	608	src/game/rM_8014C9F8/equiv/fn_8015F07C.cpp	clean
+fn_8015F408	sched	1	284	src/game/rM_8014C9F8/equiv/fn_8015F408.cpp	clean
+fn_8015F680	regs	9	376	src/game/rM_8014C9F8/equiv/fn_8015F680.cpp	clean
+fn_80160018	sched	1	276	src/game/rM_8014C9F8/equiv/fn_80160018.cpp	clean
+fn_80161A54	sched	1	336	src/game/rM_8014C9F8/equiv/fn_80161A54.cpp	clean
+fn_801626D4	sched	11	328	src/game/rM_8014C9F8/equiv/fn_801626D4.cpp	clean
+fn_80162B54	sched	1	464	src/game/rM_8014C9F8/equiv/fn_80162B54.cpp	1 blocks flagged
+fn_80164330	regs	66	680	src/game/rQ_80163178/equiv/fn_80164330.cpp	1 blocks flagged
+fn_80167704	regs	166	1796	src/game/rQ_80163178/equiv/fn_80167704.cpp	clean
+fn_80167F5C	sched	1	316	src/game/rQ_80163178/equiv/fn_80167F5C.cpp	clean
+fn_80168BF0	sched	1	408	src/game/rQ_80163178/equiv/fn_80168BF0.cpp	clean
+fn_80169558	renamed	16	448	src/game/rQ_80163178/equiv/fn_80169558.cpp	clean
+fn_8016B3F4	regs	34	1304	src/game/rQ_80163178/equiv/fn_8016B3F4.cpp	1 blocks flagged
+fn_8016B90C	regs	55	1268	src/game/rQ_80163178/equiv/fn_8016B90C.cpp	1 blocks flagged
+fn_8016EDE8	regs	3	480	src/game/rQ_80163178/equiv/fn_8016EDE8.cpp	clean
+fn_80170664	sched	1	212	src/game/rQ_80163178/equiv/fn_80170664.cpp	clean
+fn_801729C0	regs	14	344	src/game/rQ_80163178/equiv/fn_801729C0.cpp	clean
+fn_80174014	regs	30	1272	src/game/rQ_80163178/equiv/fn_80174014.cpp	clean
+fn_80177A5C	renamed	10	1392	src/game/rR_80175E5C/equiv/fn_80177A5C.cpp	clean
+fn_8017E470	slots	8	1388	src/game/rR_80175E5C/equiv/fn_8017E470.cpp	1 blocks flagged
+fn_8017EA78	sched	1	932	src/game/rR_80175E5C/equiv/fn_8017EA78.cpp	clean
+fn_801805E0	regs	120	1712	src/game/rF_8017F400/equiv/fn_801805E0.c	clean
+fn_80181470	regs	4	792	src/game/rF_8017F400/wip/fn_80181470.cpp	clean
+fn_80182B48	sched	6	476	src/game/rF_8017F400/equiv/fn_80182B48.cpp	clean
+fn_8018524C	sched	1	616	src/game/rF_8017F400/equiv/fn_8018524C.cpp	clean
+fn_801875CC	regs	6	28900	src/game/rF_8017F400/wip/fn_801875CC.cpp	clean
+fn_8018E6B0	sched	2	1164	src/game/rF_8017F400/equiv/fn_8018E6B0.cpp	clean
+fn_801951BC	sched	16	928	src/game/rF_8017F400/equiv/fn_801951BC.cpp	clean
+fn_8019555C	regs	19	868	src/game/rF_8017F400/equiv/fn_801951BC.cpp	clean
+fn_8019AEA8	regs	168	16972	src/game/rF_8017F400/equiv/fn_8019AEA8.cpp	clean
+fn_8019FFE4	sched	6	6812	src/game/rF_8017F400/equiv/fn_8019FFE4.cpp	clean
+fn_801A2588	regs	9	2444	src/game/rF_8017F400/wip/fn_801A2588.cpp	clean
+fn_801A32BC	regs	27	1500	src/game/rF_8017F400/wip/fn_801A32BC_r15.cpp	1 blocks flagged
+fn_801A4744	slots	85	2432	src/game/rF_8017F400/equiv/fn_801A4744.cpp	3 blocks flagged
+fn_801A6220	regs	35	2524	src/game/rF_8017F400/equiv/fn_801A6220.cpp	clean
+fn_801A8E20	sched	11	3980	src/game/rF_8017F400/equiv/fn_801A8E20.cpp	clean
+fn_801AC084	sched	31	1832	src/game/rF_8017F400/equiv/fn_801AC084.cpp	1 blocks flagged
+fn_801AF2A8	regs	53	3080	src/game/rF_8017F400/wip/fn_801AF2A8.cpp	clean
+fn_801B05F8	sched	1	600	src/game/rF_8017F400/equiv/fn_801B05F8.cpp	clean
+fn_801B09D0	regs	57	392	src/game/rF_8017F400/wip/fn_801B09D0.cpp	clean
+fn_801B0B58	regs	75	640	src/game/rF_8017F400/equiv/fn_801B0B58.cpp	clean
+fn_801B2150	sched	115	5432	src/game/rF_8017F400/equiv/fn_801B2150.cpp	clean
+fn_801B78F0	sched	4	4624	src/game/rF_8017F400/equiv/fn_801B78F0.cpp	clean
+fn_801BE154	regs	15	312	src/game/rF_8017F400/wip/fn_801BE154.cpp	clean
+fn_801BFB58	regs	2	1736	src/game/rF_8017F400/equiv/fn_801BFB58.cpp	clean
+fn_801C336C	sched	22	1864	src/game/rF_8017F400/equiv/fn_801C336C.cpp	clean
+fn_801C3AB4	slots	69	1972	src/game/rF_8017F400/equiv/fn_801C3AB4.cpp	8 blocks flagged
+fn_801C4F0C	regs	59	2408	src/game/rF_8017F400/equiv/fn_801C4F0C.cpp	clean
+fn_801C63F0	sched	15	356	src/game/rF_8017F400/equiv/fn_801C63F0.cpp	clean
+fn_801C93A0	regs	25	228	src/game/rF_8017F400/wip/fn_801C93A0.cpp	clean
+fn_801CC5CC	regs	16	1132	src/game/rF_8017F400/equiv/fn_801CC5CC.cpp	clean
+fn_801CCCBC	regs	14	464	src/game/rF_8017F400/equiv/fn_801CCCBC.cpp	clean
+fn_801CCE8C	regs	14	464	src/game/rF_8017F400/equiv/fn_801CCCBC.cpp	clean
+fn_801CD05C	regs	11	1052	src/game/rF_8017F400/equiv/fn_801CD05C.cpp	clean
+fn_801CE174	slots	21	384	src/game/rF_8017F400/wip/fn_801CE174.cpp	2 blocks flagged
+fn_801CEC98	regs	13	936	src/game/rF_8017F400/equiv/fn_801CEC98.cpp	clean
+fn_801CF040	regs	6	560	src/game/rF_8017F400/equiv/fn_801CF040.cpp	clean
+fn_801CF270	sched	5	372	src/game/rF_8017F400/equiv/fn_801CF270.cpp	clean
+fn_801D65EC	sched	2	760	src/game/rF_8017F400/equiv/fn_801D65EC.cpp	clean
+fn_801D820C	sched	2	848	src/game/rF_8017F400/equiv/fn_801D820C.cpp	clean
+fn_801DB3F4	regs	2	892	src/game/rR_80175E5C/equiv/fn_801DB3F4.cpp	clean
+fn_801E2F40	slots	9	392	src/game/rI_801DD7D4/equiv/fn_801E2F40.cpp	1 blocks flagged
+fn_801E7990	regs	8	152	src/game/rI_801DD7D4/equiv/fn_801E7990.cpp	clean
+fn_801E7E1C	sched	32	1208	src/game/rI_801DD7D4/equiv/fn_801E7E1C.cpp	clean
+fn_801E8680	regs	36	852	src/game/rI_801DD7D4/equiv/fn_801E8680.cpp	clean
+fn_801E8E88	sched	2	1000	src/game/rI_801DD7D4/equiv/fn_801E8E88.cpp	1 blocks flagged
+fn_801E941C	sched	2	968	src/game/rI_801DD7D4/equiv/fn_801E941C.cpp	1 blocks flagged
+fn_801E9CA8	regs	29	656	src/game/rI_801DD7D4/equiv/fn_801E9CA8.cpp	clean
+fn_801EB490	sched	1	1140	src/game/rI_801DD7D4/equiv/fn_801EB490.cpp	clean
+fn_801EBF00	sched	2	956	src/game/rI_801DD7D4/equiv/fn_801EBF00.cpp	1 blocks flagged
+fn_801EC414	sched	2	956	src/game/rI_801DD7D4/equiv/fn_801EC414.cpp	1 blocks flagged
+fn_801EC928	sched	2	1000	src/game/rI_801DD7D4/equiv/fn_801EC928.cpp	1 blocks flagged
+fn_801F19A0	regs	12	1552	src/game/rI_801DD7D4/equiv/fn_801F19A0.cpp	clean
+fn_801F8798	regs	12	2200	src/game/rI_801DD7D4/equiv/fn_801F8798.cpp	clean
+fn_801FE108	sched	2	956	src/game/rI_801DD7D4/equiv/fn_801FE108.cpp	1 blocks flagged
+fn_802007E4	regs	11	668	src/game/rI_801DD7D4/equiv/fn_802007E4.cpp	clean
+fn_80200B18	regs	31	660	src/game/rI_801DD7D4/equiv/fn_80200B18.cpp	clean
+fn_80204EB4	regs	58	932	src/game/rI_801DD7D4/equiv/fn_80204EB4.cpp	clean
+fn_802133F8	regs	18	488	src/game/rI_801DD7D4/equiv/fn_802133F8.cpp	clean
+fn_80214C00	slots	26	1060	src/game/rI_801DD7D4/wip/r20/fn_80214C00.cpp	4 blocks flagged
+fn_802173C0	regs	12	632	src/game/rI_801DD7D4/equiv/fn_802173C0.cpp	clean
+fn_80217DF8	regs	7	1616	src/game/rI_801DD7D4/equiv/fn_80217DF8.cpp	clean
+fn_8021BB04	sched	35	1208	src/game/rI_801DD7D4/equiv/fn_8021BB04.cpp	4 blocks flagged
+fn_8021C31C	sched	1	796	src/game/rI_801DD7D4/equiv/fn_8021C31C.cpp	clean
+fn_8021CF08	regs	33	436	src/game/rI_801DD7D4/equiv/fn_8021CF08.cpp	clean
+fn_8021E23C	regs	6	1168	src/game/rI_801DD7D4/equiv/fn_8021E23C.cpp	clean
+fn_8022130C	regs	6	2736	src/game/rI_801DD7D4/equiv/fn_8022130C.cpp	clean
+fn_802225E8	sched	1	720	src/game/rI_801DD7D4/equiv/fn_802225E8.cpp	clean
+fn_80222E34	regs	45	1288	src/game/rI_801DD7D4/equiv/fn_80222E34.cpp	clean
+fn_8022333C	regs	14	580	src/game/rI_801DD7D4/equiv/fn_8022333C.cpp	clean
+fn_80223580	renamed	21	328	src/game/rI_801DD7D4/equiv/fn_80223580.cpp	clean
+fn_80223900	sched	3	152	src/game/rI_801DD7D4/equiv/fn_80223900.cpp	clean
+fn_802243D0	regs	26	388	src/game/rI_801DD7D4/equiv/fn_802243D0.cpp	clean
+fn_80224554	regs	36	848	src/game/rI_801DD7D4/equiv/fn_80224554.cpp	clean
+fn_80224CCC	sched	5	980	src/game/rI_801DD7D4/equiv/fn_80224CCC.cpp	clean
+fn_80225650	regs	34	1568	src/game/rI_801DD7D4/equiv/fn_80225650.cpp	clean
+fn_802267D8	sched	7	1048	src/game/rI_801DD7D4/equiv/fn_802267D8.cpp	1 blocks flagged
+fn_8022A8A0	regs	31	1360	src/game/rI_801DD7D4/equiv/fn_8022A8A0.cpp	clean
+fn_8022C080	regs	21	452	src/game/rI_801DD7D4/equiv/fn_8022C080.cpp	clean
+fn_8022C384	sched	4	1560	src/game/rI_801DD7D4/equiv/fn_8022C384.cpp	3 blocks flagged
+fn_8022FD08	sched	5	1408	src/game/rI_801DD7D4/equiv/fn_8022FD08.cpp	clean
+fn_802307F4	regs	8	576	src/game/rI_801DD7D4/equiv/fn_802307F4.cpp	clean
+fn_802352C8	regs	10	580	src/game/rI_801DD7D4/equiv/fn_802352C8.cpp	clean
+fn_80236384	sched	21	680	src/game/rI_801DD7D4/equiv/fn_80236384.cpp	clean
+fn_80236738	sched	18	576	src/game/rI_801DD7D4/equiv/fn_80236738.cpp	clean
+fn_802384F0	sched	132	2540	src/game/rI_801DD7D4/equiv/fn_802384F0.cpp	clean
+fn_8023DC38	sched	1	136	src/game/rI_801DD7D4/equiv/fn_8023DC38.cpp	clean
+fn_8023DCC0	sched	3	452	src/game/rI_801DD7D4/equiv/fn_8023DCC0.cpp	clean
+fn_8024044C	regs	43	800	src/game/rS_8023FD30/wip/fn_8024044C.cpp	clean
+fn_802414C4	sched	5	1256	src/game/rS_8023FD30/equiv/fn_802414C4.cpp	1 blocks flagged
+fn_80241BF0	sched	1	736	src/game/rS_8023FD30/equiv/fn_80241BF0.cpp	clean
+fn_80246ADC	renamed	7	816	src/game/rS_8023FD30/wip/fn_80246ADC.cpp	clean
+fn_80246E68	sched	2	1808	src/game/rS_8023FD30/wip/fn_80246E68.cpp	clean
+fn_8024CCF8	regs	69	596	src/game/rS_8023FD30/equiv/fn_8024CCF8.cpp	clean
+fn_80258C70	regs	12	2728	src/game/rS_8023FD30/wip/fn_80258C70.cpp	clean
+fn_8025F068	sched	1	48	src/game/rN_8025EEF0/equiv/fn_8025F068.cpp	clean
+fn_80260140	regs	19	2408	src/game/rN_8025EEF0/wip/fn_80260140.cpp	clean
+fn_80260E58	regs	22	2256	src/game/rN_8025EEF0/wip/fn_80260E58.cpp	clean
+fn_80261728	regs	80	4124	src/game/rN_8025EEF0/equiv/fn_80261728.cpp	clean
+fn_80263B64	regs	7	436	src/game/rN_8025EEF0/wip/fn_80263B64.cpp	clean
+fn_80264034	regs	6	464	src/game/rN_8025EEF0/equiv/fn_80264204.cpp	clean
+fn_80264204	sched	7	436	src/game/rN_8025EEF0/equiv/fn_80264204.cpp	clean
+fn_80266024	regs	20	712	src/game/rN_8025EEF0/equiv/fn_80266024.cpp	clean
+fn_802662EC	sched	34	608	src/game/rN_8025EEF0/equiv/fn_802662EC.cpp	clean
+fn_8026A9D4	regs	8	304	src/game/rN_8025EEF0/equiv/fn_8026A9D4.cpp	clean
+fn_8026D0F8	renamed	12	864	src/game/rN_8025EEF0/wip/fn_8026D0F8.cpp	clean
+fn_8026D73C	sched	58	4768	src/game/rN_8025EEF0/equiv/fn_8026D73C.cpp	clean
+fn_8026E9DC	regs	77	3156	src/game/rN_8025EEF0/equiv/fn_8026E9DC.cpp	clean
+fn_80270348	sched	1	4184	src/game/rN_8025EEF0/equiv/fn_80270348.cpp	2 blocks flagged
+fn_80275FD4	regs	123	7740	src/game/rN_8025EEF0/wip/fn_80275FD4.cpp	clean
+fn_80277E10	regs	80	6396	src/game/rN_8025EEF0/wip/fn_80277E10.cpp	1 blocks flagged
+fn_8027970C	regs	79	5584	src/game/rN_8025EEF0/equiv/fn_8027970C.cpp	clean
+fn_8027D14C	regs	25	800	src/game/rN_8025EEF0/wip/fn_8027D14C.cpp	clean
+fn_8027ECA4	renamed	5	776	src/game/rN_8025EEF0/wip/fn_8027ECA4.cpp	clean
+fn_80280060	sched	5	2352	src/game/rN_8025EEF0/equiv/fn_80280060.cpp	clean
+fn_802811E8	regs	201	1812	src/game/rN_8025EEF0/equiv/fn_802811E8.cpp	2 blocks flagged
+fn_802818FC	regs	51	3600	src/game/rN_8025EEF0/equiv/fn_802818FC.cpp	clean
+fn_802828B4	sched	13	1100	src/game/rN_8025EEF0/equiv/fn_802828B4.cpp	clean
+fn_8028530C	regs	41	5844	src/game/rN_8025EEF0/wip/fn_8028530C.cpp	clean
+fn_80287B54	renamed	9	1344	src/game/rN_8025EEF0/wip/fn_80287B54.cpp	clean
+fn_80289214	sched	85	3676	src/game/rN_8025EEF0/equiv/fn_80289214.cpp	clean
+main	sched	1	896	src/game/rA_800068A0/wip/fn_800227D4.cpp	1 blocks flagged

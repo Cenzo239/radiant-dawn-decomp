@@ -1,0 +1,147 @@
+#ifndef NW4R_SND_SEQ_SOUND_H
+#define NW4R_SND_SEQ_SOUND_H
+#include <nw4r/types_nw4r.h>
+
+#include <nw4r/snd/snd_BasicSound.h>
+#include <nw4r/snd/snd_SeqPlayer.h>
+#include <nw4r/snd/snd_Task.h>
+
+#include <nw4r/ut.h>
+
+#include <revolution/OS.h>
+
+namespace nw4r {
+namespace snd {
+
+// Forward declarations
+class SeqSoundHandle;
+
+namespace detail {
+class NoteOnCallback;
+class SeqTrackAllocator;
+template <typename T> class SoundInstanceManager;
+} // namespace detail
+
+namespace detail {
+
+class SeqSound : public BasicSound {
+    friend class nw4r::snd::SeqSoundHandle;
+
+public:
+    NW4R_UT_RTTI_DECL(SeqSound);
+
+public:
+    SeqSound(SoundInstanceManager<SeqSound>* pManager, int priority,
+             int ambientPriority);
+
+    virtual void Shutdown(); // at 0x10
+    virtual bool IsPrepared() const {
+        return mPreparedFlag;
+    } // at 0x14
+
+    virtual bool IsAttachedTempSpecialHandle(); // at 0x18
+    virtual void DetachTempSpecialHandle();     // at 0x1C
+
+    virtual void InitParam(); // at 0x20
+
+    virtual BasicPlayer& GetBasicPlayer() {
+        return mSeqPlayer;
+    } // at 0x24
+    virtual const BasicPlayer& GetBasicPlayer() const {
+        return mSeqPlayer;
+    } // at 0x28
+
+    virtual void OnUpdatePlayerPriority(); // at 0x2C
+
+    SeqPlayer::SetupResult Setup(SeqTrackAllocator* pAllocator,
+                                 u32 allocTrackFlags,
+                                 NoteOnCallback* pCallback);
+
+    // Old signature kept for callers; the voice count comes from the sound
+    SeqPlayer::SetupResult Setup(SeqTrackAllocator* pAllocator,
+                                 u32 allocTrackFlags, int,
+                                 NoteOnCallback* pCallback) {
+        return Setup(pAllocator, allocTrackFlags, pCallback);
+    }
+
+    void Prepare(const void* pBase, s32 seqOffset,
+                 SeqPlayer::OffsetType startType, int startOffset);
+
+    void Prepare(ut::FileStream* pStream, s32 seqOffset,
+                 SeqPlayer::OffsetType startType, int startOffset);
+
+    void Skip(SeqPlayer::OffsetType offsetType, int offset);
+
+    void SetTempoRatio(f32 tempo);
+    void SetChannelPriority(int priority);
+    void SetReleasePriorityFix(bool flag);
+
+    void SetTrackVolume(u32 trackFlags, f32 volume);
+    void SetTrackPitch(u32 trackFlags, f32 pitch);
+
+    bool WriteVariable(int idx, s16 value);
+    static bool WriteGlobalVariable(int idx, s16 value);
+    bool ReadVariable(int idx, s16* pValue) const;
+    static bool ReadGlobalVariable(int idx, s16* pValue);
+
+    void* GetFileStreamBuffer() {
+        return mFileStreamBuffer;
+    }
+    s32 GetFileStreamBufferSize() {
+        return sizeof(mFileStreamBuffer);
+    }
+
+private:
+    typedef void (*SeqLoadCallback)(bool success, const void* pBase,
+                                    void* pCallbackArg);
+
+    /******************************************************************************
+     * SeqLoadTask
+     ******************************************************************************/
+    struct SeqLoadTask : public Task {
+        SeqLoadTask()
+            : fileStream(NULL), buffer(NULL), callback(NULL),
+              callbackData(NULL) {}
+
+        virtual void Execute();  // at 0xC
+        virtual void Cancel();   // at 0x10
+        virtual void OnCancel(); // at 0x14
+
+        ut::FileStream* fileStream; // at 0x10
+        void* buffer;               // at 0x14
+        int bufferSize;             // at 0x18
+        SeqLoadCallback callback;   // at 0x1C
+        SeqSound* callbackData;     // at 0x20
+    };
+
+    static const int FILE_STREAM_BUFFER_SIZE = 512;
+
+private:
+    bool LoadData(SeqLoadCallback pCalllback, void* pCallbackArg);
+
+    static void NotifyLoadAsyncEndSeqData(bool success, const void* pBase,
+                                          void* pCallbackArg);
+
+private:
+    SeqPlayer mSeqPlayer;                     // at 0xD8
+    SeqSoundHandle* mTempSpecialHandle;       // at 0x1F4
+    SoundInstanceManager<SeqSound>* mManager; // at 0x1F8
+
+    s32 mSeqOffset;                         // at 0x1FC
+    SeqPlayer::OffsetType mStartOffsetType; // at 0x200
+    int mStartOffset;                       // at 0x204
+
+    bool mLoadingFlag;           // at 0x208
+    volatile bool mPreparedFlag; // at 0x209
+
+    ut::FileStream* mFileStream;                     // at 0x20C
+    char mFileStreamBuffer[FILE_STREAM_BUFFER_SIZE]; // at 0x210
+
+    SeqLoadTask mSeqLoadTask; // at 0x410
+};
+
+} // namespace detail
+} // namespace snd
+} // namespace nw4r
+
+#endif

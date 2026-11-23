@@ -1,0 +1,32 @@
+# symbol edits needed by the snd sources (dtk split a trailing blr off; wrong names)
+merge 0x802A31EC 0x38     # GetAmbientPriority: trailing blr after tail bctr
+rename 0x802A329C __dt__Q44nw4r3snd6detail10BasicSoundFv
+rename 0x802A32DC GetRuntimeTypeInfo__Q44nw4r3snd6detail10BasicSoundCFv
+rename 0x802B3954 __dt__Q54nw4r3snd6detail10StrmPlayer16StrmDataLoadTaskFv   # was named LinkList<StrmDataLoadTask,44>; the DataLoadTask vtable points here
+rename 0x802B67E4 __dt__Q44nw4r3snd6detail4TaskFv   # virtual dtor of snd Task (called by the *LoadTask dtors), was unnamed
+rename 0x804CC228 typeInfo__Q44nw4r3snd6detail9WaveSound   # sinit 802BAC3C stores it
+rename 0x804CC238 typeInfo__Q34nw4r2ut10FileStream
+rename 0x804CC240 typeInfo__Q34nw4r2ut13DvdFileStream      # sinit 802BCB20: typeInfo(&FileStream::typeInfo)
+rename 0x8029DAA4 __dt__Q44nw4r3snd6detail7AxVoiceFv   # was unnamed fn_8029DAA4
+rename 0x804D11C0 VOLUME_INIT__Q44nw4r3snd6detail12EnvGenerator   # first word of the EnvGenerator .sdata2 (-90.4f)
+rename 0x802A5F24 OnChangeOutputMode__Q34nw4r3snd6FxBaseFv   # empty virtual; FxChorus vtable slot 6 points here
+rename 0x802C1E50 AXFXChorusExpGetMemSize   # was fn_802C1E50 (right before AXFXChorusExpInit; wii-ipl AXFXChorusExp.c)
+rename 0x8025F31C __dt__Q34nw4r3snd8FxChorusFv        # weak dtor emitted in a game TU (first user)
+rename 0x8025F2A0 __dt__Q34nw4r3snd10FxReverbHiFv
+rename 0x80393CB0 __vt__Q34nw4r3snd8FxChorus
+rename 0x80393CD8 __vt__Q34nw4r3snd10FxReverbHi
+rename 0x802A7DE8 GetAllocatableTrackCount__Q44nw4r3snd6detail20MmlSeqTrackAllocatorCFv   # b CountImpl; was named Destroy
+rename 0x802B00C4 detail_SetupSoundImpl__Q34nw4r3snd18SoundArchivePlayerFPQ34nw4r3snd11SoundHandleUlPQ54nw4r3snd6detail10BasicSound14AmbientArgInfoPQ34nw4r3snd10SoundActorbPCQ44nw4r3snd14SoundStartable9StartInfo   # map status diff (register near miss), so never renamed
+split 0x802A7EC8 0x34 ExecCommand__Q34nw4r3snd13RemoteSpeakerFQ44nw4r3snd13RemoteSpeaker14SpeakerCommand   # Update falls through into ExecCommand: dtk saw one 0xD4 function
+rename 0x802BA950 __dt__Q44nw4r3snd6detail9WsdPlayerFv   # no vtable store: identical shape to BasicSound/NonCopyable dtors; first user is WaveSound
+rename 0x802A6D18 OnUpdateVoiceSoundThread__Q54nw4r3snd6detail11SoundThread14PlayerCallbackFv   # empty base virtual (4-byte blr), pointed to by the WsdPlayer/StrmPlayer/SeqPlayer vtables
+rename 0x802A9E00 @208@__dt__Q44nw4r3snd6detail9SeqPlayerFv   # subi r3,0xd0; b __dt__SeqPlayer
+rename 0x802A9E08 @220@__dt__Q44nw4r3snd6detail9SeqPlayerFv   # subi r3,0xdc; b __dt__SeqPlayer
+rename 0x802A6D14 InvalidateWaveData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv   # vtable slot 0x54 (empty virtual, first copy lives in an earlier object)
+rename 0x802A9DFC ChannelCallback__Q44nw4r3snd6detail9SeqPlayerFPQ44nw4r3snd6detail7Channel   # vtable slot 0x58
+rename 0x802A6D34 @208@InvalidateWaveData__Q44nw4r3snd6detail9SeqPlayerFPCvPCv   # subi r3,0xd0; b 0x802A6D14
+rename 0x802A6D44 @220@OnShutdownSoundThread__Q44nw4r3snd6detail9SeqPlayerFv     # subi r3,0xdc; b OnShutdownSoundThread
+rename 0x8029C780 __dt__Q34nw4r2ut30LinkList<Q34nw4r3snd6FxBase,4>Fv   # AxManager's own LinkList<FxBase,4> dtor (the ctor cleanup calls it); was named after the CallbackListNode list
+rename 0x802AF1B8 fn_802AF1B8   # LinkList<?> dtor (template argument unknown; identical bytes for every T), was named LinkList<FxBase,4>
+rename 0x802AA2CC SetChannelPriority__Q44nw4r3snd6detail8SeqSoundFi   # addi r3,0xfc; b SeqPlayer::SetChannelPriority (was named SetTempoRatio)
+rename 0x802AA2D4 SetReleasePriorityFix__Q44nw4r3snd6detail8SeqSoundFb   # was named SetChannelPriority

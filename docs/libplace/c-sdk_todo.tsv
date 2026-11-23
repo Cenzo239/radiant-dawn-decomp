@@ -1,0 +1,83 @@
+# source	uncovered_functions	class	first_error (libdrv base, 2026-11-16)
+ogws/src/revolution/WUD/WUD.c	64	codegen	reference to __ntd_get_allocated_mem_size: not in symbols.txt
+petari/src/RVL_SDK/bte/bta_dm_act.c	56	codegen	.data: cannot derive a single base (0x80399048, 0x80399070)
+ogws/src/revolution/WPAD/WPAD.c	39	None	
+ogws/src/revolution/FS/fs.c	25	codegen	.data range 0x8039FF88-0x8039FFA9 is not 4-aligned (dtk cannot split there)
+wii-ipl/libs/RVL_SDK/src/wpad/WPAD.c	24	stripped	function OnShutdown not in symbols.txt
+ogws/src/revolution/SC/scsystem.c	23	codegen	function __SCGetConfBuf at 0x802C2954 breaks contiguity (expected 0x803257F0)
+petari/src/RVL_SDK/kpad/KPAD.c	21	data-base	.sdata2: cannot derive a single base (0x804d1640, 0x804d1644, 0x804d1648)
+ogws/src/revolution/NAND/nand.c	20	dead-strip	.sdata: cannot derive a single base (no references from code)
+ogws/src/revolution/OS/OS.c	20	dead-strip	reference to __ArenaLo: not in symbols.txt
+ogws/src/revolution/OS/OSThread.c	20	stripped	function OSIsThreadTerminated at 0x8031F6BC breaks contiguity (expected 0x8031F6A8)
+petari/src/RVL_SDK/gx/GXTexture.c	17	codegen	function GXGetTexObjWidth at 0x80305DF8 breaks contiguity (expected 0x80305DEC)
+ogws/src/revolution/GX/GXTransform.c	17	codegen	.sdata2: cannot derive a single base (0x804d1538, 0x804d1638)
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c	16	codegen	reference to __TRK_reset: not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/pad/Pad.c	16	duplicate	overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/gx/GXFrameBuf.c	15	data-base	.data: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/gx/GXTexture.c	15	codegen	function GXInitTexObjUserData at 0x80305DDC breaks contiguity (expected 0x80305DB4)
+ogws/src/revolution/OS/OSContext.c	15	extra-symbol	reference to __RAS_OSDisableInterrupts_end: not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/gx/GXFifo.c	14	duplicate	overlaps another library source that places
+ogws/src/revolution/ARC/arc.c	13	dead-strip	ARCChangeDir is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+ogws/src/revolution/AX/AXCL.c	12	codegen	.sbss: cannot derive a single base (0x804cc2dc, 0x804cc2e8)
+ogws/src/revolution/GX/GXAttr.c	12	stripped	function GXGetVtxDesc not in symbols.txt
+ogws/src/revolution/NAND/NANDOpenClose.c	12	dead-strip	NANDOpenAsync is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+petari/src/RVL_SDK/vi/vi3in1.c	12	codegen	.sdata: cannot derive a single base (0x804cb03c, 0x804cb041, 0x804cb04c)
+ogws/src/runtime/runtime.c	11	dead-strip	function __cvt_dbl_ull at 0x8028C8E4 breaks contiguity (expected 0x8028C764)
+ogws/src/revolution/OS/OSReset.c	11	codegen	function OSShutdownSystem at 0x8031E3F4 breaks contiguity (expected 0x8031E34C)
+petari/src/RVL_SDK/mtx/mtx.c	10	codegen	function PSMTXInverse at 0x80312494 breaks contiguity (expected 0x80312444)
+petari/src/RVL_SDK/bte/bta_sys_main.c	9	codegen	lbl_80492E18 (0x80492E18) is referenced from outside the unit (fn_802C6B84, fn_802C6B94, fn_802C6BA4) but the object does not define it
+petari/src/RVL_SDK/dvd/dvd.c	9	codegen	function DVDInit size 0x154, DOL has 0xE0
+wii-ipl/libs/RVL_SDK/src/mtx/mtx.c	9	None	
+wii-ipl/libs/MSL/src/MSL_Common/string.c	8	extab	function strcmp at 0x80291188 breaks contiguity (expected 0x8029113C)
+petari/src/RVL_SDK/bte/hcisu_h2.c	8	codegen	.text+0x568: hcisu_h2_send_msg_now+0x0 -> 0x802C4B04, DOL has 0x80ECCCF8
+petari/src/RVL_SDK/bte/bta_sys_conn.c	8	extra-symbol	reference to bta_sys_cb: not in symbols.txt
+petari/src/RVL_SDK/bte/gap_conn.c	8	codegen	.data: base 0x8039B26C not aligned to 8
+wiiplay/src/MSL_C/printf.c	7	None	
+wii-ipl/libs/RVL_SDK/src/axfx/AXFXChorusExp.c	7	codegen	reference to __AXFXGetLfoSinTable: not in symbols.txt
+petari/src/RVL_SDK/bte/port_utils.c	7	data-base	.rodata: cannot derive a single base (no references from code)
+ogws/src/revolution/OS/OSExec.c	7	codegen	function _ES_GetTicketViews at 0x8031AF98 breaks contiguity (expected 0x8031A74C)
+ogws/src/revolution/OS/OSNet.c	7	data-base	.data: cannot derive a single base (0x803aee10, 0x803aee28, 0x803aee70, 0x803aee88)
+xd/libs/dolphin/src/syn/syn.c	7	codegen	.sbss: cannot derive a single base (0x804cc7d0, 0x804cc7d8)
+xd/libs/dolphin/src/syn/synctrl.c	7	codegen	reference to __SYNVolumeAttenuation: not in symbols.txt
+wiiplay/src/MSL/ansi_fp.c	6	extab	.data: 15 words differ from the DOL (first at 0x80393578)
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c	6	codegen	function InitMetroTRK size 0x98, DOL has 0x94
+petari/src/RVL_SDK/bte/gap_utils.c	6	codegen	lbl_80495A80 (0x80495A80) is referenced from outside the unit (fn_802D8180, fn_802D81E0, fn_802D8250) but the object does not define it
+petari/src/RVL_SDK/gx/GXInit.c	6	dead-strip	reference to GXNtsc480IntDf: not in symbols.txt
+wiiplay/src/MSL/printf.c	5	extab	extabindex entry 0x800067D4 for fn_80290B48 is not emitted by the object (exception table)
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c	5	align	.bss: base 0x80434C54 not aligned to 8
+petari/src/RVL_SDK/bte/bta_hh_utils.c	5	data-base	.rodata: cannot derive a single base (no references from code)
+petari/src/RVL_SDK/os/OSCache.c	5	codegen	function LCStoreBlocks at 0x80318B04 breaks contiguity (expected 0x80318AE0)
+petari/src/RVL_SDK/os/OSExec.c	5	codegen	function __OSLaunchMenu size 0xC4, DOL has 0xFC
+xd/libs/dolphin/src/syn/synmix.c	5	shared-data	lbl_803AF6B0 (0x803AF6B0) is referenced from outside the unit (fn_803282F8) but the object does not define it
+wii-ipl/libs/MSL/src/MSL_Common/alloc.c	4	extab	lbl_80432F58 (0x80432F58) is referenced from outside the unit (__files) but the object does not define it
+wii-ipl/libs/MetroTRK/src/Export/targsupp.c	4	codegen	function TRKOpenFile at 0x8029A0F8 breaks contiguity (expected 0x8029A110)
+wiiplay/src/revolution/MEM/mem_list.c	4	duplicate	renames a symbol to MEMInitList, which another symbol already has
+petari/src/RVL_SDK/os/OSThread.c	4	stripped	function SleepAlarmHandler not in symbols.txt
+ogws/src/revolution/OS/OSPlayRecord.c	4	dead-strip	PlayRecordAlarmCallback is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+xd/libs/dolphin/src/syn/synenv.c	4	data-base	.sdata2: cannot derive a single base (0x804d1780, 0x804d1784, 0x804d1788, 0x804d1794)
+wiiplay/src/MSL/extras.c	3	codegen	function __msl_itoa at 0x8028E13C breaks contiguity (expected 0x80291CEC)
+wiiplay/src/MSL/mbstring.c	3	extab	extabindex entry 0x80006750 for wcstombs is not emitted by the object (exception table)
+petari/src/RVL_SDK/bte/hidd_pm.c	3	data-base	.rodata: cannot derive a single base (no references from code)
+ogws/src/revolution/MEM/mem_heapCommon.c	3	other	references MEMAppendListObject, which the link knows as fn_8030ED2C
+ogws/src/revolution/OS/OSAlloc.c	3	shared-data	.sbss: base 0x804CC674 not aligned to 8
+xd/libs/dolphin/src/syn/synvoice.c	3	shared-data	lbl_804CC7D0 (0x804CC7D0) is referenced from outside the unit (fn_80327E98, fn_803281A0, fn_80328964) but the object does not define it
+ogws/src/runtime/ptmf.c	2	data-base	.rodata: cannot derive a single base (no references from code)
+wii-ipl/libs/Runtime/src/runtime.c	2	stripped	function __shr2u not in symbols.txt
+wii-ipl/libs/Runtime/src/__init_cpp_exceptions.cpp	2	duplicate	overlaps another library source that places
+wii-ipl/libs/MSL/src/MSL_Common/buffer_io.c	2	extab	extabindex entry 0x80006708 for __flush_buffer is not emitted by the object (exception table)
+wii-ipl/libs/MSL/src/MSL_Common/math_api.c	2	extab	extabindex entry 0x80006768 for fn_8028E9FC is not emitted by the object (exception table)
+wiiplay/src/MSL/string.c	2	extab	function strtok at 0x8029135C breaks contiguity (expected 0x80291314)
+wiiplay/src/MSL/strtoul.c	2	stripped	function __strtoull not in symbols.txt
+wii-ipl/libs/MetroTRK/src/Export/mslsupp.c	2	codegen	function __TRK_write_console at 0x8029A480 breaks contiguity (expected 0x8029A5F8)
+wii-ipl/libs/RVL_SDK/src/bte/bd.c	2	data-base	.sdata2: cannot derive a single base (no references from code)
+ogws/src/revolution/MTX/quat.c	2	data-base	.sdata2: cannot derive a single base (0x804d16e8, 0x804d16ec)
+xd/libs/dolphin/src/syn/synlfo.c	2	extra-symbol	reference to __SYNn128: not in symbols.txt
+wiiplay/src/MSL/scanf.c	1	stripped	function parse_format size 0x6B4, DOL has 0x5FC
+ogws/src/MSL/e_pow.c	1	codegen	.data: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/bte/gap_api.c	1	stripped	function GAP_SetDeviceClass not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/bte/hidd_api.c	1	data-base	.data: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/bte/hidd_conn.c	1	stripped	function hidd_conn_disconnect not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/bte/hidd_mgmt.c	1	stripped	function hidd_no_conn_proc_evt not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/ax/AXAux.c	1	duplicate	overlaps another library source that places
+ogws/src/revolution/NWC24/NWC24Ipc.c	1	align	.sbss: base 0x804CC754 not aligned to 8
+wii-ipl/libs/RVL_SDK/src/vi/vi3in1.c	1	data-base	.sbss: cannot derive a single base (0x804cc9cc, 0x804cc9d0)

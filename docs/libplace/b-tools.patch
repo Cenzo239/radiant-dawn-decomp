@@ -1,0 +1,544 @@
+diff --git a/tools/build/dropfn.py b/tools/build/dropfn.py
+index deb963b5..fca89aa8 100644
+--- a/tools/build/dropfn.py
++++ b/tools/build/dropfn.py
+@@ -48,50 +48,54 @@ def main(argv):
+         n, v, sz, info, oth, shn = rd("IIIBBH", st["data"], i * 16)
+         e = strtab.index(b"\0", n)
+         syms.append(dict(name=bytes(strtab[n:e]).decode(), n=n, value=v, size=sz, info=info, other=oth, shndx=shn))
+-    text = secs[ti]["data"]
+-    intext = sorted((s for s in syms if s["shndx"] == ti and s["info"] & 0xF in (0, 2) and s["name"]),
+-                    key=lambda s: s["value"])
+     drop = []
+     for nm in names:
+-        c = [s for s in syms if s["name"] == nm and s["shndx"] == ti and s["info"] & 0xF == 2]
++        c = [s for s in syms if s["name"] == nm and 0 < s["shndx"] < 0xFF00 and s["info"] & 0xF in (1, 2)
++             and secs[s["shndx"]]["type"] == 1]
+         if len(c) != 1:
+-            sys.exit(f"dropfn: {nm} is not a (unique) function of .text")
++            sys.exit(f"dropfn: {nm} is not a (unique) function or data object of a PROGBITS section")
+         drop.append(c[0])
+-    # span of a dropped function: up to the next symbol start (padding belongs to its predecessor)
+-    starts = sorted({s["value"] for s in intext})
+-    spans = []
+-    for s in drop:
+-        nxt = next((x for x in starts if x > s["value"]), len(text))
+-        spans.append((s["value"], nxt))
+-    spans.sort()
+-    for (a0, b0), (a1, b1) in zip(spans, spans[1:]):
+-        if a1 < b0:
+-            sys.exit("dropfn: overlapping spans")
++    # span of a dropped symbol: up to the next symbol start of its section (padding belongs to its predecessor)
++    spans = {}
++    for sec_i in {s["shndx"] for s in drop}:
++        starts = sorted({s["value"] for s in syms if s["shndx"] == sec_i and s["info"] & 0xF in (0, 1, 2) and s["name"]})
++        sp = []
++        for s in drop:
++            if s["shndx"] == sec_i:
++                sp.append((s["value"], next((x for x in starts if x > s["value"]), len(secs[sec_i]["data"]))))
++        sp.sort()
++        for (a0, b0), (a1, b1) in zip(sp, sp[1:]):
++            if a1 < b0:
++                sys.exit("dropfn: overlapping spans")
++        spans[sec_i] = sp
+ 
+-    def new_off(o, what):
++    def new_off(sec_i, o, what):
+         shift = 0
+-        for a, b in spans:
++        for a, b in spans.get(sec_i, ()):
+             if o >= b:
+                 shift += b - a
+             elif o >= a:
+-                sys.exit(f"dropfn: {what} points into a dropped function (offset 0x{o:X})")
++                sys.exit(f"dropfn: {what} points into a dropped symbol (section {secs[sec_i]['name']}, offset 0x{o:X})")
+         return o - shift
+ 
+-    out = bytearray()
+-    pos = 0
+-    for a, b in spans:
+-        out += text[pos:a]
+-        pos = b
+-    out += text[pos:]
++    for sec_i, sp in spans.items():
++        out = bytearray()
++        pos = 0
++        for a, b in sp:
++            out += secs[sec_i]["data"][pos:a]
++            pos = b
++        out += secs[sec_i]["data"][pos:]
++        secs[sec_i]["newdata"] = out
+     # symbols
+     dropped_idx = {id(s) for s in drop}
+     undef_info = next((s["info"] for s in syms if s["shndx"] == 0 and s["name"] and s["info"] & 0xF == 2), 0x12)
+     for s in syms:
+         if id(s) in dropped_idx:
+-            s["shndx"], s["value"], s["size"], s["info"] = 0, 0, 0, 0x10 | (undef_info & 0xF)
+-        elif s["shndx"] == ti:
+-            s["value"] = new_off(s["value"], s["name"] or "symbol")
+-    sec_sym_text = {i for i, s in enumerate(syms) if s["shndx"] == ti and s["info"] & 0xF == 3}
++            ty = s["info"] & 0xF
++            s["shndx"], s["value"], s["size"], s["info"] = 0, 0, 0, 0x10 | (undef_info & 0xF if ty == 2 else ty)
++        elif s["shndx"] in spans:
++            s["value"] = new_off(s["shndx"], s["value"], s["name"] or "symbol")
++    sec_sym = {i: s["shndx"] for i, s in enumerate(syms) if s["shndx"] in spans and s["info"] & 0xF == 3}
+     # relocations
+     for i, s in enumerate(secs):
+         if s["type"] != 4:      # SHT_RELA
+@@ -101,15 +105,16 @@ def main(argv):
+         for k in range(s["size"] // 12):
+             off, info, add = struct.unpack_from(">IIi", s["data"], k * 12)
+             symi = info >> 8
+-            if tgt == ti:
+-                if any(a <= off < b for a, b in spans):
++            if tgt in spans:
++                if any(a <= off < b for a, b in spans[tgt]):
+                     continue
+-                off = new_off(off, "relocation")
+-            if symi in sec_sym_text:
+-                add = new_off(add, "section-relative reference")
++                off = new_off(tgt, off, "relocation")
++            if symi in sec_sym:
++                add = new_off(sec_sym[symi], add, "section-relative reference")
+             newd += struct.pack(">IIi", off, info, add)
+         s["data"] = newd
+-    secs[ti]["data"] = out
++    for sec_i in spans:
++        secs[sec_i]["data"] = secs[sec_i].pop("newdata")
+     st["data"] = bytearray()
+     for s in syms:
+         st["data"] += struct.pack(">IIIBBH", s["n"], s["value"], s["size"], s["info"], s["other"], s["shndx"])
+diff --git a/tools/build/gen_units.py b/tools/build/gen_units.py
+index b7cc1b37..65de08b9 100644
+--- a/tools/build/gen_units.py
++++ b/tools/build/gen_units.py
+@@ -140,6 +140,7 @@ def game_unit(a, b, ok_files, renames, asm=(), asm_data=False, c_native=False, h
+ 
+ GLOBAL_RENAMES = {}
+ LIB_RENAMES = {}
++_EXT_FUNCS = None
+ 
+ 
+ def lib_unit(key, lib_map, manifest):
+@@ -158,6 +159,20 @@ def lib_unit(key, lib_map, manifest):
+         if n:
+             names[fn] = n
+     secs, syms, _r = PL.parse_elf(obj)
++    # functions this object only references (defined by another library source): their base names
++    # from lib/map.json (the DOL address of the function that source maps under that name)
++    global _EXT_FUNCS
++    if _EXT_FUNCS is None or _EXT_FUNCS[0] is not lib_map:
++        ef = {}
++        for k2, ent in lib_map["sources"].items():
++            for fn2, (a2, _z2, _s2) in ent["functions"].items():
++                ef.setdefault(fn2, set()).add(a2)
++        _EXT_FUNCS = (lib_map, {f: next(iter(a)) for f, a in ef.items() if len(a) == 1})
++    for s_ in syms:
++        if s_["shndx"] == 0 and s_["name"] and s_["name"] not in names and s_["name"] in _EXT_FUNCS[1]:
++            n_ = addr_name.get((".text", _EXT_FUNCS[1][s_["name"]]))
++            if n_:
++                names[s_["name"]] = n_
+     S_all = S
+     for s in syms:
+         if s["name"] in lib_map["symbols"] and s["name"] not in names:
+@@ -170,10 +185,12 @@ def lib_unit(key, lib_map, manifest):
+     inv.update(names)
+     dropped = []
+     drops = []
++    wd = set()
+     keep_data = []
+     try:
+         P = PL.place(obj, inv)
+         if any((e.startswith("function ") and "not in symbols.txt" in e) or "breaks contiguity" in e
++               or "cannot derive a single base (0x" in e
+                or (e.startswith("function ") and " size 0x" in e) for e in P.errors):
+             # (not on size/contiguity errors: a weak copy that the model drops because its DOL
+             # twin lies elsewhere may be the copy MWLD links, the first in link order;
+@@ -186,10 +203,21 @@ def lib_unit(key, lib_map, manifest):
+                 return S[t].addr if t in S and not t.startswith("@") and (n in inv or not n.startswith("@")) else None
+             # MWLD keeps the unreferenced data of some objects: try the model without data
+             # stripping, then with .bss/.sbss kept, then with all data kept
+-            for kd in ((), (".bss", ".sbss"), (".bss", ".sbss", ".data", ".sdata", ".rodata", ".sdata2")):
++            for kd in ((), (".bss", ".sbss"), (".bss", ".sbss", ".rodata", ".sdata", ".sdata2"),
++                       (".bss", ".sbss", ".data", ".sdata", ".rodata", ".sdata2")):
+                 parsed, dropped = PL.strip_object(obj, in_dol, kd)
+                 inv2 = dict(inv, **parsed[5])     # functions found in the DOL by position and bytes
+                 P2 = PL.place(parsed, inv2)
++                # weak data (vtable/RTTI copies) whose DOL copy lies in another object: strip them
++                # too (and cut them out of the object with dropfn below)
++                wd = set()
++                for _i in range(4):
++                    if not (P2.weak_else - wd):
++                        break
++                    wd |= P2.weak_else
++                    parsed, dropped = PL.strip_object(obj, in_dol, kd, wd)
++                    inv2 = dict(inv, **parsed[5])
++                    P2 = PL.place(parsed, inv2)
+                 if not P2.errors:
+                     keep_data = list(kd)
+                     break
+@@ -199,7 +227,7 @@ def lib_unit(key, lib_map, manifest):
+                 # object's copy (first definition), so the build cuts them out of the compiled
+                 # object (tools/build/dropfn.py, units.json "drop_functions") and the calls bind
+                 # to the other copy
+-                drops = sorted(n for n in PL.LAST_ELSE if n in set(dropped))
++                drops = sorted(n for n in (PL.LAST_ELSE | PL.LAST_FORCE | wd) if n in set(dropped))
+                 if drops:
+                     tmp = obj + ".drop.o"
+                     r = subprocess.run([sys.executable, "-I", os.path.join(HERE, "dropfn.py"), obj, tmp, *drops],
+@@ -248,6 +276,7 @@ def lib_unit(key, lib_map, manifest):
+     # undefined at link time)
+     defined = {s["name"] for s in syms if s["shndx"]}
+     refd = {t for rl in _r.values() for _o, _t, t, _a, _s in rl}
++    ext_rn = {}
+     for t in sorted(refd - defined):
+         if not t or t.startswith("@"):
+             continue
+@@ -257,6 +286,10 @@ def lib_unit(key, lib_map, manifest):
+             # a label symbols.txt has at the same address under the referenced name is fine
+             if t in S_all and S_all[t].addr == S_all[base].addr and S_all[t].sec == S_all[base].sec:
+                 continue
++            # an unnamed DOL function/label the object names: the unit renames it
++            if re.match(r"(fn|lbl)_[0-9A-Fa-f]+$", final):
++                ext_rn[base] = t
++                continue
+             P.errors.append(f"references {t}, which the link knows as {final}")
+     # rename symbols.txt entries to the object's names (only global object symbols that differ)
+     # (static symbols keep their symbols.txt name: the link does not need it, and statics of
+@@ -266,10 +299,20 @@ def lib_unit(key, lib_map, manifest):
+     for new, old in names.items():   # functions first: a label at a function's address
+         if new != old and new in glob and old not in renames:   # (__RAS_..._begin) keeps the function name
+             renames[old] = new
++    for b_, t_ in sorted(ext_rn.items()):
++        renames.setdefault(b_, t_)
++    for un, nm in sorted(P.adopt.items()):
++        if un not in renames and un not in GLOBAL_RENAMES:
++            renames[un] = nm
++    for tname, un in sorted(P.ext_resolved.items()):
++        # a referenced symbol that the DOL only has as an unnamed label: name it as the object does
++        if un not in renames and un not in GLOBAL_RENAMES:
++            renames[un] = tname
+     if dropped:
+         # a dead-stripped object must not take over symbols that another library source names
+         # (identical small functions, e.g. AI and VI callback setters, map to either)
+-        clash = [f"{o} ({GLOBAL_RENAMES[o]})" for o, n in renames.items() if o in GLOBAL_RENAMES and GLOBAL_RENAMES[o] != n]
++        clash = [f"{o} ({GLOBAL_RENAMES[o]})" for o, n in renames.items() if o in GLOBAL_RENAMES and GLOBAL_RENAMES[o] != n
++                 and not (o in S_all and S_all[o].size <= 8)]   # (leaf stubs are identical in every source)
+         if clash:
+             P.errors.append(f"dead-stripped object would rename library symbol {clash[0]}")
+     name = "lib/" + key
+diff --git a/tools/build/place.py b/tools/build/place.py
+index 4afc0cb1..98db2b9c 100644
+--- a/tools/build/place.py
++++ b/tools/build/place.py
+@@ -70,6 +70,9 @@ class Placement:
+         self.functions = []  # (name, addr, size)
+         self.base_votes = {}  # data section -> {candidate base: [code addresses that imply it]}
+         self.size_fixes = {}  # symbols.txt name -> corrected size (sizes that covered padding)
++        self.weak_else = set()  # weak data symbols whose references imply another base than the rest (copy lives elsewhere)
++        self.ext_resolved = {}  # referenced name unknown to symbols.txt -> unnamed (fn_/lbl_) DOL symbol at the target address
++        self.adopt = {}  # unnamed DOL data label -> name of the object's global definition at that address
+         self.static_outside = {}  # symbols.txt name the object defines static -> outside referencers
+ 
+     @property
+@@ -185,10 +188,11 @@ def parse_elf(obj):
+     return secs, syms, relocs
+ 
+ 
++LAST_FORCE = set()  # force_active functions of the last strip_object run that the DOL lacks
+ LAST_ELSE = set()   # weak functions of the last strip_object run whose DOL copy lies in another object
+ 
+ 
+-def strip_object(obj, in_dol, keep_data=()):
++def strip_object(obj, in_dol, keep_data=(), extra_else=()):
+     """Model MWLD's dead-stripping of one object: keep every symbol for which in_dol(name)
+     gives a DOL address and everything they reference, transitively; drop the rest and close
+     the gaps (each kept symbol keeps the alignment its old offset had, up to the section
+@@ -267,32 +271,60 @@ def strip_object(obj, in_dol, keep_data=()):
+                         x, = struct.unpack(">I", buf[w:w + 4])
+                         struct.pack_into(">I", buf, w, x & ~mask)
+         return mine == theirs
+-    for si in alloc:
+-        if secs[si]["name"] != ".text" or si not in per:
+-            continue
+-        ks = per[si]
++    _bysize = {}
++
++    def by_size():
++        if not _bysize:
++            for n_, o_ in S_.items():
++                if o_.sec == ".text" and o_.type == "function" and not n_.startswith("@"):
++                    _bysize.setdefault(o_.size, []).append(n_)
++        return _bysize
++    matched_else = {}
++
++    def own_run(ks):
+         mapped = [(k, in_dol(syms[k]["name"])) for k in ks if in_dol(syms[k]["name"]) is not None]
+-        # longest strictly increasing subsequence of addresses
+-        tails, prev, idx = [], {}, []
+-        for j, (k, ad) in enumerate(mapped):
+-            lo_, hi_ = 0, len(tails)
+-            while lo_ < hi_:
+-                mid = (lo_ + hi_) // 2
+-                if mapped[tails[mid]][1] < ad:
+-                    lo_ = mid + 1
+-                else:
+-                    hi_ = mid
+-            prev[j] = tails[lo_ - 1] if lo_ else None
+-            if lo_ == len(tails):
+-                tails.append(j)
+-            else:
+-                tails[lo_] = j
++        # heaviest strictly increasing subsequence of addresses (a global definition weighs 2, a
++        # weak copy 1: on a tie the weak copy is the one that lies in another object)
++        n_ = len(mapped)
++        best, prev = [0] * n_, [None] * n_
++        for j in range(n_):
++            w = 2 if syms[mapped[j][0]].get("bind", 2) != 2 else 1
++            best[j] = w
++            for i_ in range(j):
++                if mapped[i_][1] < mapped[j][1] and best[i_] + w > best[j]:
++                    best[j], prev[j] = best[i_] + w, i_
+         own_j = set()
+-        j = tails[-1] if tails else None
++        j = max(range(n_), key=lambda x: best[x]) if n_ else None
+         while j is not None:
+             own_j.add(j)
+             j = prev[j]
+         own = {mapped[j][0]: mapped[j][1] for j in own_j}
++        # a weak copy of the run that lies farther from its global neighbours than the object's own
++        # distance to them (a copy living elsewhere that merely has a lower/higher address)
++        gl = sorted((syms[k]["value"], ad) for k, ad in own.items() if syms[k].get("bind", 2) != 2)
++        if gl:
++            for k, ad in list(own.items()):
++                if syms[k].get("bind", 2) != 2:
++                    continue
++                o_ = syms[k]["value"]
++                pre = [g for g in gl if g[0] < o_]
++                post = [g for g in gl if g[0] > o_]
++                if (post and ad < post[0][1] - (post[0][0] - o_)) or (pre and ad > pre[-1][1] + (o_ - pre[-1][0])):
++                    del own[k]
++        return mapped, own
++
++    # weak data (vtables, RTTI) whose single DOL copy lies in another object: same model as the
++    # weak functions below; dropfn cuts them out of the compiled object
++    for si in alloc:
++        if secs[si]["name"] == ".text" or si not in per or secs[si]["type"] == 8:
++            continue
++        mapped_d, own_d = own_run(per[si])
++        elsewhere |= {k for k, _a in mapped_d if k not in own_d and syms[k].get("bind", 2) == 2}
++    for si in alloc:
++        if secs[si]["name"] != ".text" or si not in per:
++            continue
++        ks = per[si]
++        mapped, own = own_run(ks)
+         own_addrs = set(own.values())
+         own_names = {n for k_, a_ in mapped for n in [syms[k_]["name"]]}
+         for a_ in own_addrs:
+@@ -307,6 +339,19 @@ def strip_object(obj, in_dol, keep_data=()):
+         # Only a weak copy can be left to another object: a global definition of a name the DOL
+         # has elsewhere is a duplicate at link time (scsystem.c's __SCGetConfBuf)
+         elsewhere |= {k for k, a_ in mapped if k not in own and syms[k].get("bind", 2) == 2}
++        # an unnamed (unmapped) weak function of at least 8 bytes whose code equals exactly one DOL
++        # function of that size outside this object's run: its copy lives in another object
++        mapped_ks = {k for k, _a in mapped}
++        for k in ks:
++            if k in mapped_ks or syms[k].get("bind", 2) != 2:
++                continue
++            _s, a0, b0 = spans[k]
++            if b0 - a0 < 8:
++                continue
++            hits = [n for n in by_size().get(b0 - a0, ()) if same_code(si, a0, b0, S_[n].addr)]
++            if len(hits) == 1:
++                elsewhere.add(k)
++                matched_else[syms[k]["name"]] = hits[0]
+         # a global definition of a name the DOL has elsewhere stays (MWLD does not strip a
+         # duplicate definition away): the object then does not place
+         roots |= {k for k, _a in mapped if k not in own and k not in elsewhere}
+@@ -334,13 +379,29 @@ def strip_object(obj, in_dol, keep_data=()):
+                     roots.add(k)
+                     matched[syms[k]["name"]] = hit
+                     cursor = c + (b0 - a0)
++                elif not hit:
++                    # inside a larger DOL function (its symbol is too long): same bytes at that place
++                    j_ = bisect.bisect_right(by_addr, (c, "\xff")) - 1
++                    cov = next((n_ for x_, n_ in reversed(by_addr[max(0, j_ - 3):j_ + 1]) if S_[n_].sec == ".text"
++                                and S_[n_].type == "function" and x_ < c < x_ + S_[n_].size), None)
++                    if cov is not None and c + (b0 - a0) <= S_[cov].addr + S_[cov].size and same_code(si, a0, b0, c):
++                        roots.add(k)
++                        cursor = c + (b0 - a0)
++    elsewhere |= {k for k in spans if syms[k]["name"] in extra_else}
+     global LAST_ELSE
+     LAST_ELSE = {syms[k]["name"] for k in elsewhere}
+     fa = comment_flags(secs)     # force_active symbols are never stripped
+-    roots |= {k for k in spans if fa.get(k, 0) & 0x08 and k not in elsewhere}
++    # (a force_active function the DOL does not have was dead-stripped by the original link: it is
++    # cut out of the object like a weak copy living elsewhere; LAST_FORCE lists them)
++    roots |= {k for k in spans if fa.get(k, 0) & 0x08 and k not in elsewhere
++              and (syms[k]["type"] != 2 or in_dol(syms[k]["name"]) is not None)}
++    global LAST_FORCE
++    LAST_FORCE = {syms[k]["name"] for k in spans if fa.get(k, 0) & 0x08 and k not in elsewhere
++                  and syms[k]["type"] == 2 and in_dol(syms[k]["name"]) is None}
+     # data objects of these sections are kept although nothing references them (MWLD keeps
+     # unreferenced data of some library objects: dvd.c's TmdBuffer, vi.c's format strings)
+-    kept_data = {k for k in spans if syms[k]["type"] == 1 and secs[spans[k][0]]["name"] in keep_data}
++    kept_data = {k for k in spans if syms[k]["type"] == 1 and secs[spans[k][0]]["name"] in keep_data
++                 and syms[k].get("bind", 1) != 2}
+     roots |= kept_data
+     keep = set()
+     todo = [k for k in spans if k in roots or (in_dol(syms[k]["name"]) is not None and k not in elsewhere
+@@ -355,6 +416,10 @@ def strip_object(obj, in_dol, keep_data=()):
+         keep.add(k)
+         todo += [t for t in refs.get(k, ()) if t in spans and t not in keep and not weak_elsewhere(t)]
+     dropped = [syms[k]["name"] for k in spans if k not in keep]
++    import os as _o
++    if _o.environ.get('PLDBG'):
++        for k in spans:
++            if 'PaneBase' in syms[k]['name']: print('DBG',syms[k]['name'],k in keep,k in elsewhere,'fa',fa.get(k,0),'dol',in_dol(syms[k]['name']),k in roots,[syms[r]['name'] for r,v in refs.items() if k in v and r in keep],file=sys.stderr)
+     if not dropped:
+         return (secs, syms, relocs, aligns, {syms[k]["name"] for k in kept_data}, matched), []
+     # new offsets
+@@ -535,15 +600,37 @@ def place(obj, names=None, strip_check=True):
+         P.errors.append(f"expected one .text section, found {len(text_idx)}")
+         return P
+     ti = text_idx[0]
++
++    def swallowed(o, size):
++        """The DOL's symbols split a trailing `blr` (or another tiny unnamed piece) off the end of
++        the function: o plus the unnamed fn_ symbols right after it tile exactly `size` bytes."""
++        if size <= o.size or o.sec != ".text":
++            return False
++        a = o.addr + o.size
++        end = o.addr + size
++        while a < end:
++            i_ = bisect.bisect_left(by_addr, (a, ""))
++            n_ = next((n for x_, n in by_addr[i_:i_ + 3] if x_ == a and S[n].sec == ".text" and S[n].type == "function"
++                       and re.match(r"fn_[0-9A-Fa-f]+$", n) and S[n].size <= 8), None)
++            if n_ is None:
++                return False
++            a += S[n_].size
++        return a == end
+     fsyms = sorted((s for s in syms if s["shndx"] == ti and s["type"] == 2), key=lambda s: s["value"])
+     base = None
++    embed_end = 0     # end of a DOL function that is larger than ours (it also holds our next function)
+     for s in fsyms:
+         n = orig_name(s["name"])
+         o = S.get(n)
++        if base is not None and (o is None or o.sec != ".text") and base + s["value"] + s["size"] <= embed_end:
++            P.functions.append((n, base + s["value"], s["size"]))
++            continue
+         if o is None or o.sec != ".text":
+             P.errors.append(f"function {s['name']} not in symbols.txt")
+             continue
+-        if o.size != s["size"]:
++        if o.size > s["size"] and base is not None or (o.size > s["size"] and base is None and len(fsyms) > 1):
++            embed_end = o.addr + o.size
++        elif o.size != s["size"] and not swallowed(o, s["size"]):
+             P.errors.append(f"function {s['name']} size 0x{s['size']:X}, DOL has 0x{o.size:X}")
+         b = o.addr - s["value"]
+         if base is None:
+@@ -571,6 +658,28 @@ def place(obj, names=None, strip_check=True):
+             fa = base + tsym["value"] + addend
+             slots = {x - off for sec, x, w in eh_entries() if sec == s["name"] and w == fa}
+             cand[si] = slots if si not in cand else cand[si] & slots
++    dvotes = {}
++
++    def resolve():
++        # a section whose references imply several bases: the base most supported by non-weak
++        # symbols wins when every reference that disagrees points at a weak symbol (vtable/RTTI
++        # copies the original link took from another object)
++        for tsh, vl in dvotes.items():
++            if len(cand.get(tsh, ())) < 2 or tsh in secbase:
++                continue
++            score = {}
++            for b, ts in vl:
++                sc = score.setdefault(b, [0, 0])
++                sc[1] += 1
++                if ts.get("bind", 2) != 2:
++                    sc[0] += 1
++            best = max(score, key=lambda b: tuple(score[b]))
++            others = [(b, ts) for b, ts in vl if b != best]
++            if any(ts.get("bind", 2) != 2 for _b, ts in others):
++                continue
++            P.weak_else |= {ts["name"] for _b, ts in others}
++            cand[tsh] = {best}
++
+     def scan(si):
+         sb = secbase[si]
+         pending = {}
+@@ -595,12 +704,19 @@ def place(obj, names=None, strip_check=True):
+             tsh = tsym["shndx"]
+             if 0 < tsh < len(secs) and tsh != ti and secs[tsh]["name"] in ALLOC_SECS:
+                 b = want - tsym["value"] - addend
++                if tsh in secbase and b != secbase[tsh] and tsym.get("bind", 2) == 2:
++                    P.weak_else.add(tsym["name"])
++                    continue
+                 if M.section_of(b) == secs[tsh]["name"] or M.section_of(want) == secs[tsh]["name"]:
+                     cand.setdefault(tsh, set()).add(b)
++                    dvotes.setdefault(tsh, []).append((b, tsym))
+                     if si == ti:
+                         P.base_votes.setdefault(secs[tsh]["name"], {}).setdefault(b, []).append(sb + off)
++                        import os as _o
++                        if _o.environ.get('PLDBG2') and secs[tsh]['name']=='.rodata': print('VOTE',hex(sb+off),tsym['name'],hex(tsym['value']),addend,hex(want),hex(b),file=sys.stderr)
+ 
+     scan(ti)
++    resolve()
+     # sections nothing in the C code references (data of functions emitted as asm opwords, or
+     # unreferenced statics): the base from data symbols named as in symbols.txt
+     for si, s in enumerate(secs):
+@@ -620,6 +736,7 @@ def place(obj, names=None, strip_check=True):
+             break
+         secbase[nxt] = next(iter(cand[nxt]))
+         scan(nxt)
++        resolve()
+     noref = set()     # sections whose references from code all point outside them in the DOL
+     for si, s in enumerate(secs):
+         if si == ti or s["name"] not in ALLOC_SECS or s["size"] == 0:
+@@ -694,7 +811,14 @@ def place(obj, names=None, strip_check=True):
+                     o = S.get(orig_name(tname))
+                     got = o.addr + addend if o else None
+                     if o is None:
+-                        P.errors.append(f"reference to {tname}: not in symbols.txt")
++                        i_ = bisect.bisect_left(by_addr, (want - addend, ""))
++                        un = next((n_ for x_, n_ in by_addr[i_:i_ + 4] if x_ == want - addend
++                                   and re.match(r"(fn|lbl|jumptable)_[0-9A-Fa-f]+$", n_)), None)
++                        if un is not None and tname and not tname.startswith("@") and tname not in S:
++                            P.ext_resolved[tname] = un
++                            got = None
++                        else:
++                            P.errors.append(f"reference to {tname}: not in symbols.txt")
+                 if got is not None and got != want:
+                     P.errors.append(f"{s['name']}+0x{off:X}: {tname}+0x{addend:X} -> 0x{got:08X}, DOL has 0x{want:08X}")
+             for buf in (mine, theirs):
+@@ -710,7 +834,20 @@ def place(obj, names=None, strip_check=True):
+     # a local (static) definition does not satisfy references from other objects
+     global_defs = {orig_name(s["name"]) for s in syms if s["shndx"] and s["shndx"] < 0xFF00 and s["name"]
+                    and s.get("bind", 1) != 0}
+-    import bisect
++    # a global/weak data object the DOL only has as an unnamed label at its placed address is adopted
++    # under the object's name (the unit renames the label)
++    for s_ in syms:
++        sh_ = s_["shndx"]
++        if not (s_["name"] and 0 < sh_ < len(secs) and sh_ in secbase and sh_ != ti and s_["type"] == 1
++                and s_.get("bind", 1) != 0) or orig_name(s_["name"]) in S:
++            continue
++        i_ = bisect.bisect_left(by_addr, (secbase[sh_] + s_["value"], ""))
++        un_ = next((n_ for x_, n_ in by_addr[i_:i_ + 4] if x_ == secbase[sh_] + s_["value"]
++                    and re.match(r"lbl_[0-9A-Fa-f]+$", n_) and S[n_].sec == secs[sh_]["name"]), None)
++        if un_ is not None:
++            P.adopt[un_] = s_["name"]
++            defined.add(un_)
++            global_defs.add(un_)
+     for sec, (a, b) in P.ranges.items():
+         i = bisect.bisect_left(by_addr, (a, ""))
+         while i < len(by_addr) and by_addr[i][0] < b:
+@@ -748,7 +885,8 @@ def place(obj, names=None, strip_check=True):
+             if flags.get(k, 0) & 0x08 or sy["name"] in exempt:
+                 continue
+             o = S.get(orig_name(sy["name"]))
+-            if o is not None and not (o.refby - {o.name}) and o.name not in ("__start",):
++            if o is not None and not (o.refby - {o.name}) and o.name not in ("__start",) \
++                    and not (o.sec == ".text" and any(sc == ".ctors" and fa_ == o.addr for sc, _sl, fa_ in eh_entries())):
+                 P.errors.append(f"{sy['name']} is referenced nowhere in the DOL and not force_active "
+                                 "(MWLD would dead-strip it)")
+     # trailing alignment padding: the next object starts aligned, dtk wants the gap in this unit

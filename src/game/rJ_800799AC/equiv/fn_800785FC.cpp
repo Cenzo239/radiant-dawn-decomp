@@ -1,0 +1,189 @@
+/* fn_800785FC: functionally equal (regs level per tools/check_regs.py; registers differ from the original). Heap create. From wip/fn_800785FC.cpp. */
+/* Game heaps: a table of 16 named heaps, each a sorted free list of 32-byte-aligned blocks. */
+#include "game/rJ_800799AC/types.h"
+
+struct Heap;
+
+#if TARGET_PC
+/* Host: the heap keeps the Wii layout (32-byte block header, fn_80078484 walks it by
+   raw offset), so the links are 32-bit window offsets. */
+struct Block {
+    u32 v0;
+    u32 v4;
+    FE10_P32(Block) prev;  /* 0x08 */
+    FE10_P32(Block) next;  /* 0x0C */
+    int size;     /* 0x10 negative before alloc means from the top */
+    FE10_P32(Heap) heap;   /* 0x14 */
+    u8 p18[8];
+};
+
+struct Heap {
+    u32 magic;    /* 0x00 "HEAP" */
+    char name[12]; /* 0x04 */
+    FE10_P32(Heap) below;  /* 0x10 */
+    FE10_P32(Block) used;  /* 0x14 */
+    FE10_P32(Block) free;  /* 0x18 */
+    u32 size;     /* 0x1C */
+    u8 p20[0x2C - 0x20];
+    u32 v2C;      /* 0x2C */
+};
+static_assert(sizeof(Block) == 0x20, "Block");
+static_assert(sizeof(Heap) == 0x30, "Heap");
+
+#else
+struct Block {
+    u32 v0;
+    u32 v4;
+    Block* prev;  /* 0x08 */
+    Block* next;  /* 0x0C */
+    int size;     /* 0x10 negative before alloc means from the top */
+    Heap* heap;   /* 0x14 */
+    u8 p18[8];
+};
+
+struct Heap {
+    u32 magic;    /* 0x00 "HEAP" */
+    char name[12]; /* 0x04 */
+    Heap* below;  /* 0x10 */
+    Block* used;  /* 0x14 */
+    Block* free;  /* 0x18 */
+    u32 size;     /* 0x1C */
+    u8 p20[0x2C - 0x20];
+    u32 v2C;      /* 0x2C */
+};
+#endif
+
+extern "C" {
+
+extern Heap* lbl_803CD868[16];
+extern u8 lbl_803CD8A8[0x38];
+extern u8* lbl_804CB5A0;
+extern u8* lbl_804CB5A4;
+extern Heap* lbl_804CB5A8;
+extern Heap* lbl_804CB5AC;
+extern Heap* lbl_804CB5B0;
+extern u32 lbl_804CBF40;
+void fn_8031DD44(void* m);
+void fn_8031DE20(void* m);
+void* OSGetArenaLo(void);
+void* OSGetArenaHi(void);
+void fn_8023FC18(int i);
+void fn_8023F19C(void);
+void fn_8023FBEC(int i);
+void fn_8023F7B0(int i);
+int fn_8023FBF4(void);
+void fn_800C7B14(void* p, u32 n);
+void fn_80078484(Heap* h);
+char* fn_802910CC(char* d, const char* s, int n);
+int fn_80291188(const char* a, const char* b);
+void fn_8030E344(u32 h, u32 size, int align);
+void fn_8030E3F4(u32 h, void* p);
+Block* fn_80078218(Heap* h, int size);
+
+static inline int heapIndex(Heap* h) {
+    Heap** p = lbl_803CD868;
+    int r = -1;
+    int i;
+    for (i = 0; i < 16; i++) {
+        if (*p == h) {
+            r = i;
+            break;
+        }
+        p++;
+    }
+    return r;
+}
+
+#define BESTFIT(H, SIZE, R) \
+    best = 0x7FFFFFFF; \
+    R = 0; \
+    for (w = H->free; w != 0; w = w->next) { \
+        sz = w->size; if (sz <= best && sz >= SIZE) { \
+            best = sz; \
+            R = w; \
+        } \
+    }
+
+static inline Block* unlink(Block* head, Block* b) {
+    if (b->next != 0) {
+        b->next->prev = b->prev;
+    }
+    if (b->prev != 0) {
+        b->prev->next = b->next;
+    } else {
+        head = b->next;
+    }
+    return head;
+}
+
+#define UNLINK(list, b) list = unlink(list, b);
+
+/* Allocate from the bottom */
+Block* fn_80077F98(Heap* h, int n);
+
+/* Allocate from the top */
+Block* fn_80078218(Heap* h, int n);
+
+void fn_800784E0(void);
+
+u32 fn_8007857C(void);
+
+void fn_80078C2C(const char* name);
+
+#define h ((Heap*)p)
+void fn_80078E24(void* p);
+#undef h
+
+void* fn_80079150(u32 n);
+
+void* fn_800791B0(u32 n);
+
+void fn_80079210(void* p);
+
+void fn_80079474(void* p);
+
+#define h ((Heap*)p)
+void fn_800796D8(void* p);
+#undef h
+
+void fn_80079958(u32 size, u32 align);
+
+void fn_80079978(void* p);
+
+}
+
+
+/* ---- fn_800785FC ---- */
+extern "C" {
+/* Near misses from fn_80077F98.cpp (fragments, need its declarations).
+ * fn_800785FC: 8 of 122 words: only the 0 (should be r7) and h+0x20 (should be r6) swap.
+ * Must write the first block through (u8*)h + 0x20: a member forwards the h->free read.
+ * fn_800787E4: 84 of 274 with every heapIndex macro-expanded (scratch search stalled):
+ * the first key should be r8 and its counter r3.
+ */
+int fn_800785FC(const char* name, u32 size) {
+    int i;
+    Heap* h;
+    fn_8031DD44(lbl_803CD8A8 + 4);
+    size = (size + 0x1F) & ~0x1F;
+    h = lbl_804CB5A8 ? (Heap*)((u8*)lbl_804CB5A8 + lbl_804CB5A8->size) : (Heap*)lbl_804CB5A0;
+    i = heapIndex(0);
+    fn_802910CC(h->name, name, 0xB);
+    h->name[0xB] = 0;
+    h->below = 0;
+    h->size = size;
+    h->used = 0;
+    h->free = (Block*)((u8*)h + 0x20);
+    h->magic = 0x48454150;
+    ((Block*)((u8*)h + 0x20))->next = 0;
+    h->free->prev = 0;
+    h->free->size = h->size - 0x20;
+    lbl_803CD868[i] = h;
+    lbl_804CB5B0 = h;
+    fn_8023FBEC(i);
+    h->below = lbl_804CB5A8;
+    lbl_804CB5A8 = h;
+    fn_8031DE20(lbl_803CD8A8 + 4);
+    return i;
+}
+}

@@ -1,0 +1,38 @@
+/*
+ * fn_80052534 (round 22, exact): static initialiser of this file's globals.
+ * Five small-data pointers to proc/script tables (lbl_804CB3FC..lbl_804CB40C) and an 8-byte object at
+ * lbl_804CB410 (word 0: the table lbl_8037D938, which lists the five pointers' addresses; word 1: vptr).
+ * The object's class derives from a base whose vtable is lbl_80383F28 (0x90 bytes); its own vtable is
+ * lbl_803802CC. The base constructor's vtable store survives because it is scheduled before the
+ * other stores (it is not dead to the compiler: lbl_804CB410 is an extern here).
+ * Port: define the six globals with these initialisers and drop the function.
+ */
+#include "game/rC_8004BE18/types.h"
+extern "C" {
+struct ProcDef { void* script; void* vt; };
+extern u8 lbl_8037DB00[], lbl_8037DAA4[], lbl_8037DA48[], lbl_8037D9EC[], lbl_8037D990[], lbl_8037D938[];
+extern u8 lbl_80383F28[], lbl_803802CC[];
+extern void* lbl_804CB3FC;
+extern void* lbl_804CB400;
+extern void* lbl_804CB404;
+extern void* lbl_804CB408;
+extern void* lbl_804CB40C;
+extern ProcDef lbl_804CB410;
+static inline ProcDef* Base(ProcDef* o) { o->vt = lbl_80383F28; return o; }
+static inline ProcDef* Ctor(ProcDef* o, void* s)
+{
+    Base(o);
+    o->script = s;
+    o->vt = lbl_803802CC;
+    return o;
+}
+void fn_80052534(void)
+{
+    lbl_804CB3FC = lbl_8037DB00;
+    lbl_804CB400 = lbl_8037DAA4;
+    lbl_804CB404 = lbl_8037DA48;
+    lbl_804CB408 = lbl_8037D9EC;
+    lbl_804CB40C = lbl_8037D990;
+    Ctor(&lbl_804CB410, lbl_8037D938);
+}
+}

@@ -1,0 +1,33 @@
+# source	uncovered_functions	class	first_error (libdrv base, 2026-11-16)
+ogws/src/nw4r/snd/snd_Voice.cpp	47	stripped	function __dt__Q44nw4r3snd6detail15DisposeCallbackFv not in symbols.txt
+ogws/src/nw4r/snd/snd_StrmPlayer.cpp	46	stripped	function __dt__Q44nw4r3snd6detail11BasicPlayerFv at 0x802A1BF4 breaks contiguity (expected 0x802B38FC)
+ogws/src/nw4r/snd/snd_BasicSound.cpp	43	stripped	function SetPlayerPriority__Q44nw4r3snd6detail10BasicSoundFi at 0x802A2ED4 breaks contiguity (expected 0x802A2E7C)
+ogws/src/nw4r/snd/snd_SeqPlayer.cpp	36	stripped	function __dt__Q44nw4r3snd6detail11BasicPlayerFv at 0x802A1BF4 breaks contiguity (expected 0x802A8A94)
+ogws/src/nw4r/snd/snd_AxVoice.cpp	34	codegen	function SetAdpcmLoop__Q44nw4r3snd6detail7AxVoiceFPCQ44nw4r3snd6detail14AdpcmLoopParam at 0x8029EE30 breaks contiguity (expected 0x8029ED0C)
+ogws/src/nw4r/snd/snd_DvdSoundArchive.cpp	27	codegen	reference to Write__Q34nw4r2ut8IOStreamFPCvUl: not in symbols.txt
+ogws/src/nw4r/snd/snd_SeqSound.cpp	25	dead-strip	function WriteVariable__Q44nw4r3snd6detail8SeqSoundFis at 0x802AA444 breaks contiguity (expected 0x802AA3C0)
+ogws/src/nw4r/snd/snd_WsdPlayer.cpp	25	stripped	function __dt__Q44nw4r3snd6detail11BasicPlayerFv at 0x802A1BF4 breaks contiguity (expected 0x802BB148)
+ogws/src/nw4r/snd/snd_SoundArchivePlayer.cpp	22	None	
+ogws/src/nw4r/snd/snd_AxManager.cpp	21	dead-strip	.text+0x3CA: __dt__Q34nw4r2ut30LinkList<Q34nw4r3snd6FxBase,4>Fv+0x0 -> 0x802AF1B8, DOL has 0x8029C780
+ogws/src/nw4r/snd/snd_SoundPlayer.cpp	19	dead-strip	function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802B1974)
+ogws/src/nw4r/snd/snd_Channel.cpp	17	extra-symbol	reference to VOLUME_INIT__Q44nw4r3snd6detail12EnvGenerator: not in symbols.txt
+ogws/src/nw4r/snd/snd_StrmSound.cpp	16	ctors	function __dt__Q44nw4r2ut27@unnamed@snd_StrmSound_cpp@11NonCopyableFv at 0x802B67E4 breaks contiguity (expected 0x802B6218)
+ogws/src/nw4r/snd/snd_WaveSound.cpp	15	dead-strip	lbl_804CC228 (0x804CC228) is referenced from outside the unit (fn_802BAC48) but the object does not define it
+ogws/src/nw4r/snd/snd_Sound3DManager.cpp	12	stripped	function __dt__Q54nw4r3snd6detail10BasicSound26AmbientParamUpdateCallbackFv not in symbols.txt
+ogws/src/nw4r/snd/snd_TaskManager.cpp	12	dead-strip	__ct__Q34nw4r2ut35LinkList<Q44nw4r3snd6detail4Task,4>Fv is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+ogws/src/nw4r/snd/snd_FxChorus.cpp	11	stripped	function __dt__Q34nw4r3snd6FxBaseFv not in symbols.txt
+ogws/src/nw4r/snd/snd_EnvGenerator.cpp	10	codegen	function SetDecay__Q44nw4r3snd6detail12EnvGeneratorFi at 0x802A5080 breaks contiguity (expected 0x802A5068)
+ogws/src/nw4r/snd/snd_AxVoiceManager.cpp	9	other	references __dt__Q44nw4r3snd6detail7AxVoiceFv, which the link knows as fn_8029DAA4
+ogws/src/nw4r/snd/snd_SoundThread.cpp	9	codegen	function GetInstance__Q44nw4r3snd6detail11SoundThreadFv at 0x802B25E0 breaks contiguity (expected 0x802AF198)
+ogws/src/nw4r/snd/snd_FxReverbHi.cpp	8	stripped	function __dt__Q34nw4r3snd6FxBaseFv not in symbols.txt
+ogws/src/nw4r/snd/snd_RemoteSpeaker.cpp	8	stripped	function Update__Q34nw4r3snd13RemoteSpeakerFv size 0x34, DOL has 0xD4
+ogws/src/nw4r/snd/snd_Sound3DActor.cpp	7	stripped	function __dt__Q54nw4r3snd6detail10BasicSound24AmbientArgUpdateCallbackFv not in symbols.txt
+ogws/src/nw4r/snd/snd_SoundActor.cpp	6	stripped	function __dt__Q34nw4r3snd14SoundStartableFv not in symbols.txt
+ogws/src/nw4r/snd/snd_SoundSystem.cpp	6	dead-strip	.sdata2: cannot derive a single base (no references from code)
+ogws/src/nw4r/snd/snd_MmlSeqTrackAllocator.cpp	5	stripped	function GetAllocatableTrackCount__Q44nw4r3snd6detail20MmlSeqTrackAllocatorCFv not in symbols.txt
+ogws/src/nw4r/snd/snd_BankFile.cpp	4	dead-strip	GetReferenceToSubRegion__Q44nw4r3snd6detail14BankFileReaderCFPCQ54nw4r3snd6detail4Util128DataRef<v,Q54nw4r3snd6detail8BankFile9InstParam,Q54nw4r3snd6detail8BankFile10RangeTable,Q54nw4r3snd6detail8Bank
+wii-ipl/libs/NW4R/src/snd/snd_AxManager.cpp	4	dead-strip	function __ct__Q44nw4r3snd6detail9AxManagerFv size 0x530, DOL has 0x4A0
+ogws/src/nw4r/snd/snd_SeqSoundHandle.cpp	3	codegen	function GetRuntimeTypeInfo__Q44nw4r3snd6detail10BasicSoundCFv at 0x802AA5FC breaks contiguity (expected 0x802AA734)
+wii-ipl/libs/NW4R/src/snd/snd_SoundArchivePlayer.cpp	3	stripped	function __ct__Q34nw4r3snd18SoundArchivePlayerFv size 0x14C, DOL has 0x12C
+ogws/src/nw4r/snd/snd_WaveSoundHandle.cpp	2	extra-symbol	reference to typeInfo__Q44nw4r3snd6detail9WaveSound: not in symbols.txt
+ogws/src/nw4r/snd/snd_Task.cpp	1	data-base	.data: cannot derive a single base (no references from code)

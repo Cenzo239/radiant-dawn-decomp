@@ -1,0 +1,5 @@
+# Library sources that place.py accepts but whose real link does not reproduce main.dol
+# (checked with ninja + SHA1). try_units.py --write-select leaves them out.
+# ogws dvd.c: dead-stripped model with .bss kept; the linked .text ends 0x23C early
+# (MWLD strips more than the model: DVDPause, DVDCancelAllAsync, ... and FORCEACTIVEdvd_c257)
+ogws/src/revolution/DVD/dvd.c

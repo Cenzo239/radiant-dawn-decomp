@@ -1,0 +1,7 @@
+# Path globs (fnmatch, repo-relative) that may contain binary files or images.
+# An entry here skips the type / magic / binary / marker / size rules for that path.
+# It never skips the hash rule (identical to a disc or HD pack file) or the path rule
+# (orig/RFEE01, private/, mods/, ...). Only add files you made yourself.
+
+assets/objdiff.png
+docs/images/*.png

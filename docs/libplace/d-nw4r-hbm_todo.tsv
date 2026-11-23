@@ -1,0 +1,42 @@
+# source	class	functions	first_error (libdrv 2026-11-16, round 2)
+ogws/src/nw4r/snd/snd_StrmPlayer.cpp	codegen	48	.sdata2: cannot derive a single base (0x804d1350, 0x804d135c, 0x804d1360, 0x804d1374, 0x804d1378)
+wii-ipl/libs/NW4R/src/lyt/lyt_pane.cpp	stripped	40	function __dt__Q34nw4r3lyt4PaneFv at 0x80356D54 breaks contiguity (expected 0x80356D50)
+ogws/src/nw4r/lyt/lyt_pane.cpp	stripped	36	function __ct__Q34nw4r3lyt4PaneFPCQ44nw4r3lyt3res4Pane size 0x134, DOL has 0x128
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_pane.cpp	codegen	31	.rodata: cannot derive a single base (0x80378658, 0x8037866c)
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/ut/ut_CharWriter.cpp	codegen	28	function SetTextColor__Q36nw4hbm2ut10CharWriterFQ36nw4hbm2ut5ColorQ36nw4hbm2ut5Color at 0x8035D064 breaks contiguity (expected 0x8035CF04)
+ogws/src/nw4r/ut/ut_DvdFileStream.cpp	stripped	25	function CanAsync__Q34nw4r2ut13DvdFileStreamCFv not in symbols.txt
+ogws/src/nw4r/ut/ut_ResFontBase.cpp	codegen	25	.data+0x70: __dt__Q34nw4r2ut4FontFv+0x0 -> 0x8035E1B4, DOL has 0x803592C4
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_material.cpp	codegen	25	.rodata: cannot derive a single base (0x80378620, 0x80378628, 0x8037862c, 0x80378630)
+wii-ipl/libs/NW4R/src/ut_hbm/ut_ResFontBase.cpp	stripped	24	function __dt__Q46nw4hbm2ut6detail11ResFontBaseFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_window.cpp	codegen	23	.data+0xD4: __RTTI__Q36nw4hbm3lyt4Pane+0x0 -> 0x803B53A0, DOL has 0x803B4F68
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_textBox.cpp	codegen	22	.data+0x98: __RTTI__Q36nw4hbm3lyt4Pane+0x0 -> 0x803B52B8, DOL has 0x803B4F68
+wii-ipl/libs/NW4R/src/snd/snd_SoundArchivePlayer.cpp	stripped	22	function __ct__Q34nw4r3snd18SoundArchivePlayerFv size 0x14C, DOL has 0x12C
+wii-ipl/libs/NW4R/src/snd/snd_AxManager.cpp	codegen	21	function __ct__Q44nw4r3snd6detail9AxManagerFv size 0x530, DOL has 0x4A0
+wii-ipl/libs/NW4R/src/ut_hbm/ut_TextWriterBase.cpp	data-base	20	.rodata: cannot derive a single base (0x80378700, 0x8037870c)
+wii-ipl/libs/NW4R/src/snd/snd_WsdPlayer.cpp	stripped	16	function __ct__Q44nw4r3snd6detail9WsdPlayerFv size 0x74, DOL has 0x6C
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_picture.cpp	codegen	13	.data+0x8C: __RTTI__Q36nw4hbm3lyt4Pane+0x0 -> 0x803B51F0, DOL has 0x803B4F68
+ogws/src/homebuttonMiniLib/HBMSound.cpp	codegen	8	.text+0x6A6: @1146+0x0 -> 0x803B4080, DOL has 0x80378250
+wii-ipl/libs/NW4R/src/lyt/lyt_common.cpp	codegen	6	function IsModulateVertexColor__Q34nw4r3lyt6detailFPQ34nw4r2ut5ColorUc at 0x80351C7C breaks contiguity (expected 0x80351A18)
+ogws/src/nw4r/lyt/lyt_common.cpp	codegen	5	function IsModulateVertexColor__Q34nw4r3lyt6detailFPQ34nw4r2ut5ColorUc at 0x80351C7C breaks contiguity (expected 0x80351A18)
+ogws/src/nw4r/lyt/lyt_arcResourceAccessor.cpp	stripped	4	function GetResourceSub__37@unnamed@lyt_arcResourceAccessor_cpp@FP9ARCHandlePCcUlPCcPUl at 0x8035153C breaks contiguity (expected 0x8035152C)
+ogws/src/nw4r/ut/ut_ResFont.cpp	codegen	4	.data: 1 words differ from the DOL (first at 0x803B64C8)
+petari/src/nw4r/db/db_assert.cpp	other	4	.data range 0x80393B48-0x80393BB5 is not 4-aligned (dtk cannot split there)
+wii-ipl/libs/NW4R/src/lyt/lyt_material.cpp	codegen	4	function AddAnimationLink__Q34nw4r3lyt8MaterialFPQ34nw4r3lyt13AnimationLink at 0x80356A94 breaks contiguity (expected 0x80353B0C)
+wii-ipl/libs/NW4R/src/ut/ut_CharWriter.cpp	codegen	4	function SetCursor__Q34nw4r2ut10CharWriterFff at 0x8035D53C breaks contiguity (expected 0x8035C2F8)
+ogws/src/homebuttonMiniLib/HBMAnmController.cpp	codegen	3	.data+0x30: __RTTI__Q210homebutton15FrameController+0x0 -> 0x803B3AC0, DOL has 0x803B3A50
+ogws/src/nw4r/lyt/lyt_material.cpp	codegen	3	function AddAnimationLink__Q34nw4r3lyt8MaterialFPQ34nw4r3lyt13AnimationLink at 0x80356A94 breaks contiguity (expected 0x80353B0C)
+ogws/src/nw4r/lyt/lyt_resourceAccessor.cpp	codegen	3	.data: 1 words differ from the DOL (first at 0x803B51D0)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_resourceAccessor.cpp	codegen	3	.data+0x0: __RTTI__Q36nw4hbm3lyt16ResourceAccessor+0x0 -> 0x803B5208, DOL has 0x803B4EA8
+ogws/src/nw4r/lyt/lyt_textBox.cpp	data-base	1	.ctors: cannot derive a single base (no references from code)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_drawinfo.cpp	stripped	1	function __dt__Q36nw4hbm3lyt8DrawInfoFv not in symbols.txt
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/lyt/lyt_drawInfo.cpp	stripped	1	function __dt__Q36nw4hbm3lyt8DrawInfoFv not in symbols.txt
+ogws/src/nw4r/ef/ef_handle.cpp	extra-symbol	0	expected one .text section, found 0
+ogws/src/nw4r/lyt/lyt_bounding.cpp	stripped	0	function __dt__Q34nw4r3lyt8BoundingFv not in symbols.txt
+ogws/src/nw4r/lyt/lyt_picture.cpp	extra-symbol	0	expected one .text section, found 0
+ogws/src/nw4r/lyt/lyt_window.cpp	extra-symbol	0	expected one .text section, found 0
+ogws/src/nw4r/math/math_triangular.cpp	extra-symbol	0	expected one .text section, found 0
+ogws/src/nw4r/ut/ut_TagProcessorBase.cpp	stripped	0	function __dt__Q34nw4r2ut19TagProcessorBase<c>Fv not in symbols.txt
+ogws/src/nw4r/ut/ut_TextWriterBase.cpp	extra-symbol	0	expected one .text section, found 0
+wii-ipl/libs/NW4R/src/lyt/lyt_picture.cpp	extra-symbol	0	expected one .text section, found 0
+wii-ipl/libs/NW4R/src/lyt/lyt_window.cpp	extra-symbol	0	expected one .text section, found 0
+wii-ipl/libs/NW4R/src/ut/ut_TextWriterBase.cpp	extra-symbol	0	expected one .text section, found 0

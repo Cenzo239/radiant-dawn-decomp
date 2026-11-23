@@ -1,0 +1,125 @@
+/* fn_802291A8: horizontal gradient bar made of n segments (left cap, n-2 middles, right cap),
+   each segment drawn as a coloured quad plus two overlay textures. */
+#include "game/rI_801DD7D4/types.h"
+#pragma auto_inline off
+
+extern "C" {
+
+struct C4 { u8 r, g, b, a; };
+struct Tex { u8 d[0x20]; u16 w, h; };
+
+void* fn_801485FC(void);
+f32 fn_8017F68C(int mode, f32 from, f32 to, f32 t, f32 dur);
+void fn_80006A64(void* arc, Tex* t, int id);
+u16 fn_80305DF8(Tex* t);
+u16 fn_80305E0C(Tex* t);
+void fn_8007E154(void);
+void fn_8007E164(void);
+void fn_8007E174(Tex* t, int fmt);
+void fn_800800D4(int);
+void fn_800804F4(int);
+void fn_80080578(int);
+void fn_80080940(C4*, C4*, C4*, C4*);
+void fn_80080388(f32 x, f32 y, f32 w, f32 h);
+void fn_80080308(void);
+void fn_8006E030(f32);
+
+}
+
+static inline void grad(C4 c1, C4 c2, int i, int n, C4& lo, C4& hi) {
+    lo.r = (int)fn_8017F68C(0, c1.r, c2.r, i, n);
+    lo.g = (int)fn_8017F68C(0, c1.g, c2.g, i, n);
+    lo.b = (int)fn_8017F68C(0, c1.b, c2.b, i, n);
+    lo.a = (int)fn_8017F68C(0, c1.a, c2.a, i, n);
+    hi.r = (int)fn_8017F68C(0, c1.r, c2.r, i + 1, n);
+    hi.g = (int)fn_8017F68C(0, c1.g, c2.g, i + 1, n);
+    hi.b = (int)fn_8017F68C(0, c1.b, c2.b, i + 1, n);
+    hi.a = (int)fn_8017F68C(0, c1.a, c2.a, i + 1, n);
+}
+
+static inline void load(Tex& t, int id) {
+    fn_80006A64(fn_801485FC(), &t, id);
+    t.w = fn_80305DF8(&t);
+    t.h = fn_80305E0C(&t);
+}
+
+static inline void cols(C4 a, C4 b, C4 c, C4 d) {
+    fn_80080940(&a, &b, &c, &d);
+}
+
+static inline void rect(int x, int y, Tex& t) {
+    fn_80080388(x, y, t.w, t.h);
+}
+
+static inline void drawBase1(Tex* bind) {
+    fn_8007E154();
+    fn_8007E174(bind, 0x10);
+    fn_8007E164();
+    fn_800800D4(3);
+}
+
+static inline void drawBase2(int x, int y, Tex& t) {
+    rect(x, y, t);
+    fn_80080578(0);
+    fn_80080308();
+    fn_8006E030(-1.0f);
+}
+
+#define drawBase(x, y, t, bind, lo, hi) \
+    drawBase1(bind); \
+    cols(lo, hi, lo, hi); \
+    drawBase2(x, y, t)
+
+static inline void drawAdd(int x, int y, Tex& t, int id) {
+    load(t, id);
+    fn_8007E154();
+    fn_8007E174(&t, 0x20);
+    fn_8007E164();
+    fn_800800D4(1);
+    fn_800804F4(0x16);
+    rect(x, y, t);
+    fn_80080308();
+    fn_8006E030(-1.0f);
+}
+
+static inline void drawTop(int x, int y, Tex& t, int id) {
+    load(t, id);
+    fn_8007E154();
+    fn_8007E174(&t, 0x10);
+    fn_8007E164();
+    fn_800800D4(1);
+    rect(x, y, t);
+    fn_80080308();
+    fn_8006E030(2.0f);
+}
+
+extern "C" void fn_802291A8(int x, int y, int n, const C4* c1, const C4* c2) {
+    Tex t;
+    C4 lo, hi;
+    int i = 0;
+    int j;
+    int xx;
+
+    if (fn_801485FC() == 0) return;
+
+    grad(*c1, *c2, i++, n, lo, hi);
+    load(t, 9);
+    drawBase(x, y, t, &t, lo, hi);
+    drawAdd(x, y, t, 6);
+    drawTop(x, y, t, 3);
+    xx = x + t.w;
+
+    for (j = 0; j < n - 2; j++) {
+        grad(*c1, *c2, i++, n, lo, hi);
+        drawBase(xx, y, t, 0, lo, hi);
+        drawAdd(xx, y, t, 7);
+        drawTop(xx, y, t, 4);
+        xx += t.w;
+    }
+
+    grad(*c1, *c2, i, n, lo, hi);
+    load(t, 10);
+    drawBase(xx, y, t, &t, lo, hi);
+    drawAdd(xx, y, t, 8);
+    drawTop(xx, y, t, 5);
+}

@@ -1,0 +1,19 @@
+# Second line of defence behind the local hooks (tools/guard/install.sh): checks every file of
+# the pushed tree for game data. CI has no disc files, so the hash rule is off here; path, type,
+# magic, binary, marker and size rules still apply. A failed run means: remove the file from the
+# branch history before anyone builds on it.
+name: game-data-guard
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - run: python3 tools/guard/check_game_data.py --no-hash --tree HEAD

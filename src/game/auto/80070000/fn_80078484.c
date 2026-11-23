@@ -1,0 +1,70 @@
+#include "game/auto/m2c_prelude.h"
+#if TARGET_PC
+/* Host: Heap/Block keep the Wii layout with 32-bit link fields (window offsets). */
+#define P32F(p, off) ((s8*)fe10_p32(M2C_FIELD(p, u32*, off)))
+void fn_80078484(s8 *arg0) {
+    s8 *var_r3;
+    s8 *var_r4;
+    s8 *var_r4_2;
+    s8 *var_r5;
+
+    var_r4 = P32F(arg0, 0x14);
+    var_r5 = NULL;
+    while (var_r4 != NULL) {
+        var_r5 = var_r4;
+        var_r4 = P32F(var_r4, 0xC);
+    }
+    for (var_r4_2 = var_r5; var_r4_2 != NULL; var_r4_2 = P32F(var_r4_2, 8)) {
+    }
+    var_r3 = P32F(arg0, 0x18);
+    while (var_r3 != NULL) {
+        var_r5 = var_r3;
+        var_r3 = P32F(var_r3, 0xC);
+    }
+    for (; var_r5 != NULL; var_r5 = P32F(var_r5, 8)) {
+    }
+}
+#else
+void fn_80078484(s8 *arg0) {
+    s8 *var_r3;
+    s8 *var_r4;
+    s8 *var_r4_2;
+    s8 *var_r5;
+
+    var_r4 = M2C_FIELD(arg0, s8 **, 0x14);
+    var_r5 = NULL;
+    goto loop_2;
+block_1:
+    var_r5 = var_r4;
+    var_r4 = M2C_FIELD(var_r4, s8 **, 0xC);
+loop_2:
+    if (var_r4 != NULL) {
+        goto block_1;
+    }
+    var_r4_2 = var_r5;
+    goto loop_5;
+block_4:
+    var_r4_2 = M2C_FIELD(var_r4_2, s8 **, 8);
+loop_5:
+    if (var_r4_2 != NULL) {
+        goto block_4;
+    }
+    var_r3 = M2C_FIELD(arg0, s8 **, 0x18);
+    goto loop_8;
+block_7:
+    var_r5 = var_r3;
+    var_r3 = M2C_FIELD(var_r3, s8 **, 0xC);
+loop_8:
+    if (var_r3 != NULL) {
+        goto block_7;
+    }
+    goto loop_11;
+block_10:
+    var_r5 = M2C_FIELD(var_r5, s8 **, 8);
+loop_11:
+    if (var_r5 != NULL) {
+        goto block_10;
+    }
+    return;
+}
+#endif

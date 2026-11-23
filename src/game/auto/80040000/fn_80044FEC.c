@@ -1,0 +1,33 @@
+#include "game/auto/m2c_prelude.h"
+#if TARGET_PC
+FE10_PROTO int fn_8010931C(void *);
+FE10_PROTO int fn_8010E314(unsigned int, unsigned int);
+#else
+s32 fn_8010931C();
+u8 fn_8010E314();
+#endif
+extern u8 lbl_803CAB38[0x988];
+
+s32 fn_80044FEC(s8 *arg0) {
+    s32 var_r3;
+    u8 temp_r30;
+
+    if (arg0 == NULL) {
+        return 0;
+    }
+    if (fn_8010931C(arg0 + 0x110) != 0) {
+        return 1;
+    }
+    temp_r30 = M2C_FIELD(M2C_FIELD(arg0, s8 **, 0xF4), u8 *, 8);
+    if (fn_8010E314(temp_r30, M2C_FIELD(lbl_803CAB38, u8 *, 0x11)) == 1) {
+        return 2;
+    }
+    if (M2C_FIELD(arg0, s32 *, 0x10C) & 1) {
+        return 5;
+    }
+    var_r3 = 3;
+    if (temp_r30 == (u8) M2C_FIELD(lbl_803CAB38, u8 *, 0x11)) {
+        var_r3 = 6;
+    }
+    return var_r3;
+}

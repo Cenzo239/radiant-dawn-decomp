@@ -1,0 +1,191 @@
+function	shape	status	evidence	files changed
+fn_8001E094	I(F)	fixed	fmuls f0,const,f1 then fctiwz: float->s16 converter; callers fn_800B2958/fn_800B2994 pass their own f1 through (no f1 write before bl)	rG/fn_800B1540.cpp
+fn_800B2958	V(IF)	fixed	mr r31,r3 then bl fn_8001E094 with incoming f1; rF/fn_80185D0C declares (void*, f32)	rG/fn_800B1540.cpp
+fn_800B2994	V(IF)	fixed	same as fn_800B2958 (m5a); rG/fn_800A95F4 declares (ChI*, f32)	rG/fn_800B1540.cpp
+fn_80011280	V(I)	false positive	reads only r3; floats come from PSMTXMultVec fn_80312DB4 whose ps_sum0 reads f6 ps1 half (dummy, only ps0 stored)	-
+fn_800119BC	V(I)	false positive	reads only r3; floats come from PSMTXMultVec fn_80312DB4 whose ps_sum0 reads f6 ps1 half (dummy, only ps0 stored)	-
+fn_80312DB4	V(III)	false positive	PSMTXMultVec(mtx, src, dst): psq_l from r3/r4, psq_st to r5; ps_sum0 f6,f5,f6,f5 reads f6 only for the unused ps1 half	-
+fn_8001E9E4	V(II)	false positive	mr r5,r4; tail call to fn_80312DB4 (ps_sum0 dummy f6 read); S param is a pointer in r3	-
+fn_800E5878	V(II)	false positive	mr r5,r4 + tail call fn_800E5884; floats only via ps_sum0 dummy read in fn_80312DB4/fn_80313460 chain	-
+fn_800E5BB0	V(II)	false positive	mr r5,r4 + tail call fn_800E5884; floats only via ps_sum0 dummy read in fn_80312DB4/fn_80313460 chain	-
+fn_800E5884	V(III)	false positive	reads r3,r4,r5; floats only via fn_800F7790 -> fn_8001E9E4 -> fn_80312DB4 ps_sum0 dummy read	-
+fn_800E5BC0	V(III)	false positive	same family as fn_800E5884 (ps_sum0 dummy f6 read in PSMTXMultVec)	-
+fn_800F7790	V(II)	false positive	reads r3 (mr r31) and r4 (lhz 0(r4)); floats only via fn_8001E9E4/fn_80313460 ps ops	-
+fn_80006938	V(I)	false positive	reads only r3; r4..r7 written first (li r4; clrlslwi r7,r4 counted as read because clrlslwi is missing from symcheck PUREDEF)	-
+fn_80011838	V(I)	false positive	reads only r3 (srwi. r0,r3,31); 8 int via fn_80021808 clrlslwi artefact	-
+fn_80018684	I(I)	false positive	reads only r3; li r3,-1 before bl fn_80011838 (clrlslwi artefact)	-
+fn_8001883C	I(I)	false positive	reads only r3; li r3,-1 before bl fn_80011838 (clrlslwi artefact)	-
+fn_80021808	V(IIIII)	false positive	reads r3..r7 only; r8/r10/r11 written by clrlslwi (missing from PUREDEF)	-
+fn_80021D18	V(IIIIII)	false positive	reads r3..r8 only; extra regs are clrlslwi destinations	-
+fn_80021D9C	V(IIIIII)	false positive	reads r3..r8 only; extra regs are clrlslwi destinations	-
+fn_80024EFC	V(II)	false positive	reads r3,r4 (r5 written by lis first); r6+ only via fprintf fn_80290B48 (crclr, 2 args) and memmove whose callees have clrlslwi artefacts	-
+fn_800250B0	I(IIIIIS)	false positive	reads r3..r7 directly (stw r5,8(r1) = empty E passed by value); r8/r10 only via memmove clrlslwi artefact and variadic fprintf	-
+fn_80305568	V(II)	false positive	reads r3,r4; xor r6,r6,r6 zeroing idiom counted as read; r5 via clrlslwi	-
+fn_8030585C	I(IIIII)	false positive	reads r3..r7; r8..r10 set per switch case; jump-table successor approximation (all blocks) makes them look live	-
+fn_80308090	V(FFFFFF)	false positive	GXSetViewport: stfs f1..f6; caller declares f32 params, which the tool counted as S	-
+fn_8022A174	S(III)	false positive	struct result via hidden r3, reads r4,r5,r6; r9 only through jump-table approximation	-
+fn_8014A6CC	V(II)	false positive	reads r3,r4 only; r9 via fn_8022A174 jump-table artefact	-
+fn_80149434	I(II)	false positive	reads r3,r4; f1 seen live because jump-table successors include the block after bl fn_8014CAE4 (f1 = its float result)	-
+fn_8014B650	V(I)	false positive	reads r3; r4 set before bl fn_80149434; f1 via fn_80149434 jump-table artefact	-
+fn_800800D4	V(I)	false positive	reads r3 only; f1 loaded at 80080204 before stfs f1,0x28(r31); jump-table approximation skips the def; OSPanic variadic	-
+fn_80312830	V(IIF)	fixed	MTXRotAxisRad(m, axis, rad): mr r31,r4 / fmr f30,f1; original fn_800BFE24 passes f1 = float result of fn_8001EA74 (vector angle), which the file declared void	rG/fn_800BFE24.cpp
+fn_8006FB94	V(IFFFF)	fixed	definition in rO/fn_8006E610 is (int color, f32 x,y,w,h): mr r30,r3 + fctiwz f1,f2, f3,f4; callers fn_8006FE30/fn_800705E4 pass their incoming r3,f1..f4 untouched	rO/fn_8006E098.cpp
+fn_8006FE30	V(FFFFI)	fixed	fmr f28..f31 <- f1..f4 then bl fn_8006FB94 with r3 untouched; rN callers pass r3 = 0x3B/0x3C colour (fn_80282FF4)	rO/fn_8006E098.cpp
+fn_800705E4	V(FFFFI)	fixed	same as fn_8006FE30; rN/fn_8026697C passes 0x41 in r3	rO/fn_8006E098.cpp
+fn_800121C8	I(I)	fixed	switch on r3 (TEV reg index -> konst sel); definition rA/fn_80011E28 is u32(s32); every original caller has r3 = result of fn_80012170 at the bl	rL/fn_8014348C.cpp rL/equiv/fn_80141650.cpp rL/fn_80146BAC.cpp
+fn_80012218	I(I)	fixed	same as fn_800121C8 (alpha konst sel); fn_801420B0 calls right after fn_80012170	rL/equiv/fn_801420B0.cpp
+fn_80030CBC	I(I)	fixed	lbz 0x47c(r3)/addi r3,r3,0x3f4 on a unit; fn_80158354 calls it with r3 = its first parameter at (mr r28,r3 before bl)	rM/equiv/fn_80158354.cpp
+fn_8007B594	I(I)	fixed	slwi r0,r3,2; lwzx from table lbl_803D7918 (object by index); fn_80043418 passes lbz 0x11(r31); fn_8009A9EC/AA1C/AA4C/AA7C pass their own r3 through	auto/fn_80043418.c auto/fn_8009A9EC.cpp auto/fn_8009AA1C.cpp auto/fn_8009AA4C.cpp auto/fn_8009AA7C.cpp
+fn_8009A9EC	V(I)	fixed	prologue then bl fn_8007B594 with incoming r3 untouched, virtual call on result	auto/80090000/fn_8009A9EC.cpp
+fn_8009AA1C	V(I)	fixed	prologue then bl fn_8007B594 with incoming r3 untouched, virtual call on result	auto/80090000/fn_8009AA1C.cpp
+fn_8009AA4C	V(I)	fixed	prologue then bl fn_8007B594 with incoming r3 untouched, virtual call on result	auto/80090000/fn_8009AA4C.cpp
+fn_8009AA7C	V(I)	fixed	prologue then bl fn_8007B594 with incoming r3 untouched, virtual call on result	auto/80090000/fn_8009AA7C.cpp
+fn_80146BAC	V(II)	fixed	mr r31,r3 / mr r30,r4; cmpw 0x31(r3),r4; stb r30,0x31(r31) (mode); original callers fn_8013A638/fn_8013B8D0 have r4 = lbz lbl_804CB834 (the mode compared just before)	rL/fn_small.cpp
+fn_80141334	V(I)	fixed	mr r26,r3; fn_801435A4/fn_80143054 call it right after fn_80011E80 (r3 = its texmap result); rL/fn_80146BAC already declares (int)	rL/fn_small.cpp
+fn_80082230	V(I)	fixed	cmpwi r3,0 / lwz 0x1c(r3); wrapper fn_80146A44 tail-calls with r3 untouched; fn_80146BAC passes its object	rL/fn_small.cpp
+fn_8013BEE4	V(I)	fixed	reads r3 (mr r31,r3); only caller here is the tail-call wrapper fn_8013C148 which passes its own r3	rL/fn_small.cpp
+fn_8013C148	V(I)	fixed	one-instruction tail call b fn_8013BEE4 with r3 untouched	rL/fn_small.cpp
+fn_8013CE9C	V(I)	fixed	reads r3 (lwz r4,0x30(r3)); only caller here is the tail-call wrapper fn_8013DA14 which passes its own r3	rL/fn_small.cpp
+fn_8013DA14	V(I)	fixed	one-instruction tail call b fn_8013CE9C with r3 untouched	rL/fn_small.cpp
+fn_8013D404	V(I)	fixed	reads r3 (mr r27,r3); only caller here is the tail-call wrapper fn_8013DA18 which passes its own r3	rL/fn_small.cpp
+fn_8013DA18	V(I)	fixed	one-instruction tail call b fn_8013D404 with r3 untouched	rL/fn_small.cpp
+fn_8013D7B4	V(I)	fixed	reads r3 (mr r31,r3); only caller here is the tail-call wrapper fn_8013DA1C which passes its own r3	rL/fn_small.cpp
+fn_8013DA1C	V(I)	fixed	one-instruction tail call b fn_8013D7B4 with r3 untouched	rL/fn_small.cpp
+fn_80143D88	V(I)	fixed	reads r3 (stw r0,0x30(r3)); only caller here is the tail-call wrapper fn_801435E0 which passes its own r3	rL/fn_small.cpp
+fn_801435E0	V(I)	fixed	one-instruction tail call b fn_80143D88 with r3 untouched	rL/fn_small.cpp
+fn_80144938	V(I)	fixed	reads r3 (mr r29,r3); only caller here is the tail-call wrapper fn_80144BA8 which passes its own r3	rL/fn_small.cpp
+fn_80144BA8	V(I)	fixed	one-instruction tail call b fn_80144938 with r3 untouched	rL/fn_small.cpp
+fn_80145704	V(I)	fixed	reads r3 (mr r27,r3); only caller here is the tail-call wrapper fn_8014597C which passes its own r3	rL/fn_small.cpp
+fn_8014597C	V(I)	fixed	one-instruction tail call b fn_80145704 with r3 untouched	rL/fn_small.cpp
+fn_80146554	V(I)	fixed	reads r3 (mr r25,r3); only caller here is the tail-call wrapper fn_801469BC which passes its own r3	rL/fn_small.cpp
+fn_801469BC	V(I)	fixed	one-instruction tail call b fn_80146554 with r3 untouched	rL/fn_small.cpp
+fn_80146A44	V(I)	fixed	one-instruction tail call b fn_80082230 with r3 untouched	rL/fn_small.cpp
+fn_800893C4	V(I)	fixed	lbz/stb 0x2e(r3) increment; fn_801D237C calls it right after fn_800D4228 (r3 = its pointer result)	auto/801D0000/fn_801D237C.c
+fn_8008AEE4	I(I)	fixed	mr r28,r3 (text pointer, width loop); fn_80022CCC calls it with r3 = result of fn_8008AECC(code) kept in r18	rA/fn_80022CCC.cpp
+fn_8009283C	I(I)	fixed	lwz r3,0x4(r3) then tail call fn_800D0864; fn_801507EC calls it right after fn_8006074C(lbl_803CAB38) (r3 = its result; that decl was void, now void*)	rM/equiv/fn_801507EC.cpp rM/equiv/fn_8014EAC4.cpp(decl) rM/fn_8014EABC.cpp(decl)
+fn_800A4BBC	V(I)	fixed	sth 0,0x88/0x8a/0x8c(r3), stfs 0x90(r3); fn_800B1B48 calls it right after fn_800A64A0 (tail call to fn_80083B84 returning the object in r3)	rG/fn_800B1B48.cpp
+fn_800A6618	V(I)	fixed	lwz r3,0x4(r3); fn_800AA548 calls it with r3 = b->m54 (result of fn_800A66C4 just stored)	rG/fn_800AA548.cpp
+fn_800A67EC	I(I)	fixed	mr r31,r3 (resource handle); all original callers (fn_800AB41C, fn_800B4574, fn_8026AF24) call it right after a nonzero test of fn_800A8008/fn_800A80F8 result in r3	rG/fn_800AB41C.cpp rG/fn_800ABFB8.cpp(decl)
+fn_800C2DFC	I(I)	fixed	mr. r4,r3 (parent, 0 -> 3) then creates the object; fn_800AB734 calls it with r3 = b (the Bat*, mr r21,r3 and r3 never rewritten)	rG/fn_800AB734.cpp
+fn_800CAB40	I(I)	fixed	lbz 0x0(r3)=='#', parses control code; fn_80148D44/fn_8014B650/fn_8026FE48 call it with r3 = cursor (lwz r3,0x10(..) just compared to 0x23)	rL/equiv/fn_80148D44.cpp rL/fn_8014B650.cpp rL/wip/near2.cpp rL/wip/near3.cpp
+fn_800D0864	I(I)	fixed	mr r31,r3 (key/label string -> message text); original callers pass lbl_8036EA40+n (fn_801D012C), lwz 0x4(r31) (fn_8010F5E0) or their own r3 (fn_8014C148)	auto/fn_8010F5E0.c auto/fn_801D012C.c auto/fn_801D009C.c(decl) rL/fn_80148634.cpp rL/talk.h(decl)
+fn_8014C148	V(I)	fixed	bl fn_800D0864 with incoming r3 untouched (prologue only); auto/fn_800A2A48 calls it with mr r3,r31 = its arg0	rL/fn_80148634.cpp
+fn_800D4A10	V(II)	fixed	mr r29,r3 / mr r30,r4 (MenuDef*, MenuProc*: rK definition); only caller here is the tail-call wrapper fn_8006BB84	rO/fn_8006AA70.cpp rO/equiv/fn_8006B528.cpp(decl) rO/fn_8006AA70_cursor.cpp(decl) rO/fn_8006B870.cpp(decl) rO/fn_8006BDCC.cpp(decl)
+fn_8006BB84	V(II)	fixed	single instruction b fn_800D4A10 with r3,r4 untouched (menu callback)	rO/fn_8006AA70.cpp + 4 decl files
+fn_801D0214	I(II)	fixed	switch on r4 (event code) then lbz 0(r3) (seq); rE/rF definitions are (seq, int k); fn_800AADBC/fn_800AAFAC call it with r4 = their own k (mr r30,r4, r4 not rewritten)	rG/fn_800AADBC.cpp rG/fn_800AAFAC.cpp
+fn_800E4904	V(III)	fixed	lwz r3,0x30(r3); stw r5,0xa4(r3+r4*4); fn_800BA1C0 has r5 = lwz 0x7c(c) (AnimState st) at the call; fn_800AAFAC already passes 3 args	rG/fn_800AADBC.cpp
+fn_801CE800	V(I)	fixed	mr r29,r3 (scene); original callers pass the object just created/stored (fn_800ADA7C: r3 = fn_801CE7F4() result also stored to b->m88)	rG/fn_800AAFAC.cpp
+fn_801D0214	I(II)	fixed	(extra file, not in the report: unprototyped decl) fn_800EB4AC has r4 = arg1 (mr r30,r4) at the bl	auto/800E0000/fn_800EB4AC.c
+fn_800E49AC	V(IF)	fixed	(not in the report: unprototyped M2C_UNK decl) mr r31,r3 + stfs f1,0x44(r4); fn_800EB4AC calls it right after fn_800D5F6C, which returns a float in f1 (lha 0xc4 -> float)	auto/800E0000/fn_800EB4AC.c
+fn_80105158	I(I)	fixed	lwz r0,0x0(r3) count loop over the list; fn_801FD518 calls it right after fn_801059B0(arg0), which returns a table entry in r3	auto/801F0000/fn_801FD518.c
+fn_80108618	V(II)	fixed	stw r4,0x88(r3) (callback data); fn_800C1218 tail-calls with r4 untouched; rI fn_80216A8C passes mr r4,r31	rG/fn_800BA1C0.cpp
+fn_800C1218	V(II)	fixed	lwz r3,0x34(r3); b fn_80108618 with r4 untouched; rG/fn_800B056C declares (Eff*, int*)	rG/fn_800BA1C0.cpp
+fn_801246A4	I(I)	fixed	mr r28,r3; lwz 0xec(r3) (unit); fn_80071C44 calls it first thing with r3 = its own u parameter	rO/fn_8006E278.cpp rO/equiv/fn_80075714.cpp(decl)
+fn_801284C4	I(I)	fixed	mr r31,r3 (unit); the auto .c callers already passed the unit through an unprototyped () declaration: prototype added only (no code change needed)	auto/fn_80047750.c auto/fn_800477F8.c auto/fn_80172748.c
+fn_8012D2B0	I(I)	fixed	mr r29,r3 (index); fn_800432A4.c already passed lbz 0x11 through an unprototyped () declaration: prototype added	auto/80040000/fn_800432A4.c
+fn_8012F558	V(I)	fixed	stfs f0..f2 into 0x20..0x68(r3) (camera defaults); fn_80134B80 calls it with r3 = c = fn_8012FCD0() result (mr r28,r3, beq)	rL/fn_80133EB4.cpp
+fn_8013B74C	I(II)	fixed	mullw r0,r4,r31 (percent of roof tiles); rL definition is (MapModel*, int pct); fn_800AAB38 passes its own r4 through	rG/fn_800AA848.cpp
+fn_800AAB38	V(II)	fixed	r4 untouched until bl fn_8013B74C; rF/fn_80185D0C calls (p->x30, j)	rG/fn_800AA848.cpp
+fn_80146FBC	V(IF)	fixed	fadds f2,f2,f1 into 0x58/0x64(r3) (offset by delta); only caller fn_800AAB94 tail-calls with f1 untouched	rG/fn_800AA848.cpp
+fn_800AAB94	V(IF)	fixed	b fn_80146FBC with f1 untouched; rG/fn_800A95F4 declares (Ev*, f32)	rG/fn_800AA848.cpp
+fn_80164F90	I(I)	fixed	mr r31,r3 (unit); fn_8015B738 calls it with r3 = u (mr r30,r3; lwz 0x3b4(r3) just before)	rM/fn_80158C8C.cpp + 16 decl-only copies (equiv/wip/fn_8015CE40/fn_8015EC54)
+fn_801723A8	I(IIIIIF)	fixed	fmr f31,f1 then fmuls with it (scaling factor); fn_8015E750 else-branch has f1 = v = c->b/65536 (the same value the if-branch converts for fn_80171E5C)	rM/fn_80158C8C.cpp + 16 decl-only copies
+fn_8017C288	I(I)	fixed	mr r4,r3 then tail call fn_8008580C(lbl_80387B68, r4) (find child by owner); fn_800AE03C calls it with r3 = p (its own parameter); fn_800B1B48 already passes c	rG/fn_800AB1D0.cpp
+fn_80194524	I(I)	fixed	mr r4,r3 (object) after flag test; fn_800AE368 calls it with r3 = b (mr r28,r3 at entry)	rG/fn_800A5DE8.cpp
+fn_801E4094	V(I)	fixed	addi r4,r3,0x38; stb/stw into 0x30..0x3c(r3) (list init); fn_801FE520 calls it with r3 = fn_80081194 result just tested non-null	auto/801F0000/fn_801FE520.cpp
+fn_8023F880	I(I)	fixed	prologue then bl fn_8023DCC0 with incoming r3 (mr r4,r3 there); fn_800232FC calls it right after fn_801D5DC4 (r3 = its result), fn_8017DA68 passes arg0+0x30	rA/fn_80023170.cpp auto/80230000/fn_8023F880.c(def) auto/80170000/fn_8017DA68.c(decl, call already passed it)
+fn_80245DFC	I(I)	fixed	lwz r6,0x0(r3) (object from fn_8024BCA0); fn_8002545C/fn_8009ADD8 call it right after fn_8024BCA0 (mr r31,r3, r3 untouched)	auto/80020000/fn_8002545C.c auto/80090000/fn_8009ADD8.c
+fn_8024F7EC	I(I)	fixed	mr r26,r3; fn_80044180/fn_800441F0 call it right after fn_80068424, which returns lwz 0x18(r3) in r3	auto/80040000/fn_80044180.c auto/80040000/fn_800441F0.c
+fn_80320978	V(L)	false positive	OSSleepTicks(OSTime): the u64 travels in r3:r4; declarations use unsigned long long (tool counts it as one register)	-
+fn_803304B4	V(I)	fixed	VIConfigure(rm): mr r31,r3 then reads the render mode; fn_8008CA90/fn_8008D414 call it with r3 = rm (sth into 0xa/0xc(r3) just before)	rJ/fn_8008CA90.cpp rJ/equiv/fn_8008D414.cpp
+fn_80021FE8	V(I)	fixed	b fn_803077C4 (reads r3: rlwimi r6,r3); tail call passes r3 through	auto/80020000/fn_80021FE8.c
+fn_80021FEC	V(I)	fixed	b fn_80307798 (reads r3: rlwimi r6,r3); tail call passes r3 through	auto/80020000/fn_80021FEC.c
+fn_800243D0	V(I)	fixed	b fn_801E5880 (lbz 0x30(r3)); tail call passes r3 through	auto/80020000/fn_800243D0.c
+fn_8002C1C4	V(II)	fixed	mr r30,r3 then bl fn_801207B4 with r3,r4 untouched; fn_801207B4 reads r3 (mr r30,r3) and r4 (cmpwi r4,0)	auto/80020000/fn_8002C1C4.c
+fn_80044E88	V(I)	fixed	r3 untouched on both paths to bl fn_800EDB70 / bl fn_800AE8E4, both read r3 (mr r4,r3)	auto/80040000/fn_80044E88.c
+fn_8004B2A8	V(II)	fixed	bl fn_8006A240 first with r3,r4 untouched; fn_8006A240 reads both (mr r31,r3; mr r30,r4)	auto/80040000/fn_8004B2A8.c
+fn_8004B610	V(II)	fixed	bl fn_80068E0C first with r3,r4 untouched; the callee reads only r4 (lwz r31,0x18(r4)), r3 is an unused first parameter	auto/80040000/fn_8004B610.c
+fn_80089A34	I(I)	fixed	bl fn_80081A90 (cmpwi r3,0) with r3 untouched, returns 1	auto/80080000/fn_80089A34.c
+fn_8009C460	V(I)	fixed	b fn_80272404 (mr r4,r3); tail call passes r3 through	auto/80090000/fn_8009C460.c
+fn_800A2B50	I(I)	fixed	bl fn_80075D78 (mr r30,r3) with r3 untouched, returns 1	auto/800A0000/fn_800A2B50.c
+fn_800A2B74	I(I)	fixed	bl fn_8023F4EC (passes r3 to fn_8023DCC0) with r3 untouched, returns 1	auto/800A0000/fn_800A2B74.c
+fn_800CD8D0	V(I)	fixed	b fn_8004AB04 (mr r4,r3); tail call passes r3 through	auto/800C0000/fn_800CD8D0.c
+fn_800E2408	V(I)	fixed	b fn_80076F54 (cmpwi r3,0); tail call passes r3 through	auto/800E0000/fn_800E2408.c
+fn_800FED48	V(I)	fixed	b fn_800FFC58 (mr r31,r3); tail call passes r3 through	auto/800F0000/fn_800FED48.c
+fn_8010B1D8	I(I)	fixed	b fn_80076F54 (cmpwi r3,0); tail call passes r3 through	auto/80100000/fn_8010B1D8.c
+fn_8010B200	V(I)	fixed	b fn_80076F54 (cmpwi r3,0); tail call passes r3 through	auto/80100000/fn_8010B200.c
+fn_8010B228	V(I)	fixed	b fn_80076F54 (cmpwi r3,0); tail call passes r3 through	auto/80100000/fn_8010B228.c
+fn_8010B23C	V(I)	fixed	b fn_80076F54 (cmpwi r3,0); tail call passes r3 through	auto/80100000/fn_8010B23C.c
+fn_801108F8	I(I)	fixed	bl fn_80123998 (mr r31,r3) with r3 untouched	auto/80110000/fn_801108F8.c
+fn_8016589C	V(I)	fixed	b fn_8015F65C (mr r4,r3); tail call passes r3 through	auto/80160000/fn_8016589C.c
+fn_801658A0	V(I)	fixed	b fn_8017504C (mr r4,r3); tail call passes r3 through	auto/80160000/fn_801658A0.c
+fn_8016A278	V(IIII)	fixed	b fn_80169E30, which reads r3..r6 (mr r15,r3; stw r4; mr r16,r5; mr r17,r6)	auto/80160000/fn_8016A278.c
+fn_8016A27C	V(IIII)	fixed	b fn_80169E30, which reads r3..r6	auto/80160000/fn_8016A27C.c
+fn_8016BE00	V(IIII)	fixed	b fn_8016B90C, which reads r3..r6 (mr r15,r3; mr r16,r4; stw r5,r6)	auto/80160000/fn_8016BE00.c
+fn_8016C604	V(IIII)	fixed	b fn_8016A4C8, which reads r3..r6	auto/80160000/fn_8016C604.c
+fn_80170BF8	I(I)	fixed	bl fn_8012CE54 (passes r3 to fn_80076F54) with r3 untouched	auto/80170000/fn_80170BF8.c
+fn_8017C1A8	V(I)	fixed	b fn_8017B040 (mr r31,r3); tail call passes r3 through	auto/80170000/fn_8017C1A8.c
+fn_8017D7D8	V(I)	fixed	b fn_8017D1DC, which reads only r3 (mr r26,r3; r9/r10 are a jump-table artefact through fn_8030585C)	auto/80170000/fn_8017D7D8.c
+fn_8017D7DC	V(I)	fixed	b fn_8017D428 (mr r29,r3); tail call passes r3 through	auto/80170000/fn_8017D7DC.c
+fn_8017E3B0	V(I)	fixed	b fn_8017DECC (mr r31,r3); tail call passes r3 through	auto/80170000/fn_8017E3B0.c
+fn_8017E9DC	V(I)	fixed	b fn_8017E470 (mr r31,r3); tail call passes r3 through	auto/80170000/fn_8017E9DC.c
+fn_8017F138	V(I)	fixed	b fn_8017EE1C (mr r31,r3); tail call passes r3 through	auto/80170000/fn_8017F138.c
+fn_801C6D94	V(IFFF)	fixed	b fn_801C3AB4, which reads r3 (mr r31,r3) and f1..f3 (fmr f15/f14/f28)	auto/801C0000/fn_801C6D94.c
+fn_801C6D98	V(IIFF)	fixed	b fn_801BD420, which reads r3, r4 (mr r21,r4) and f1, f2 (fmr f30/f31)	auto/801C0000/fn_801C6D98.c
+fn_801C6D9C	V(IIII)	fixed	b fn_801BDF20, which reads r3..r6	auto/801C0000/fn_801C6D9C.c
+fn_801C6E64	V(IIIIIIFF)	fixed	extsb r4..r7 then b fn_801C0638, which also reads r8 (mr r29,r8) and f1, f2 (fmr f27/f28)	auto/801C0000/fn_801C6E64.c
+fn_801C9718	V(I)	fixed	b fn_8003D638 (mr r30,r3); tail call passes r3 through	auto/801C0000/fn_801C9718.c
+fn_801D33B0	V(I)	fixed	b fn_80228D38 (cmpwi r3,0); tail call passes r3 through	auto/801D0000/fn_801D33B0.c
+fn_801D346C	V(I)	fixed	b fn_80221EBC (cmpwi r3,0); tail call passes r3 through	auto/801D0000/fn_801D346C.c
+fn_801D34E8	V(I)	fixed	b fn_80234888 (cmpwi r3,0); tail call passes r3 through	auto/801D0000/fn_801D34E8.c
+fn_801D3564	V(I)	fixed	b fn_80204348 (cmpwi r3,0); tail call passes r3 through	auto/801D0000/fn_801D3564.c
+fn_801D7560	V(IIIII)	fixed	extsh r3..r6 then b fn_801D7014, which also reads r7 (mr r25,r7)	auto/801D0000/fn_801D7560.c
+fn_80204280	V(I)	fixed	b fn_801E58A0 (mr r29,r3); tail call passes r3 through	auto/80200000/fn_80204280.c
+fn_8020B404	V(I)	fixed	b fn_801E58A0 (mr r29,r3); tail call passes r3 through	auto/80200000/fn_8020B404.c
+fn_8021721C	V(I)	fixed	b fn_80079210 (cmpwi r3,0); tail call passes r3 through	auto/80210000/fn_8021721C.c
+fn_80219C64	V(I)	fixed	b fn_80216F84 (mr r31,r3); tail call passes r3 through	auto/80210000/fn_80219C64.c
+fn_8021BFBC	V(I)	fixed	b fn_80079210 (cmpwi r3,0); tail call passes r3 through	auto/80210000/fn_8021BFBC.c
+fn_80234884	V(I)	fixed	b fn_801E58A0 (mr r29,r3); tail call passes r3 through	auto/80230000/fn_80234884.c
+fn_8023F1A0	V(II)	fixed	b fn_8023C9C8, which reads r3 (mr r29,r3) and r4 (rlwinm. r0,r4); rL/fn_small declares (void*, int)	auto/80230000/fn_8023F1A0.c
+fn_8023F1A4	V(II)	fixed	b fn_8023BF78, which reads r3 (mr r28,r3) and r4 (rlwinm. r0,r4)	auto/80230000/fn_8023F1A4.c
+fn_8023F7B8	I(I)	fixed	bl fn_8023DCC0 (mr r4,r3) with incoming r3 untouched	auto/80230000/fn_8023F7B8.c
+fn_8023F838	I(I)	fixed	bl fn_8023DCC0 (mr r4,r3) with incoming r3 untouched	auto/80230000/fn_8023F838.c
+fn_8023F8EC	I(I)	fixed	bl fn_8023DCC0 (mr r4,r3) with incoming r3 untouched	auto/80230000/fn_8023F8EC.c
+fn_8023FAF0	I(I)	fixed	bl fn_8023DCC0 (mr r4,r3) with incoming r3 untouched	auto/80230000/fn_8023FAF0.c
+fn_80241BE8	V(I)	fixed	b fn_80083B78 (stw r0,0x10(r3)); tail call passes r3 through	auto/80240000/fn_80241BE8.c
+fn_8024F3C8	I(I)	fixed	bl fn_80076F54 (cmpwi r3,0) with incoming r3 untouched	auto/80240000/fn_8024F3C8.c
+fn_80006EE0	V(I)	fixed	definition is (GActor*); address passed to fn_80011CBC(cb, obj) which calls cb(obj); declaration text only (plus fn_80011CBC's callback parameter type void (*)(void*))	rG/fn_800AE4AC.cpp rG/fn_800AE940.cpp rG/fn_800B1540.cpp rG/fn_800B2710.cpp rG/fn_800BA1C0.cpp rG/fn_800BF148.cpp
+fn_8023F1A8	V(I)	fixed	definition is (u32 data); same fn_80011CBC(cb, obj) callback use; declared (void*) to fit the callback type	rG/fn_800AE4AC.cpp rG/fn_800AE940.cpp rG/fn_800B1540.cpp rG/fn_800B2710.cpp rG/fn_800BA1C0.cpp rG/fn_800BF148.cpp
+fn_800243D0	V(I)	fixed	tail call b fn_801E5880 (lbz 0x30(r3)); address passed as a callback in fn_800235B8; declaration text only	rA/fn_800235B8.cpp rA/equiv/fn_800244C4.cpp rA/equiv/fn_80024EFC.cpp rA/wip/(4 files)
+fn_800AA360	V(I)	fixed	definition (u8 a); callback for fn_80010788; declaration text only	rG/fn_800A59A4.cpp rG/fn_800A91C4.cpp
+fn_800B0340	V(I)	fixed	definition (Mo* m); callback for fn_80014E24; declaration text only	rG/wip/fn_800B1120.cpp rG/wip/fn_800B1120_b.cpp
+fn_800B053C	V(II)	fixed	definition (void* a, Flag8* b), reads only r4; callback for fn_80014E24; declaration text only	rG/fn_800BF148.cpp rG/wip/fn_800B1120.cpp rG/wip/fn_800B1120_b.cpp
+fn_800B0554	V(II)	fixed	definition (void* a, Flag8* b), reads only r4; callback for fn_80014E24; declaration text only	rG/fn_800BF148.cpp rG/wip/fn_800B1120.cpp rG/wip/fn_800B1120_b.cpp
+fn_800B9CA8	V(I)	fixed	definition (View*); stored as a callback; declaration text only	rG/fn_800B9D18.cpp
+fn_800BA1C0	V(I)	fixed	definition (PA*); stored as a callback; declaration text only	rG/fn_800BA2C8.cpp
+fn_800BB520	V(I)	fixed	definition (Pr*); floats only via PSVEC ps ops; stored as a callback; declaration text only	rG/wip/fn_800BBE94.cpp
+fn_800BBAE0	V(I)	fixed	definition (View*); stored as a callback; declaration text only	rG/wip/fn_800BBE94.cpp
+fn_800BEA14	V(I)	fixed	definition (Eff*); stored in a cb field (field type changed to void (*)(void*)); declaration text only	rG/fn_800BA1C0.cpp
+fn_800C0A88	V(I)	fixed	definition (T3*); callback for fn_80177284; declaration text only	rG/fn_800C0BD0.cpp
+fn_800C43B0	V(II)	fixed	definition (void* a, u32 v), reads only r4; callback for fn_8007E74C; declaration text only	rG/fn_800C4EDC.cpp rG/wip/fn_800C4EDC.cpp
+fn_800C5EA4	I(IIIIIII)	fixed	definition has 7 params (i, name, x, y, fl, z, par): reads r3..r7 and r9, r8 (z) unused; declaration text only (no call in that file)	rG/fn_800C4A58.cpp
+fn_800CCF84	I(II)	fixed	destructor (Sub* p, int f) registered with __register_global_object; declaration text only	rG/fn_800CCEEC.cpp
+fn_800CCFF8	I(II)	fixed	destructor (Sub* p, int f) registered with __register_global_object; declaration text only	rG/fn_800CCEEC.cpp
+fn_80137724	V(I)	fixed	definition (MapModel*); callback for fn_80010788; declaration text only	rL/fn_80135554.cpp rL/fn_8013A8D8.cpp rL/fn_8013B9EC.cpp
+fn_8013EED0	V(I)	fixed	definition (EP*); callback; declaration text only	rL/fn_8013F13C.cpp
+fn_801402B8	V(I)	fixed	definition (Path*); callback; declaration text only	rL/fn_small.cpp
+fn_80141650	V(IIII)	fixed	definition takes 4 params (draw callback a,b,tbl,d); passed to fn_80135F90; declaration text only	rL/fn_80143D88.cpp
+fn_80141DCC	V(IIII)	fixed	definition takes 4 params (draw callback a,b,tbl,d); passed to fn_80135F90; declaration text only	rL/fn_80143D88.cpp
+fn_801420B0	V(IIII)	fixed	definition takes 4 params (draw callback a,b,tbl,d); passed to fn_80135F90; declaration text only	rL/fn_80143D88.cpp
+fn_80142D90	V(IIII)	fixed	definition takes 4 params (draw callback a,b,tbl,d); passed to fn_80135F90; declaration text only	rL/fn_80143D88.cpp
+fn_80143054	V(IIII)	fixed	definition takes 4 params (draw callback a,b,tbl,d); passed to fn_80135F90; declaration text only	rL/fn_80143D88.cpp
+fn_80143180	V(I)	fixed	definition (void* arg); draw callback; declaration text only	rL/fn_80143D88.cpp
+fn_80143374	V(III)	fixed	definition (a, b, c), reads only r5; draw callback; declaration text only	rL/fn_80143D88.cpp
+fn_801445E8	V(I)	fixed	definition (u8* o); declaration text only	rL/fn_80146BAC.cpp
+fn_80144CD0	V(I)	fixed	definition (RP* r); callback for fn_80010788; declaration text only	rL/fn_80146BAC.cpp
+fn_80147148	V(I)	fixed	definition (PA4* p); stored as a callback; declaration text only	rL/fn_801476E8.cpp
+fn_8031292C	V(IFFF)	fixed	MTXScale(m, x, y, z): stfs f1/f2/f3 into 0x0/0x14/0x28(r3); declaration text only (no calls in these files)	rG/fn_800B5D14.cpp rG/equiv/fn_800A40B4.cpp rG/wip/fn_800C4104_r20.cpp
+fn_801D04E4	I(I)	fixed	auto definition (s8* arg0); wip fn_800AC664 calls it with r3 = lwz 0x88(r30) = p->m88 (the switch subject)	rG/wip/fn_800AC664.cpp
+fn_8001D024	V(III)	false positive	hand-written paired-single skinning loop: r3,r4,r5 are its real arguments; f0..f7 hold a matrix left there by the preceding fn_8001D2FC call (non-ABI register hand-over, not expressible as a C parameter; a port must pass the matrix explicitly)	-
+fn_8001D144	V(III)	false positive	hand-written paired-single skinning loop: r3,r4,r5 are its real arguments; f0..f7 hold a matrix left there by the preceding fn_8001D2FC call (non-ABI register hand-over, not expressible as a C parameter; a port must pass the matrix explicitly)	-
+fn_8001D2FC	V(IIII)	false positive	hand-written paired-single routine: reads r3..r6 and leaves a blended matrix in f0..f7 for fn_8001D024/fn_8001D144; the f7 'read' is ps_merge01/ps_merge11 using f7's ps1 half, which this routine never writes	-

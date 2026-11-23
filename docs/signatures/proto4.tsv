@@ -1,0 +1,63 @@
+function	shape	status	evidence	files changed
+fn_80006A2C	V(I)	fixed	reads r3 (mr r31,r3; lwz 0(r3)); caller fn_800CE1B4 has its own r3 (arg0) untouched at the bl	auto/800C0000/fn_800CE1B4.c
+fn_80007630	I(II)	fixed	reads r3 (walk) and r4 (name); caller fn_801790F4 first call has entry r3/r4 untouched (arg0, arg1)	auto/80170000/fn_801790F4.c
+fn_80007F10	I(I)	fixed	reads r3 (walk ->4 chain); caller fn_8017DE4C passes its own r3 (arg0) untouched	auto/80170000/fn_8017DE4C.c
+fn_80007F3C	I(I)	fixed	reads r3 (walk ->4 chain); all six callers call it first thing with their own r3 (arg0) untouched	auto/80010000/fn_8001A954.c; auto/80010000/fn_8001AEEC.c; auto/80010000/fn_8001AFE0.c; auto/80010000/fn_8001B040.c; auto/80010000/fn_8001B134.c; auto/80100000/fn_80108618.c
+fn_8000EB68	I(I)	fixed	reads r3 (resource); in fn_801C9FC4 r3 at the bl is the result of the preceding fn_8017F37C lookup (m2c split the nested call): now fn_8000EB68(fn_8017F37C(...))	auto/801C0000/fn_801C9FC4.c
+fn_80017F10	I(I)	fixed	reads r3 (id); in fn_801C9FC4 r3 is the result of the preceding fn_8017F37C call: now nested	auto/801C0000/fn_801C9FC4.c
+fn_8001D3B4	I(I)	fixed	reads r3 (def in auto/80010000/fn_8001D3B4.c takes s32 arg0); in fn_801C9FC4 r3 is the result of the preceding fn_8017F37C call: now nested	auto/801C0000/fn_801C9FC4.c
+fn_8023F838	I(I)	fixed	(already settled I(I) in earlier pass) in fn_801C9FC4 r3 is the result of the preceding fn_8017F37C call: now nested	auto/801C0000/fn_801C9FC4.c
+fn_800180F0	V(I)	fixed	reads r3; in fn_8009C91C r3 = *(arg0+0x30) just loaded and null/0x44-checked: pass temp_r3	auto/80090000/fn_8009C91C.c
+fn_8009C76C	V(I)	fixed	reads r3 (MovieProc*); fn_8009C91C calls it first with its own r3 (arg0)	auto/80090000/fn_8009C91C.c
+fn_8002E3D4	V(I)	fixed	reads r3 (BUnit*); fn_8002697C calls it first with its own r3 (arg0), then arg0+0x4A0, +0x940	auto/80020000/fn_8002697C.c
+fn_8002E508	I(II)	fixed	reads r3,r4 (dst, src); fn_80026898 calls it first with entry r3/r4 (arg0, arg1) after the arg1!=arg0 test	auto/80020000/fn_80026898.c
+fn_8002F05C	V(II)	fixed	reads r3,r4 (BUnit*, Item*); fn_80026E64 calls it first with entry r3/r4 (arg0, arg1)	auto/80020000/fn_80026E64.c
+fn_800581F4	V(I)	fixed	reads r3 (parent proc, kept in r30 and passed to fn_80081194/fn_80081050); in fn_800A2FCC r3 at the bl is the result of fn_80085708(lbl_80364C1C+0x2D) (proc lookup by name): now nested	auto/800A0000/fn_800A2FCC.c
+fn_800626E0	I(I)	fixed	reads r3 (object, lbz 0x10(r3)); fn_800615DC calls it first with its own r3 (arg0)	auto/80060000/fn_800615DC.c
+fn_80075B90	I(I)	fixed	reads r3 (Hdr*, returns h or h-0x20 or 0); fn_80018094 calls it first with its own r3 (arg0)	auto/80010000/fn_80018094.c
+fn_8023F92C	I(I)	fixed	reads r3 (data address, MEM1/MEM2 test, returns name); in fn_80018094 r3 is the result of fn_80075B90(arg0): now nested	auto/80010000/fn_80018094.c
+fn_8023F8B8	I(I)	fixed	reads r3 (key for fn_8023DCC0, returns refcount); in fn_80018094 r3 is the result of fn_8023F92C: now fn_8023F8B8(fn_8023F92C(fn_80075B90(arg0)))	auto/80010000/fn_80018094.c
+fn_80076F54	I(I)	fixed	reads r3 (const char*); fn_8010DAC4 calls it first with its own r3 (arg0), which it then also passes to fn_80291480	auto/80100000/fn_8010DAC4.c
+fn_80079210	V(I)	fixed	reads r3 (pointer to free: operator delete); all 13 callers are deleting destructors `if (this && flag > 0) delete this` with entry r3 (arg0) untouched at the bl	auto/80020000/fn_80024D60.c; auto/80170000/fn_80175114.c; auto/801D0000/fn_801D577C.c; auto/801D0000/fn_801D57BC.c; auto/801D0000/fn_801D5894.c; auto/801D0000/fn_801D58D4.c; auto/80200000/fn_80201FF4.c; auto/80200000/fn_8020206C.c; auto/80200000/fn_80204904.c; auto/80200000/fn_80204960.c; auto/80240000/fn_80241B68.c; auto/80240000/fn_80241BA8.c; auto/80240000/fn_8024CCB8.c
+fn_80079E00	I(I)	fixed	reads r3 (Proc*); fn_801060B0 calls it first with its own r3 (arg0)	auto/80100000/fn_801060B0.c
+fn_80081A90	V(I)	fixed	reads r3 (Proc* to end); in fn_801CB2CC/fn_801CB3B4 r3 is the non-NULL proc just returned by fn_800893E4 (find proc by script+owner): result now kept in var_r3 and passed	auto/801C0000/fn_801CB2CC.c; auto/801C0000/fn_801CB3B4.c
+fn_80083B78	V(I)	fixed	reads r3 (Proc* to end); fn_800E01A0 and fn_800FEE3C call it with their own r3 (arg0) still live (only lbz/sth through r3 before the bl)	auto/800E0000/fn_800E01A0.c; auto/800F0000/fn_800FEE3C.c
+fn_800893C4	V(I)	fixed	(settled V(I) earlier: ++*(u8*)(r3+0x2e)) in fn_801D3E68 r3 is the result of fn_800D4228(*(temp_r3+0x40)) (window proc by name): now nested	auto/801D0000/fn_801D3E68.c
+fn_800893D4	V(I)	fixed	(settled V(I) earlier: --*(u8*)(r3+0x2e)) in fn_801D23AC/fn_801D2C5C the else-branch is taken on fn_800D4228(...) != 0 and r3 is still that result: kept in a local temp_r3 and passed	auto/801D0000/fn_801D23AC.c; auto/801D0000/fn_801D2C5C.c
+fn_8008A1DC	I(I)	fixed	reads r3 (MemStream*); fn_8024CAD0 calls it with its own r3 (arg0) untouched and stores the result in *arg1	auto/80240000/fn_8024CAD0.c
+fn_80092958	I(I)	fixed	reads r3 (lwz 0x4(r3); rN declares const char* fn_80092958(void*)); in fn_8004B648 r3 is the result of fn_8006074C(lbl_803CAB38) (= fn_8010B094(*(u8*)(p+0x10))): now nested	auto/80040000/fn_8004B648.c
+fn_80092E10	I(I)	fixed	reads r3 (Obj90*); in fn_80062380 r3 is the result of the preceding fn_8010B094(*(arg0+0x10)) call: now nested	auto/80060000/fn_80062380.c
+fn_800C3BC8	I(I)	fixed	reads r3 (CmbCmd* cursor, returns next or NULL); fn_800A06F8 loop calls it again with r3 = current element (var_r3) still live: iterator now advances from var_r3	auto/800A0000/fn_800A06F8.c
+fn_800FB08C	F(II)	fixed	reads r3,r4 (MapUnit* m, MapUnit* o); fn_8010301C calls it with entry r3/r4 (arg0, arg1) untouched (arg1 only tested != 0)	auto/80100000/fn_8010301C.c
+fn_80105194	I(I)	fixed	reads r3 (SlotTbl*: lwz 0(r3) count, 4(r3) array); in fn_801FD690 r3 is the result of fn_801059B0() (declared there as void, really returns void* table): declaration corrected to void *fn_801059B0(void) and call nested	auto/801F0000/fn_801FD690.c
+fn_801095FC	V(I)	fixed	reads r3 (Opt*); in fn_800CD96C r3 is the result of the preceding fn_80060728(lbl_803CAB38) call: now nested	auto/800C0000/fn_800CD96C.c
+fn_80109744	V(I)	fixed	reads r3 (Opt*); in fn_800CD9AC r3 is the result of the preceding fn_80060728(lbl_803CAB38) call: now nested	auto/800C0000/fn_800CD9AC.c
+fn_801097FC	V(I)	fixed	reads r3 (Opt*); in fn_800CD96C, fn_800CD9AC and fn_800A3504 r3 is the result of the preceding fn_80060728(lbl_803CAB38) call: now nested (fn_800A3504 had it declared void(void))	auto/800C0000/fn_800CD96C.c; auto/800C0000/fn_800CD9AC.c; auto/800A0000/fn_800A3504.c
+fn_8010B1D8	I(I)	fixed	`b fn_80076F54` tail call: r3 passes through AND fn_80076F54's pointer result comes back, so it returns I (earlier pass recorded V(I); every other declaration in the tree returns a pointer). Definition return type corrected to s32 + `return`. In fn_800A0B1C r3 at both bls is the result of fn_8009D948(arg0, id): now nested	auto/80100000/fn_8010B1D8.c; auto/800A0000/fn_800A0B1C.c
+fn_80110D38	V(I)	fixed	reads r3 (CSlot*); fn_80110BB4, fn_80111B34, fn_80111C24 call it with their own r3 (arg0) untouched; in fn_80026E64 r3 is the result of the preceding fn_80030CBC(arg0+0x4A0) (Item*): now nested	auto/80110000/fn_80110BB4.c; auto/80110000/fn_80111B34.c; auto/80110000/fn_80111C24.c; auto/80020000/fn_80026E64.c
+fn_80110F08	I(I)	fixed	reads r3 (FSlot*); in fn_80044C28 r3 is the result of the preceding fn_80044FD0(lbl_803CA870): now nested	auto/80040000/fn_80044C28.c
+fn_801116B8	I(I)	fixed	reads r3 (FSlot*); in fn_8002C774 r3 is the result of the second fn_80030CB4(arg1) call (Item*): now nested	auto/80020000/fn_8002C774.c
+fn_801142F0	F(IFF)	fixed	reads r3,f1,f2 (Map*, fx, fy); fn_80062230 calls it with its entry f1/f2 (farg0, farg1) untouched (only copied to f30/f31): real prototype f32(void*, f32, f32) added	auto/80060000/fn_80062230.c
+fn_8011A054	I(I)	fixed	reads r3 (const Item*); in fn_801D012C and fn_801D009C default case r3 is the non-zero result of fn_801CFF0C(arg0, arg1) (item lookup): result kept in var_r3 and passed	auto/801D0000/fn_801D012C.c; auto/801D0000/fn_801D009C.c
+fn_8011D39C	I(I)	fixed	reads r3 (lwz 4(r3) then tail call fn_800D0864); in fn_80044C64 r3 is the non-zero result of fn_801181E8(map, x, y) (unit at map cell): kept in local temp_r3 and passed	auto/80040000/fn_80044C64.c
+fn_8011EF14	I(II)	fixed	reads r3,r4 (Unit* a, Unit* b); in fn_801728C8 r3 = *(arg0+4) and r4 = entry arg1 untouched (mr r31,r4)	auto/80170000/fn_801728C8.c
+fn_8012BCB0	I(I)	fixed	reads r3 (Unit*); fn_801F28F4 first call has entry r3 (arg0) untouched after cmplw r3,r4 (second call already passed arg1)	auto/801F0000/fn_801F28F4.c
+fn_80171188	V(I)	fixed	reads r3 (Unit*); in fn_801692E8 r3 at each bl is the pointer just loaded from lbl_803CA870+0 / +4 and tested (non-NULL, ->0xEC != 0)	auto/80160000/fn_801692E8.c
+fn_801CFF0C	I(II)	fixed	reads r3,r4 (SK* self, int k); fn_801D009C default case calls it with entry r3/r4 (arg0, arg1) untouched (switch only compares r4)	auto/801D0000/fn_801D009C.c
+fn_801D0E18	I(I)	fixed	reads r3 (VM*/s8 *a, own def in auto/801D0000/fn_801D0E18.c); in fn_8009E328 r3 is the result of the preceding fn_800C3558() (getter of lbl_804CB6B4): now nested	auto/80090000/fn_8009E328.c
+fn_801D0EC0	V(I)	fixed	reads r3 (VM*); fn_801D0E18 calls it with its own r3 (a) untouched (only lwz 0xc(r3) before)	auto/801D0000/fn_801D0E18.c
+fn_801D3D78	I(I)	fixed	reads r3 (parent proc, moved to r4 for the proc-start call); in fn_800A3024 r3 is the result of fn_80085708(lbl_80364C1C+0x2D) (proc lookup by name): now nested	auto/800A0000/fn_800A3024.c
+fn_801E5880	V(I)	fixed	reads r3 (Seq*); fn_80023FB8 and fn_80024024 call it first with their own r3 (arg0)	auto/80020000/fn_80023FB8.c; auto/80020000/fn_80024024.c
+fn_801E5890	V(I)	fixed	reads r3 (Seq*); fn_80023FEC, fn_80024058, fn_800243F4 call it first with their own r3 (arg0)	auto/80020000/fn_80023FEC.c; auto/80020000/fn_80024058.c; auto/80020000/fn_800243F4.c
+fn_802358B8	V(I)	fixed	reads r3 (lwz 0(r3)); in the fn_802357E4 loop r3 is still the result of fn_80237C68() (copied to r31 = temp_r31): pass temp_r31	auto/80230000/fn_802357E4.c
+fn_8023DCC0	I(I)	fixed	reads r3 (key, mr r4,r3); fn_8023F7EC calls it with its own r3 (a) untouched	auto/80230000/fn_8023F7EC.c
+fn_80244D90	V(I)	fixed	reads r3 (SaveR*); in fn_80025660 r3 is the result of fn_8024BC94() (returns &lbl_80427820): now nested	auto/80020000/fn_80025660.c
+fn_80245DC4	V(I)	fixed	reads r3 (Sys2*); in fn_80025660 r3 is the result of fn_8024BCA0() (returns &lbl_80429400): now nested	auto/80020000/fn_80025660.c
+fn_802F69C4	I(I)	fixed	DVDClose(DVDFileInfo*): passes r3 to fn_802FAED4, returns 1; in fn_8023662C r3 = &lbl_80420420 (the file info whose 0xA0/0xA4 fields were just tested and cleared): pass lbl_80420420	auto/80230000/fn_8023662C.c
+fn_803045DC	V(I)	fixed	GX cull-mode setter (r3 bits into __GXData+0x254); state-cache wrapper fn_80021B68 calls it with its own r3 (arg0, the new mode) untouched	auto/80020000/fn_80021B68.c
+fn_80305794	V(I)	fixed	GX setter (rlwimi r3 into __GXData+0x254); state-cache wrapper fn_80021B2C calls it with its own r3 (u8 arg0) untouched	auto/80020000/fn_80021B2C.c
+fn_80306EFC	V(II)	fixed	GX TEV setter (stage r3 selects reg, r4 inserted at bit 14); cache wrapper fn_80021FF0 calls it with entry r3/r4 (a, b) untouched	auto/80020000/fn_80021FF0.c
+fn_80306F4C	V(II)	fixed	GX TEV setter (stage r3, r4 inserted at bit 19); cache wrapper fn_80022050 calls it with entry r3/r4 (arg0, arg1) untouched	auto/80020000/fn_80022050.c
+fn_80306F9C	V(III)	fixed	GXSetTevSwapMode(stage, ras_sel, tex_sel): r3 index, r4 bits 30-31, r5 bits 28-29; cache wrapper fn_80022158 calls it with entry r3/r4/r5 (arg0, arg1, arg2) untouched (it only reads r5 into r0 for the cache key)	auto/80020000/fn_80022158.c
+fn_80307824	V(I)	fixed	GX setter (r3 bit into __GXData+0x22c, writes FIFO); cache wrapper fn_800217CC calls it with its own r3 (arg0) untouched	auto/80020000/fn_800217CC.c
+fn_80307EF0	V(I)	fixed	GX setter (r3 low 6 bits into __GXData+0x80); cache wrapper fn_80021784 calls it with its own r3 (arg0) untouched	auto/80020000/fn_80021784.c

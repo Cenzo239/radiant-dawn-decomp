@@ -1,0 +1,510 @@
+# lib_source	status	functions	sections	first_problem
+mhtri/src/MIX/mix.c	ok	13	.text:8030EE28-80312318 .data:803A0910-803A14A0 .bss:804A2C90-804A7010 .sbss:804CC608-804CC620	
+ogws/src/MSL/e_acos.c	ok	1	.text:80291CF0-80291FB4 .sdata2:804D0C10-804D0C98	
+ogws/src/MSL/e_asin.c	ok	1	.text:80291FB4-8029224C .sdata2:804D0C98-804D0D20	
+ogws/src/MSL/e_atan2.c	ok	1	.text:8029224C-802924BC .sdata2:804D0D20-804D0D78	
+ogws/src/MSL/e_fmod.c	ok	1	.text:802924BC-802927EC .rodata:80374E00-80374E10	
+ogws/src/MSL/e_log10.c	ok	1	.text:80292AA0-80292BB4 .sbss:804CC140-804CC148 .sdata2:804D0DF8-804D0E28	
+ogws/src/MSL/e_pow.c	codegen	1		.data: cannot derive a single base (no references from code)
+ogws/src/MSL/e_rem_pio2.c	ok	1	.text:802933FC-80293794 .rodata:80374E40-80374FC8 .sdata2:804D0F38-804D0F90	
+ogws/src/MSL/e_sqrt.c	ok	1	.text:80295AA8-80295CF0 .sdata2:804D1108-804D1110	
+ogws/src/MSL/k_cos.c	ok	1	.text:80293794-802938A4 .sdata2:804D0F90-804D0FD8	
+ogws/src/MSL/k_rem_pio2.c	ok	1	.text:802938A4-80294FB0 .rodata:80374FC8-80375018 .sdata2:804D0FD8-804D1018	
+ogws/src/MSL/k_sin.c	ok	1	.text:80294FB0-80295070 .sdata2:804D1018-804D1050	
+ogws/src/MSL/k_tan.c	ok	1	.text:80295070-802952C8 .rodata:80375018-80375080 .sdata2:804D1050-804D1088	
+ogws/src/MSL/s_atan.c	ok	1	.text:802952C8-80295508 .rodata:80375080-80375118 .sdata2:804D1088-804D10B0	
+ogws/src/MSL/s_copysign.c	ok	1	.text:80295508-80295534	
+ogws/src/MSL/s_cos.c	ok	1	.text:80295534-80295608 .sdata2:804D10B0-804D10B8	
+ogws/src/MSL/s_floor.c	ok	1	.text:80295608-8029574C .sdata2:804D10B8-804D10C8	
+ogws/src/MSL/s_frexp.c	ok	1	.text:8029574C-802957D4 .sdata2:804D10C8-804D10D0	
+ogws/src/MSL/s_ldexp.c	ok	1	.text:802957D4-80295940 .sdata2:804D10D0-804D10F8	
+ogws/src/MSL/s_sin.c	ok	1	.text:80295940-80295A18 .sdata2:804D10F8-804D1100	
+ogws/src/MSL/s_tan.c	ok	1	.text:80295A18-80295A90 .sdata2:804D1100-804D1108	
+ogws/src/MSL/w_acos.c	ok	1	.text:80295A90-80295A94	
+ogws/src/MSL/w_asin.c	ok	1	.text:80295A94-80295A98	
+ogws/src/MSL/w_atan2.c	ok	1	.text:80295A98-80295A9C	
+ogws/src/MSL/w_fmod.c	ok	1	.text:80295A9C-80295AA0	
+ogws/src/MSL/w_log10.c	ok	1	.text:80295AA0-80295AA4	
+ogws/src/MSL/w_pow.c	ok	1	.text:80295AA4-80295AA8	
+ogws/src/MetroTRK/debugger/Portable/dispatch.c	ok	2	.text:80296C38-80296D80 .data:80393A08-80393A78	
+ogws/src/MetroTRK/debugger/Portable/msg.c	ok	1	.text:80296198-802961C4	
+ogws/src/MetroTRK/debugger/Portable/msgbuf.c	ok	14	.text:802961C4-80296A00 .rodata:80375138-80375158 .bss:804332A8-80434C58	
+ogws/src/MetroTRK/debugger/Portable/mutex_TRK.c	ok	3	.text:80298510-80298528	
+ogws/src/MetroTRK/debugger/Portable/nubevent.c	ok	5	.text:80295DEC-80296014 .bss:80433278-804332A0	
+ogws/src/RVLFaceLib/RFL_Model.c	extra-symbol	0		expected one .text section, found 0
+ogws/src/egg/audio/eggAudioArcPlayerMgr.cpp	stripped	0		function __dt__Q23EGG9ArcPlayerFv not in symbols.txt
+ogws/src/egg/core/eggDvdFile.cpp	stripped	0		function __dt__Q23EGG4FileFv not in symbols.txt
+ogws/src/homebuttonMiniLib/HBMAnmController.cpp	codegen	3		.data: cannot derive a single base (0x803b39e8, 0x803b3a58)
+ogws/src/homebuttonMiniLib/HBMFrameController.cpp	ok	3	.text:8034558C-80345734 .rodata:80378228-80378230	
+ogws/src/homebuttonMiniLib/HBMGUIManager.cpp	stripped	52		function __dt__Q310homebutton3gui9InterfaceFv not in symbols.txt
+ogws/src/homebuttonMiniLib/HBMRemoteSpk.cpp	ok	15	.text:803477BC-80347FBC .data:803B3D00-803B3D30 .bss:804C9F40-804C9F48	
+ogws/src/homebuttonMiniLib/HBMSound.cpp	codegen	8		.text+0x6A6: @1146+0x0 -> 0x803B4080, DOL has 0x80378250
+ogws/src/nw4r/ef/ef_handle.cpp	extra-symbol	0		expected one .text section, found 0
+ogws/src/nw4r/lyt/lyt_animation.cpp	stripped	2		function GetStepCurveValue__27@unnamed@lyt_animation_cpp@FfPCQ44nw4r3lyt3res7StepKeyUl not in symbols.txt
+ogws/src/nw4r/lyt/lyt_arcResourceAccessor.cpp	stripped	4		function FindNameResource__37@unnamed@lyt_arcResourceAccessor_cpp@FP9ARCHandlePCc size 0xCC, DOL has 0xDC
+ogws/src/nw4r/lyt/lyt_bounding.cpp	stripped	0		function __dt__Q34nw4r3lyt8BoundingFv not in symbols.txt
+ogws/src/nw4r/lyt/lyt_common.cpp	codegen	5		function IsModulateVertexColor__Q34nw4r3lyt6detailFPQ34nw4r2ut5ColorUc at 0x80351C7C breaks contiguity (expected 0x80351A18)
+ogws/src/nw4r/lyt/lyt_group.cpp	ok	1	.text:802AF158-802AF198	
+ogws/src/nw4r/lyt/lyt_layout.cpp	duplicate	1		overlaps another library source that places
+ogws/src/nw4r/lyt/lyt_material.cpp	stripped	3		function CalcTextureMtx__26@unnamed@lyt_material_cpp@FPQ34nw4r4math5MTX34RCQ34nw4r3lyt6TexSRT not in symbols.txt
+ogws/src/nw4r/lyt/lyt_pane.cpp	stripped	12		function __dt__Q44nw4r3lyt6detail8PaneBaseFv not in symbols.txt
+ogws/src/nw4r/lyt/lyt_picture.cpp	stripped	0		function __dt__Q34nw4r2ut5ColorFv not in symbols.txt
+ogws/src/nw4r/lyt/lyt_resourceAccessor.cpp	codegen	3		.data: 1 words differ from the DOL (first at 0x803B51D0)
+ogws/src/nw4r/lyt/lyt_textBox.cpp	stripped	1		function __dt__Q34nw4r2ut5ColorFv not in symbols.txt
+ogws/src/nw4r/lyt/lyt_window.cpp	stripped	0		function __dt__Q34nw4r2ut5ColorFv not in symbols.txt
+ogws/src/nw4r/math/math_triangular.cpp	extra-symbol	0		expected one .text section, found 0
+ogws/src/nw4r/math/math_types.cpp	ok	1	.text:8029C2A0-8029C2C0 .sdata2:804D1110-804D1118	
+ogws/src/nw4r/snd/snd_AxManager.cpp	codegen	25		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x8029C780)
+ogws/src/nw4r/snd/snd_AxVoice.cpp	codegen	36		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x8029DAA4)
+ogws/src/nw4r/snd/snd_AxVoiceManager.cpp	codegen	10		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802A0678)
+ogws/src/nw4r/snd/snd_AxfxImpl.cpp	ok	6	.text:802A0F88-802A1154 .sbss:804CC188-804CC190	
+ogws/src/nw4r/snd/snd_Bank.cpp	ok	3	.text:802A1154-802A13A4 .sdata2:804D1158-804D1178	
+ogws/src/nw4r/snd/snd_BankFile.cpp	dead-strip	4		GetReferenceToSubRegion__Q44nw4r3snd6detail14BankFileReaderCFPCQ54nw4r3snd6detail4Util128DataRef<v,Q54nw4r3snd6detail8BankFile9InstParam,Q54nw4r3snd6detail8Bank
+ogws/src/nw4r/snd/snd_BasicPlayer.cpp	ok	9	.text:802A17C4-802A1C34 .data:80393BC8-80393BF0 .sdata2:804D1180-804D1188	
+ogws/src/nw4r/snd/snd_BasicSound.cpp	ctors	43		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802A1D08)
+ogws/src/nw4r/snd/snd_Channel.cpp	codegen	18		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802A33CC)
+ogws/src/nw4r/snd/snd_DisposeCallbackManager.cpp	codegen	7		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802A4578)
+ogws/src/nw4r/snd/snd_DvdSoundArchive.cpp	codegen	27		reference to Write__Q34nw4r2ut8IOStreamFPCvUl: not in symbols.txt
+ogws/src/nw4r/snd/snd_EnvGenerator.cpp	codegen	10		function SetDecay__Q44nw4r3snd6detail12EnvGeneratorFi at 0x802A5080 breaks contiguity (expected 0x802A5068)
+ogws/src/nw4r/snd/snd_ExternalSoundPlayer.cpp	codegen	8		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802A51F0)
+ogws/src/nw4r/snd/snd_FrameHeap.cpp	codegen	11		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802A5678)
+ogws/src/nw4r/snd/snd_FxChorus.cpp	stripped	12		function __dt__Q34nw4r3snd6FxBaseFv not in symbols.txt
+ogws/src/nw4r/snd/snd_FxReverbHi.cpp	stripped	11		function __dt__Q34nw4r3snd6FxBaseFv not in symbols.txt
+ogws/src/nw4r/snd/snd_InstancePool.cpp	ok	5	.text:802A6858-802A6B10	
+ogws/src/nw4r/snd/snd_Lfo.cpp	ok	4	.text:802A6B10-802A6D00 .rodata:80375620-80375648 .sdata2:804D1230-804D1260	
+ogws/src/nw4r/snd/snd_MmlParser.cpp	ok	4	.text:802A6D54-802A7C4C .data:80393D00-80393F20 .sdata:804CABB8-804CABC8 .sbss:804CC1B0-804CC1B8 .sdata2:804D1260-804D1280	
+ogws/src/nw4r/snd/snd_MmlSeqTrack.cpp	ok	3	.text:802A7C4C-802A7D0C .data:80393F30-80393F40	
+ogws/src/nw4r/snd/snd_MmlSeqTrackAllocator.cpp	stripped	6		function GetAllocatableTrackCount__Q44nw4r3snd6detail20MmlSeqTrackAllocatorCFv not in symbols.txt
+ogws/src/nw4r/snd/snd_PlayerHeap.cpp	ok	2	.text:802A7E30-802A7E44	
+ogws/src/nw4r/snd/snd_RemoteSpeaker.cpp	stripped	8		function Update__Q34nw4r3snd13RemoteSpeakerFv size 0x34, DOL has 0xD4
+ogws/src/nw4r/snd/snd_RemoteSpeakerManager.cpp	ok	5	.text:802A8658-802A88D8 .bss:804359C0-80435C98 .sbss:804CC1B8-804CC1C0	
+ogws/src/nw4r/snd/snd_SeqFile.cpp	ok	2	.text:802A88D8-802A8954	
+ogws/src/nw4r/snd/snd_SeqPlayer.cpp	stripped	37		function __dt__Q44nw4r3snd6detail11BasicPlayerFv at 0x802A1BF4 breaks contiguity (expected 0x802A8A94)
+ogws/src/nw4r/snd/snd_SeqSound.cpp	ctors	28		function __dt__Q44nw4r3snd6detail10BasicSoundFv at 0x802BA950 breaks contiguity (expected 0x802A9EAC)
+ogws/src/nw4r/snd/snd_SeqSoundHandle.cpp	codegen	3		function GetRuntimeTypeInfo__Q44nw4r3snd6detail10BasicSoundCFv at 0x802AA5FC breaks contiguity (expected 0x802AA734)
+ogws/src/nw4r/snd/snd_SeqTrack.cpp	ok	17	.text:802AA76C-802AB9E4 .rodata:80375648-80375670 .data:80394010-80394020 .sdata2:804D1298-804D12C8	
+ogws/src/nw4r/snd/snd_Sound3DActor.cpp	stripped	7		function __dt__Q54nw4r3snd6detail10BasicSound24AmbientArgUpdateCallbackFv not in symbols.txt
+ogws/src/nw4r/snd/snd_Sound3DCalculator.cpp	ok	6	.text:802ABD60-802AC764 .sbss:804CC1D0-804CC1D8 .sdata2:804D12D0-804D1318	
+ogws/src/nw4r/snd/snd_Sound3DEngine.cpp	ok	6	.text:802AC764-802ACC2C .data:80394050-80394070 .sdata2:804D1318-804D1330	
+ogws/src/nw4r/snd/snd_Sound3DListener.cpp	codegen	6		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802ACC94)
+ogws/src/nw4r/snd/snd_Sound3DManager.cpp	stripped	15		function __dt__Q54nw4r3snd6detail10BasicSound26AmbientParamUpdateCallbackFv not in symbols.txt
+ogws/src/nw4r/snd/snd_SoundActor.cpp	stripped	6		function __dt__Q34nw4r3snd14SoundStartableFv not in symbols.txt
+ogws/src/nw4r/snd/snd_SoundArchive.cpp	ok	27	.text:802AD308-802AD914 .data:803940C8-803940E8	
+ogws/src/nw4r/snd/snd_SoundArchiveFile.cpp	ok	22	.text:802AD914-802AE99C .sbss:804CC1E8-804CC1F0	
+ogws/src/nw4r/snd/snd_SoundArchiveLoader.cpp	ok	3	.text:802AE99C-802AEFEC	
+ogws/src/nw4r/snd/snd_SoundHandle.cpp	ok	3	.text:802B1510-802B1628	
+ogws/src/nw4r/snd/snd_SoundHeap.cpp	ok	8	.text:802B1628-802B18EC .data:80394148-80394158	
+ogws/src/nw4r/snd/snd_SoundPlayer.cpp	dead-strip	20		function __dt__Q34nw4r2ut12LinkListNodeFv at 0x802AF158 breaks contiguity (expected 0x802B1974)
+ogws/src/nw4r/snd/snd_SoundStartable.cpp	ok	1	.text:802B22B4-802B22CC	
+ogws/src/nw4r/snd/snd_SoundSystem.cpp	dead-strip	6		.sdata2: cannot derive a single base (no references from code)
+ogws/src/nw4r/snd/snd_SoundThread.cpp	codegen	10		function GetInstance__Q44nw4r3snd6detail11SoundThreadFv at 0x802B25E0 breaks contiguity (expected 0x802AF198)
+ogws/src/nw4r/snd/snd_StrmChannel.cpp	ok	3	.text:802B2CD4-802B2EB0	
+ogws/src/nw4r/snd/snd_StrmFile.cpp	ok	9	.text:802B2EB0-802B3804	
+ogws/src/nw4r/snd/snd_StrmPlayer.cpp	stripped	48		function __dt__Q44nw4r3snd6detail11BasicPlayerFv at 0x802A1BF4 breaks contiguity (expected 0x802B38FC)
+ogws/src/nw4r/snd/snd_StrmSound.cpp	ctors	18		function __dt__Q44nw4r3snd6detail10BasicSoundFv at 0x802BA950 breaks contiguity (expected 0x802B6218)
+ogws/src/nw4r/snd/snd_StrmSoundHandle.cpp	ok	1	.text:802B67AC-802B67E4	
+ogws/src/nw4r/snd/snd_Task.cpp	data-base	1		.data: cannot derive a single base (no references from code)
+ogws/src/nw4r/snd/snd_TaskManager.cpp	dead-strip	13		__ct__Q34nw4r2ut35LinkList<Q44nw4r3snd6detail4Task,4>Fv is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+ogws/src/nw4r/snd/snd_TaskThread.cpp	ok	5	.text:802B6F90-802B71AC	
+ogws/src/nw4r/snd/snd_Util.cpp	ok	8	.text:802BA244-802BA6A8 .rodata:80375688-80377AD8 .data:80394288-80394298 .sdata:804CABD0-804CABD8 .sdata2:804D13D0-804D1418	
+ogws/src/nw4r/snd/snd_Voice.cpp	stripped	49		function __dt__Q44nw4r3snd6detail15DisposeCallbackFv not in symbols.txt
+ogws/src/nw4r/snd/snd_VoiceManager.cpp	ok	11	.text:802B9ABC-802BA244 .bss:804510C0-804510E8 .sbss:804CC220-804CC228	
+ogws/src/nw4r/snd/snd_WaveFile.cpp	ok	3	.text:802BA6A8-802BA8E8	
+ogws/src/nw4r/snd/snd_WaveSound.cpp	dead-strip	15		lbl_804CC228 (0x804CC228) is referenced from outside the unit (fn_802BAC48) but the object does not define it
+ogws/src/nw4r/snd/snd_WaveSoundHandle.cpp	extra-symbol	2		reference to typeInfo__Q44nw4r3snd6detail9WaveSound: not in symbols.txt
+ogws/src/nw4r/snd/snd_WsdFile.cpp	ok	4	.text:802BAD8C-802BB0DC .sdata2:804D1418-804D1420	
+ogws/src/nw4r/snd/snd_WsdPlayer.cpp	stripped	28		function __dt__Q44nw4r3snd6detail11BasicPlayerFv at 0x802A1BF4 breaks contiguity (expected 0x802BB148)
+ogws/src/nw4r/snd/snd_adpcm.cpp	ok	1	.text:802BC124-802BC1B0	
+ogws/src/nw4r/ut/ut_CharStrmReader.cpp	ok	4	.text:8035BF6C-8035C07C	
+ogws/src/nw4r/ut/ut_DvdFileStream.cpp	stripped	26		function CanAsync__Q34nw4r2ut13DvdFileStreamCFv not in symbols.txt
+ogws/src/nw4r/ut/ut_DvdLockedFileStream.cpp	ctors	20		function GetBufferAlign__Q34nw4r2ut13DvdFileStreamCFv at 0x802A4D4C breaks contiguity (expected 0x802BCD54)
+ogws/src/nw4r/ut/ut_FileStream.cpp	dead-strip	3		.data: cannot derive a single base (no references from code)
+ogws/src/nw4r/ut/ut_Font.cpp	extra-symbol	1		reference to ReadNextCharUTF8__Q34nw4r2ut14CharStrmReaderFv: not in symbols.txt
+ogws/src/nw4r/ut/ut_IOStream.cpp	stripped	5		function Write__Q34nw4r2ut8IOStreamFPCvUl not in symbols.txt
+ogws/src/nw4r/ut/ut_LinkList.cpp	ok	5	.text:802BC2C4-802BC430	
+ogws/src/nw4r/ut/ut_ResFont.cpp	codegen	4		reference to GetEncoding__Q44nw4r2ut6detail11ResFontBaseCFv: not in symbols.txt
+ogws/src/nw4r/ut/ut_ResFontBase.cpp	codegen	25		reference to ReadNextCharCP1252__Q34nw4r2ut14CharStrmReaderFv: not in symbols.txt
+ogws/src/nw4r/ut/ut_TagProcessorBase.cpp	stripped	0		function __dt__Q34nw4r2ut19TagProcessorBase<c>Fv not in symbols.txt
+ogws/src/nw4r/ut/ut_TextWriterBase.cpp	extra-symbol	0		expected one .text section, found 0
+ogws/src/nw4r/ut/ut_binaryFileFormat.cpp	ok	1	.text:8035BEF8-8035BF6C	
+ogws/src/nw4r/ut/ut_list.cpp	ok	5	.text:8035DD0C-8035DE6C	
+ogws/src/revolution/AI/ai.c	ok	11	.text:802BCD60-802BD2C8 .data:80394400-80394448 .sdata:804CABD8-804CABE0 .sbss:804CC250-804CC290	
+ogws/src/revolution/ARC/arc.c	dead-strip	13		ARCChangeDir is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+ogws/src/revolution/AX/AX.c	ok	2	.text:802BDC48-802BDCA4 .data:803944B8-80394500 .sdata:804CABE8-804CABF0 .sbss:804CC290-804CC298	
+ogws/src/revolution/AX/AXAlloc.c	ok	9	.text:802BDCA4-802BE15C .bss:80451100-80451200 .sbss:804CC298-804CC2A0	
+ogws/src/revolution/AX/AXAux.c	ok	22	.text:802BE15C-802BE974 .bss:80451200-80454380 .sbss:804CC2A0-804CC2E8	
+ogws/src/revolution/AX/AXCL.c	codegen	12		.sbss: cannot derive a single base (0x804cc2dc, 0x804cc2e8)
+ogws/src/revolution/AX/AXOut.c	ok	12	.text:802BF3F8-802BFBE4 .bss:80454480-80455280 .sbss:804CC308-804CC348	
+ogws/src/revolution/AX/AXProf.c	ok	1	.text:802C0DA0-802C0DE0 .sbss:804CC3B8-804CC3C8	
+ogws/src/revolution/AX/AXSPB.c	ok	6	.text:802BFBE4-802C0004 .bss:80455280-804552F8 .sbss:804CC348-804CC398	
+ogws/src/revolution/AX/AXVPB.c	ok	12	.text:802C0004-802C0DA0 .data:80394500-80394590 .bss:80455300-80466A00 .sbss:804CC398-804CC3B8 .sdata2:804D1448-804D1468	
+ogws/src/revolution/AXFX/AXFXHooks.c	ok	4	.text:802C2974-802C29AC .sdata:804CABF8-804CAC00	
+ogws/src/revolution/AXFX/AXFXReverbHi.c	ok	3	.text:802C0DE0-802C0E6C .sdata2:804D1468-804D1470	
+ogws/src/revolution/AXFX/AXFXSrcCoef.c	ok	1	.text:802C2960-802C2974 .data:80397900-80398100	
+ogws/src/revolution/BASE/PPCArch.c	ok	24	.text:802C29AC-802C2B1C .data:80398100-80398138	
+ogws/src/revolution/DB/db.c	ok	5	.text:802F5770-802F5858 .data:8039E860-8039E878 .sbss:804CC408-804CC410	
+ogws/src/revolution/DSP/dsp.c	ok	8	.text:802F5858-802F5A94 .data:8039E878-8039E8F8 .sdata:804CACC8-804CACD0 .sbss:804CC410-804CC418	
+ogws/src/revolution/DSP/dsp_debug.c	ok	1	.text:802F5A94-802F5AE4	
+ogws/src/revolution/DSP/dsp_task.c	ok	5	.text:802F5AE4-802F6378 .data:8039E8F8-8039EA38 .sbss:804CC418-804CC430	
+ogws/src/revolution/DVD/dvd.c	ok	54	.text:802F6E18-802FB688 .data:8039EBA0-8039EE68 .bss:8049B840-804A0410 .sdata:804CACE0-804CACF8 .sbss:804CC450-804CC4D8	
+ogws/src/revolution/DVD/dvdFatal.c	ok	4	.text:802FBCD8-802FBE14 .rodata:80377F50-80377F70 .data:8039EE98-8039F348 .sbss:804CC4E0-804CC4E8 .sdata2:804D1538-804D1540	
+ogws/src/revolution/DVD/dvd_broadway.c	ok	23	.text:802FBE14-802FD800 .data:8039F348-8039FF40 .bss:804A0620-804A0740 .sdata:804CACF8-804CAD08 .sbss:804CC4E8-804CC510	
+ogws/src/revolution/DVD/dvderror.c	ok	6	.text:802FB8E0-802FBBE8 .data:8039EE68-8039EE98 .bss:804A0440-804A0620 .sbss:804CC4D8-804CC4E0	
+ogws/src/revolution/DVD/dvdidutils.c	ok	1	.text:802FBBE8-802FBCD8	
+ogws/src/revolution/DVD/dvdqueue.c	ok	6	.text:802FB688-802FB8E0 .bss:804A0410-804A0430	
+ogws/src/revolution/EUART/euart.c	ok	3	.text:802FD800-802FDB70 .sbss:804CC510-804CC520	
+ogws/src/revolution/EXI/EXICommon.c	ok	1	.text:802FF864-802FF9F0 .sdata2:804D1540-804D1548	
+ogws/src/revolution/EXI/EXIUart.c	ok	2	.text:802FF530-802FF864 .sbss:804CC528-804CC538	
+ogws/src/revolution/FS/fs.c	codegen	25		.data range 0x8039FF88-0x8039FFA9 is not 4-aligned (dtk cannot split there)
+ogws/src/revolution/GX/GXAttr.c	stripped	12		function GXGetVtxDesc not in symbols.txt
+ogws/src/revolution/GX/GXDisplayList.c	ok	3	.text:803079FC-80307BCC .bss:804A0F08-804A1608	
+ogws/src/revolution/GX/GXLight.c	ok	12	.text:803051B0-8030585C .data:803A04E8-803A0508 .sdata2:804D1580-804D15B8	
+ogws/src/revolution/GX/GXPixel.c	ok	13	.text:80307298-803079FC .data:803A07A8-803A07C8 .sdata2:804D15E8-804D1638	
+ogws/src/revolution/GX/GXTransform.c	codegen	17		.sdata2: cannot derive a single base (0x804d1538, 0x804d1638)
+ogws/src/revolution/IPC/ipcMain.c	ok	6	.text:80308AB4-80308B38 .sbss:804CC5B0-804CC5C8	
+ogws/src/revolution/IPC/ipcProfile.c	ok	4	.text:8030A75C-8030A920 .bss:804A16D8-804A17D8 .sbss:804CC5D8-804CC5E0	
+ogws/src/revolution/IPC/ipcclt.c	ok	21	.text:80308B38-8030A238 .bss:804A1608-804A1658 .sdata:804CAD80-804CAD88 .sbss:804CC5C8-804CC5D8	
+ogws/src/revolution/IPC/memory.c	ok	4	.text:8030A238-8030A75C .bss:804A1658-804A16D8	
+ogws/src/revolution/MEM/mem_expHeap.c	codegen	6		function AllocFromHead_ size 0x9C, DOL has 0xDC
+ogws/src/revolution/MEM/mem_frameHeap.c	ok	7	.text:8030E598-8030EA0C	
+ogws/src/revolution/MEM/mem_heapCommon.c	other	3		references MEMAppendListObject, which the link knows as fn_8030ED2C
+ogws/src/revolution/MEM/mem_list.c	ok	4	.text:802BC1B0-802BC2C4	
+ogws/src/revolution/MTX/mtx44.c	shared-data	2		lbl_804D16D0 (0x804D16D0) is referenced from outside the unit (fn_80313128) but the object does not define it
+ogws/src/revolution/MTX/quat.c	data-base	2		.sdata2: cannot derive a single base (0x804d16e8, 0x804d16ec)
+ogws/src/revolution/MTX/vec.c	codegen	6		function PSVECScale at 0x803134A8 breaks contiguity (expected 0x80313484)
+ogws/src/revolution/NAND/NANDCheck.c	ok	2	.text:80316424-803165E8 .data:803A1600-803A16B0 .sdata:804CAE38-804CAE48	
+ogws/src/revolution/NAND/NANDCore.c	ok	25	.text:80314E20-80316424 .rodata:80377F80-803780C0 .data:803A14E0-803A1600 .bss:804A7020-804A7060 .sdata:804CAE08-804CAE38 .sbss:804CC628-804CC630	
+ogws/src/revolution/NAND/NANDOpenClose.c	dead-strip	12		NANDOpenAsync is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+ogws/src/revolution/NAND/nand.c	dead-strip	20		.sdata: cannot derive a single base (no references from code)
+ogws/src/revolution/NWC24/NWC24Ipc.c	align	1		.sbss: base 0x804CC754 not aligned to 8
+ogws/src/revolution/NdevExi2AD/DebuggerDriver.c	ok	9	.text:8029B430-8029B764 .sdata:804CABA8-804CABB0 .sbss:804CC158-804CC170	
+ogws/src/revolution/NdevExi2AD/exi2.c	ok	6	.text:8029B764-8029BEF0	
+ogws/src/revolution/OS/OS.c	dead-strip	20		reference to __ArenaLo: not in symbols.txt
+ogws/src/revolution/OS/OSAlarm.c	ok	12	.text:8031791C-80318100 .data:803A1AA0-803A1AB0 .sbss:804CC678-804CC680	
+ogws/src/revolution/OS/OSAlloc.c	shared-data	3		.sbss: base 0x804CC674 not aligned to 8
+ogws/src/revolution/OS/OSArena.c	ok	13	.text:8031831C-803183B0 .sdata:804CAE78-804CAE80 .sbss:804CC688-804CC690	
+ogws/src/revolution/OS/OSAudioSystem.c	ok	3	.text:803183B0-80318864 .data:803A1AB0-803A1B30	
+ogws/src/revolution/OS/OSCache.c	ok	18	.text:80318864-80318E5C .data:803A1B30-803A1D68	
+ogws/src/revolution/OS/OSContext.c	extra-symbol	15		reference to __RAS_OSDisableInterrupts_end: not in symbols.txt
+ogws/src/revolution/OS/OSExec.c	codegen	7		function _ES_GetTicketViews at 0x8031AF98 breaks contiguity (expected 0x8031A74C)
+ogws/src/revolution/OS/OSFatal.c	ok	4	.text:8031B148-8031BD6C .bss:804B78A0-804B7B74 .sdata:804CAE98-804CAEA0 .sdata2:804D1708-804D1748	
+ogws/src/revolution/OS/OSFont.c	ok	9	.text:8031BD6C-8031CA88 .data:803A2298-803A2DA8 .sdata:804CAEA0-804CAEA8 .sbss:804CC6B0-804CC6C0 .sdata2:804D1748-804D1750	
+ogws/src/revolution/OS/OSIdle.c	ok	1	.text:803208BC-80320954 .bss:804B82B8-804B85D0	
+ogws/src/revolution/OS/OSInterrupt.c	ok	11	.text:8031CA88-8031D20C .data:803A2DA8-803A2DD8 .sbss:804CC6C0-804CC6D8	
+ogws/src/revolution/OS/OSIpc.c	ok	3	.text:80320D40-80320D68 .sdata:804CAEB0-804CAEB8 .sbss:804CC700-804CC708	
+ogws/src/revolution/OS/OSLink.c	ok	1	.text:8031D20C-8031D224	
+ogws/src/revolution/OS/OSMemory.c	ok	17	.text:8031D4F8-8031DD0C .data:803A2DD8-803A2DE8	
+ogws/src/revolution/OS/OSMessage.c	ok	4	.text:8031D224-8031D4F8	
+ogws/src/revolution/OS/OSMutex.c	ok	5	.text:8031DD0C-8031E010	
+ogws/src/revolution/OS/OSNet.c	data-base	8		.data: cannot derive a single base (0x803aee10, 0x803aee28, 0x803aee70, 0x803aee88)
+ogws/src/revolution/OS/OSPlayRecord.c	dead-strip	4		PlayRecordAlarmCallback is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+ogws/src/revolution/OS/OSReset.c	codegen	11		function OSShutdownSystem at 0x8031E3F4 breaks contiguity (expected 0x8031E34C)
+ogws/src/revolution/OS/OSRtc.c	ok	11	.text:8031E7D0-8031F2B4 .bss:804B7B80-804B7BD8	
+ogws/src/revolution/OS/OSStateFlags.c	ok	2	.text:80321AB0-80321CBC .data:803AEDE8-803AEE10 .bss:804B88A0-804B88C0	
+ogws/src/revolution/OS/OSStateTM.c	ok	11	.text:80320D68-803213B8 .data:803AECD8-803AEDA0 .bss:804B85E0-804B86A0 .sbss:804CC708-804CC728	
+ogws/src/revolution/OS/OSSync.c	ok	2	.text:8031F384-8031F404	
+ogws/src/revolution/OS/OSThread.c	stripped	22		function OSIsThreadTerminated at 0x8031F6BC breaks contiguity (expected 0x8031F6A8)
+ogws/src/revolution/OS/OSTime.c	ok	4	.text:80320A2C-80320B08	
+ogws/src/revolution/OS/OSUtf.c	ok	4	.text:80320B08-80320D40 .data:803A2E98-803AECD8	
+ogws/src/revolution/OS/__ppc_eabi_init.c	codegen	3		.text+0xB4: PPCHalt+0x0 -> 0x802C29EC, DOL has 0x805425E4
+ogws/src/revolution/PAD/Pad.c	ok	1	.text:80323E30-80323E8C .sbss:804CC770-804CC774	
+ogws/src/revolution/SC/scapi.c	ok	17	.text:803257F0-80325C5C	
+ogws/src/revolution/SC/scsystem.c	codegen	23		function __SCGetConfBuf at 0x802C2954 breaks contiguity (expected 0x803257F0)
+ogws/src/revolution/SI/SISamplingRate.c	ok	2	.text:80327D34-80327E14 .data:803AF2F8-803AF390 .sbss:804CC7C8-804CC7D0	
+ogws/src/revolution/USB/usb.c	ok	13	.text:8032DCEC-8032ED8C .data:803AFEA8-803B04C8 .sdata:804CB008-804CB018 .sbss:804CC908-804CC918	
+ogws/src/revolution/VF/pdm_dskmng.c	extra-symbol	0		expected one .text section, found 0
+ogws/src/revolution/VF/pf_errnum.c	extra-symbol	0		expected one .text section, found 0
+ogws/src/revolution/VF/pf_fat.c	extra-symbol	0		expected one .text section, found 0
+ogws/src/revolution/VI/vi.c	shared-data	1		.sbss: base 0x804CC994 not aligned to 8
+ogws/src/revolution/WENC/wenc.c	ok	1	.text:80333854-80333B2C .rodata:803781A8-803781E8 .sdata2:804D17F0-804D17F8	
+ogws/src/revolution/WPAD/debug_msg.c	ok	1	.text:80340C30-80340C80	
+ogws/src/revolution/WUD/WUD.c	codegen	64		reference to __ntd_get_allocated_mem_size: not in symbols.txt
+ogws/src/revolution/WUD/WUDHidHost.c	ok	5	.text:80344FF0-8034553C .data:803B37B0-803B3A30	
+ogws/src/revolution/WUD/debug_msg.c	ok	1	.text:8034553C-8034558C	
+ogws/src/runtime/__mem.c	ok	1	.text:8028BCD4-8028BCF0 .init:80004000-80004134	
+ogws/src/runtime/__va_arg.c	ok	1	.text:8028BCF0-8028BDB8	
+ogws/src/runtime/global_destructor_chain.c	ok	2	.text:8028BDB8-8028BE18 .sbss:804CC110-804CC118	
+ogws/src/runtime/ptmf.c	data-base	2		.rodata: cannot derive a single base (no references from code)
+ogws/src/runtime/runtime.c	dead-strip	11		function __cvt_dbl_ull at 0x8028C8E4 breaks contiguity (expected 0x8028C764)
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c	ok	9	.text:8029AE68-8029AEB0	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c	codegen	6		function InitMetroTRK size 0x98, DOL has 0x94
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c	ok	13	.text:8029A958-8029AE18 .rodata:80375218-80375320 .data:80393B20-80393B48 .bss:80435208-80435210	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c	ok	1	.text:8029AE18-8029AE4C	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c	ok	2	.text:8029AE4C-8029AE68 .bss:80435210-80435218	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c	ok	2	.text:80296BAC-80296C38	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c	ok	1	.text:8029A914-8029A958 .bss:80435200-80435208	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c	ok	1	.text:80295CF4-80295DEC	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c	ok	1	.text:802985F8-802986B0 .init:80004134-80004188	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c	codegen	16		reference to __TRK_reset: not in symbols.txt
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c	ok	1	.text:80298528-802985C0	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c	ok	3	.text:80296014-80296198 .rodata:80375118-80375138 .bss:804332A0-804332A8	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c	align	5		.bss: base 0x80434C54 not aligned to 8
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c	ok	1	.text:802986B0-802986CC	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Portable/support.c	ok	5	.text:80297E5C-80298510	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c	ok	1	.text:802985C0-802985F8	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c	ok	2	.text:8029A110-8029A480	
+petari/src/MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c	ok	28	.text:802986CC-8029A0E4 .rodata:80375190-80375218 .data:80393AB0-80393AE0 .bss:80434C78-804351F8	
+petari/src/MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c	ok	11	.text:8029AEB0-8029B170 .bss:80435218-80435734 .sbss:804CC150-804CC158	
+petari/src/MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c	ok	4	.text:8029B170-8029B3D8	
+petari/src/MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c	ok	3	.text:8029B3D8-8029B430	
+petari/src/RVL_SDK/arc/arc.c	dead-strip	12		function ARCGetLength at 0x802BDAA4 breaks contiguity (expected 0x802BDA9C)
+petari/src/RVL_SDK/axfx/AXFXReverbHiExp.c	codegen	7		function AXFXReverbHiExpShutdown at 0x802C1214 breaks contiguity (expected 0x802C1090)
+petari/src/RVL_SDK/bte/bta_dm_act.c	codegen	56		.data: cannot derive a single base (0x80399048, 0x80399070)
+petari/src/RVL_SDK/bte/bta_dm_api.c	ok	11	.text:802C957C-802C99E8 .sdata2:804D1500-804D1510	
+petari/src/RVL_SDK/bte/bta_dm_main.c	ok	2	.text:802C99E8-802C9B48 .rodata:80377C38-80377D60 .bss:80492ED8-80493058	
+petari/src/RVL_SDK/bte/bta_dm_pm.c	ok	8	.text:802C9B48-802CA564 .data:803991B0-80399200 .bss:80493058-80493088	
+petari/src/RVL_SDK/bte/bta_hh_act.c	ok	18	.text:802CA564-802CBCAC .data:80399200-803996F8 .sdata:804CAC68-804CAC70	
+petari/src/RVL_SDK/bte/bta_hh_api.c	ok	8	.text:802CBCAC-802CC07C .data:803996F8-80399728 .sdata2:804D1510-804D1518	
+petari/src/RVL_SDK/bte/bta_hh_main.c	ok	3	.text:802CC07C-802CC5D0 .rodata:80377D60-80377DE8 .data:80399728-80399A08 .bss:80493088-804932B8	
+petari/src/RVL_SDK/bte/bta_hh_utils.c	data-base	5		.rodata: cannot derive a single base (no references from code)
+petari/src/RVL_SDK/bte/bta_sys_conn.c	extra-symbol	8		reference to bta_sys_cb: not in symbols.txt
+petari/src/RVL_SDK/bte/bta_sys_main.c	codegen	9		lbl_80492E18 (0x80492E18) is referenced from outside the unit (fn_802C6B84, fn_802C6B94, fn_802C6BA4) but the object does not define it
+petari/src/RVL_SDK/bte/bte_hcisu.c	ok	4	.text:802C62C0-802C6378 .sbss:804CC3E0-804CC3E8	
+petari/src/RVL_SDK/bte/bte_init.c	ok	1	.text:802C6378-802C63A4	
+petari/src/RVL_SDK/bte/bte_logmsg.c	ok	8	.text:802C63A4-802C6508 .bss:80491580-80491D50 .sdata:804CAC50-804CAC58	
+petari/src/RVL_SDK/bte/bte_main.c	ok	4	.text:802C6508-802C6660 .bss:80491D60-80492D90 .sdata:804CAC58-804CAC60 .sbss:804CC3E8-804CC3F0	
+petari/src/RVL_SDK/bte/btm_acl.c	ok	29	.text:802CC97C-802CE6C0 .data:80399CC8-8039A0E8	
+petari/src/RVL_SDK/bte/btm_dev.c	ok	7	.text:802CE6C0-802CED8C	
+petari/src/RVL_SDK/bte/btm_devctl.c	ok	33	.text:802CED8C-802D0714 .data:8039A0E8-8039A348 .sdata:804CAC70-804CAC88	
+petari/src/RVL_SDK/bte/btm_discovery.c	ok	3	.text:802D0714-802D0848	
+petari/src/RVL_SDK/bte/btm_inq.c	codegen	25		.data: cannot derive a single base (0x8039a2d0, 0x8039a348)
+petari/src/RVL_SDK/bte/btm_main.c	ok	1	.text:802D22E0-802D233C .bss:804932B8-80495A80	
+petari/src/RVL_SDK/bte/btm_pm.c	ok	10	.text:802D233C-802D2FD0 .rodata:80377DE8-80377DF8 .data:8039A558-8039A598 .sdata2:804D1520-804D1528	
+petari/src/RVL_SDK/bte/btm_sco.c	ok	15	.text:802D2FD0-802D3E08 .rodata:80377DF8-80377E08 .data:8039A598-8039A898	
+petari/src/RVL_SDK/bte/btm_sec.c	ok	31	.text:802D3E08-802D6DCC .data:8039A898-8039B2A8 .sdata2:804D1528-804D1530	
+petari/src/RVL_SDK/bte/btu_hcif.c	ok	12	.text:802D6DCC-802D8028 .data:8039B2A8-8039B338	
+petari/src/RVL_SDK/bte/btu_init.c	ok	2	.text:802D8028-802D80A0 .sdata2:804D1530-804D1538	
+petari/src/RVL_SDK/bte/btu_task1.c	ok	4	.text:802C6660-802C6AB0 .bss:80492D90-80492E18 .sdata:804CAC60-804CAC68 .sbss:804CC3F0-804CC3F8	
+petari/src/RVL_SDK/bte/gap_conn.c	codegen	8		.data: base 0x8039B26C not aligned to 8
+petari/src/RVL_SDK/bte/gap_utils.c	codegen	6		lbl_80495A80 (0x80495A80) is referenced from outside the unit (fn_802D8180, fn_802D81E0, fn_802D8250) but the object does not define it
+petari/src/RVL_SDK/bte/gki_buffer.c	ok	18	.text:802C2B1C-802C3F60 .data:80398138-80398280	
+petari/src/RVL_SDK/bte/gki_ppc.c	ok	13	.text:802C44B8-802C4748 .bss:80466A00-8048F4E0	
+petari/src/RVL_SDK/bte/gki_time.c	ok	8	.text:802C3F60-802C44B8	
+petari/src/RVL_SDK/bte/hcicmds.c	ok	59	.text:802D9338-802DBA54 .rodata:80377E08-80377E18	
+petari/src/RVL_SDK/bte/hcisu_h2.c	codegen	8		.text+0x568: hcisu_h2_send_msg_now+0x0 -> 0x802C4B04, DOL has 0x80ECCCF8
+petari/src/RVL_SDK/bte/hidd_pm.c	data-base	3		.rodata: cannot derive a single base (no references from code)
+petari/src/RVL_SDK/bte/hidh_api.c	ok	11	.text:802DBFC0-802DCD40 .data:8039B748-8039B860 .bss:80495F78-80496380	
+petari/src/RVL_SDK/bte/hidh_conn.c	ok	16	.text:802DCD40-802DED80 .rodata:80377E18-80377E40 .data:8039B860-8039BC48	
+petari/src/RVL_SDK/bte/l2c_api.c	ok	13	.text:802DED80-802DF94C .data:8039BC48-8039C3D8	
+petari/src/RVL_SDK/bte/l2c_csm.c	ok	11	.text:802DF94C-802E0E28 .data:8039C3D8-8039CC10	
+petari/src/RVL_SDK/bte/l2c_utils.c	ok	33	.text:802E2FE4-802E4EA8 .data:8039D180-8039D268 .sdata:804CAC90-804CACA0	
+petari/src/RVL_SDK/bte/port_rfc.c	ok	18	.text:802E4EF8-802E62F4 .data:8039D268-8039D598	
+petari/src/RVL_SDK/bte/port_utils.c	data-base	7		.rodata: cannot derive a single base (no references from code)
+petari/src/RVL_SDK/bte/ptim.c	ok	4	.text:802C701C-802C71FC	
+petari/src/RVL_SDK/bte/rfc_l2cap_if.c	ok	10	.text:802E68CC-802E7200 .data:8039D6E0-8039D820	
+petari/src/RVL_SDK/bte/rfc_mx_fsm.c	ok	10	.text:802E7200-802E7E44 .data:8039D820-8039DAD8	
+petari/src/RVL_SDK/bte/rfc_port_fsm.c	ok	17	.text:802E7E44-802E8FE4 .data:8039DAD8-8039DE00	
+petari/src/RVL_SDK/bte/rfc_port_if.c	ok	12	.text:802E8FE4-802E9510 .bss:80496B68-80496F80	
+petari/src/RVL_SDK/bte/rfc_utils.c	ok	15	.text:802EAB58-802EB338 .rodata:80377E40-80377F40 .data:8039DED8-8039DF68	
+petari/src/RVL_SDK/bte/sdp_api.c	ok	9	.text:802EB338-802EC1A0 .data:8039DF68-8039DFB8	
+petari/src/RVL_SDK/bte/sdp_db.c	ok	10	.text:802EC1A0-802ECE6C .data:8039DFB8-8039E050	
+petari/src/RVL_SDK/bte/sdp_discovery.c	ok	10	.text:802ECE6C-802EE0E4 .data:8039E050-8039E1B0	
+petari/src/RVL_SDK/bte/sdp_main.c	codegen	11		function sdp_init size 0x198, DOL has 0x1A0
+petari/src/RVL_SDK/bte/sdp_server.c	ok	4	.text:802EEC50-802EF960 .data:8039E510-8039E550	
+petari/src/RVL_SDK/bte/sdp_utils.c	ok	13	.text:802EF960-802F09A0 .rodata:80377F40-80377F50 .data:8039E550-8039E648	
+petari/src/RVL_SDK/dvd/dvd.c	codegen	51		function DVDInit size 0x154, DOL has 0xE0
+petari/src/RVL_SDK/dvd/dvdFatal.c	codegen	4		function __DVDShowFatalMessage size 0xF4, DOL has 0xB4
+petari/src/RVL_SDK/dvd/dvdfs.c	ok	11	.text:802F6378-802F6E18 .data:8039EA38-8039EBA0 .sdata:804CACD0-804CACE0 .sbss:804CC430-804CC450	
+petari/src/RVL_SDK/gx/GXAttr.c	codegen	11		function __GXSetVCD at 0x80302FF0 breaks contiguity (expected 0x80302DE4)
+petari/src/RVL_SDK/gx/GXBump.c	ok	10	.text:80306778-80306C18 .sdata2:804D15E0-804D15E8	
+petari/src/RVL_SDK/gx/GXFifo.c	ok	13	.text:80301FD4-80302B34 .data:803A0200-803A0230 .bss:804A0EC0-804A0F08 .sbss:804CC578-804CC598	
+petari/src/RVL_SDK/gx/GXGeometry.c	ok	8	.text:8030409C-80304638	
+petari/src/RVL_SDK/gx/GXInit.c	dead-strip	6		reference to GXNtsc480IntDf: not in symbols.txt
+petari/src/RVL_SDK/gx/GXLight.c	codegen	12		function GXInitLightSpot size 0x184, DOL has 0x188
+petari/src/RVL_SDK/gx/GXMisc.c	ok	21	.text:80303880-8030409C .sbss:804CC598-804CC5B0	
+petari/src/RVL_SDK/gx/GXPerf.c	ok	2	.text:80308278-80308AB4 .data:803A07C8-803A08B8	
+petari/src/RVL_SDK/gx/GXTev.c	ok	16	.text:80306C18-80307298 .data:803A0730-803A07A8	
+petari/src/RVL_SDK/gx/GXTexture.c	codegen	28		function GXGetTexObjWidth at 0x80305DF8 breaks contiguity (expected 0x80305DEC)
+petari/src/RVL_SDK/gx/GXTransform.c	codegen	16		function GXProject size 0x144, DOL has 0x188
+petari/src/RVL_SDK/kpad/KPAD.c	data-base	21		.sdata2: cannot derive a single base (0x804d1640, 0x804d1644, 0x804d1648)
+petari/src/RVL_SDK/mem/mem_allocator.c	ok	5	.text:8030ECC0-8030ED14 .sdata2:804D16A8-804D16B0	
+petari/src/RVL_SDK/mem/mem_expHeap.c	ok	8	.text:8030DD84-8030E598	
+petari/src/RVL_SDK/mtx/mtx.c	codegen	16		function PSMTXInverse at 0x80312494 breaks contiguity (expected 0x80312444)
+petari/src/RVL_SDK/mtx/mtx44.c	ok	5	.text:80312E5C-803133E8 .sdata2:804D16D0-804D16E8	
+petari/src/RVL_SDK/mtx/mtx44vec.c	ok	1	.text:803133E8-80313460	
+petari/src/RVL_SDK/mtx/mtxvec.c	ok	2	.text:80312DB4-80312E5C	
+petari/src/RVL_SDK/mtx/vec.c	ok	7	.text:80313460-803135A8 .sdata2:804D16E8-804D16F0	
+petari/src/RVL_SDK/os/OSCache.c	codegen	17		function LCStoreBlocks at 0x80318B04 breaks contiguity (expected 0x80318AE0)
+petari/src/RVL_SDK/os/OSError.c	ok	5	.text:803196E4-80319E18 .data:803A1F48-803A2268 .bss:804A70D0-804A7114 .sdata:804CAE80-804CAE88	
+petari/src/RVL_SDK/os/OSExec.c	codegen	8		function __OSLaunchMenu size 0xC4, DOL has 0xFC
+petari/src/RVL_SDK/os/OSLaunch.c	codegen	2		function __OSRelaunchTitle size 0x200, DOL has 0x14C
+petari/src/RVL_SDK/os/OSReboot.c	ok	1	.text:8031E010-8031E070	
+petari/src/RVL_SDK/os/OSRtc.c	codegen	9		function UnlockSram at 0x8031EB58 breaks contiguity (expected 0x8031EB08)
+petari/src/RVL_SDK/os/OSThread.c	stripped	23		function SleepAlarmHandler not in symbols.txt
+petari/src/RVL_SDK/os/__ppc_eabi_init.c	ok	3	.text:80322540-803225F4	
+petari/src/RVL_SDK/sc/scapi_prdinfo.c	ok	2	.text:80325C5C-80325E4C .data:803AF1C0-803AF208 .sdata:804CAFE8-804CAFF0	
+petari/src/RVL_SDK/thp/THPAudio.c	ok	1	.text:8032D644-8032DAD8	
+petari/src/RVL_SDK/thp/THPDec.c	ok	16	.text:8032A274-8032D644 .rodata:80378118-803781A8 .data:803AFE30-803AFE78 .bss:804C4540-804C4690 .sdata:804CAFF8-804CB000 .sbss:804CC7E0-804CC908 .sdata2:804D17C8-804D17E8	
+petari/src/RVL_SDK/vi/i2c.c	ok	3	.text:80331794-803321B0 .sdata:804CB038-804CB040 .sbss:804CC9C8-804CC9D0	
+petari/src/RVL_SDK/vi/vi3in1.c	codegen	13		.sdata: cannot derive a single base (0x804cb03c, 0x804cb041, 0x804cb04c)
+petari/src/RVL_SDK/wpad/WPADEncrypt.c	ok	3	.text:8033FB88-80340C30 .data:803B1620-803B2948 .sbss:804CCA30-804CCA38	
+petari/src/nw4r/db/db_assert.cpp	other	4		.data range 0x80393B48-0x80393BB5 is not 4-aligned (dtk cannot split there)
+petari/src/nw4r/db/db_console.cpp	ok	2	.text:8029BEF0-8029BFC4	
+wii-ipl/libs/EGG/src/core/eggHeap.cpp	stripped	2		function __dt__Q23EGG4HeapFv not in symbols.txt
+wii-ipl/libs/MSL/src/MSL_Common/alloc.c	extab	4		lbl_80432F58 (0x80432F58) is referenced from outside the unit (__files) but the object does not define it
+wii-ipl/libs/MSL/src/MSL_Common/buffer_io.c	extab	2		extabindex entry 0x80006708 for __flush_buffer is not emitted by the object (exception table)
+wii-ipl/libs/MSL/src/MSL_Common/math_api.c	extab	2		extabindex entry 0x80006768 for fn_8028E9FC is not emitted by the object (exception table)
+wii-ipl/libs/MSL/src/MSL_Common/mem.c	ok	4	.text:8028E5BC-8028E72C extab:800065A8-800065B0 extabindex:8000675C-80006768	
+wii-ipl/libs/MSL/src/MSL_Common/mem_funcs.c	ok	4	.text:8028E72C-8028E9FC	
+wii-ipl/libs/MSL/src/MSL_Common/rand.c	ok	1	.text:80290EAC-80290ECC .sdata:804CAB90-804CAB98	
+wii-ipl/libs/MSL/src/MSL_Common/string.c	extab	8		function strcmp at 0x80291188 breaks contiguity (expected 0x8029113C)
+wii-ipl/libs/MSL/src/MSL_Common_Embedded/Math/e_log.c	ok	1	.text:802927EC-80292AA0 .sbss:804CC138-804CC140 .sdata2:804D0D78-804D0DF8	
+wii-ipl/libs/MSL/src/PPC_EABI/abort_exit_ppc_eabi.c	ok	1	.text:80291BD0-80291C04 extab:80006648-80006650 extabindex:8000684C-80006858 .sbss:804CC130-804CC138	
+wii-ipl/libs/MSL/src/PPC_EABI/uart_console_io_gcn.c	ok	2	.text:80291AF8-80291BD0 extab:80006640-80006648 extabindex:80006840-8000684C .sbss:804CC128-804CC130	
+wii-ipl/libs/MetroTRK/src/Export/mslsupp.c	codegen	2		function __TRK_write_console at 0x8029A480 breaks contiguity (expected 0x8029A5F8)
+wii-ipl/libs/MetroTRK/src/Export/targsupp.c	codegen	4		function TRKOpenFile at 0x8029A0F8 breaks contiguity (expected 0x8029A110)
+wii-ipl/libs/NW4R/src/lyt/lyt_animation.cpp	stripped	3		function GetStepCurveValue__27@unnamed@lyt_animation_cpp@FfPCQ44nw4r3lyt3res7StepKeyUl not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt/lyt_common.cpp	codegen	6		function IsModulateVertexColor__Q34nw4r3lyt6detailFPQ34nw4r2ut5ColorUc at 0x80351C7C breaks contiguity (expected 0x80351A18)
+wii-ipl/libs/NW4R/src/lyt/lyt_material.cpp	stripped	4		function CalcTextureMtx__26@unnamed@lyt_material_cpp@FPQ34nw4r4math5MTX34RCQ34nw4r3lyt6TexSRT not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt/lyt_pane.cpp	stripped	13		function __dt__Q44nw4r3lyt6detail8PaneBaseFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt/lyt_picture.cpp	stripped	0		function __dt__Q34nw4r2ut5ColorFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt/lyt_window.cpp	stripped	0		function __dt__Q34nw4r2ut5ColorFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_animation.cpp	stripped	12		function __dt__Q36nw4hbm2ut12LinkListNodeFv at 0x803527E0 breaks contiguity (expected 0x80350B78)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_arcResourceAccessor.cpp	stripped	5		function __dt__Q36nw4hbm2ut12LinkListNodeFv at 0x803527E0 breaks contiguity (expected 0x80351684)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_bounding.cpp	dead-strip	6		reference to __ct__Q36nw4hbm3lyt4PaneFPCQ46nw4hbm3lyt3res4Pane: not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_common.cpp	ok	16	.text:80351950-80352764 .rodata:80378608-80378618 .bss:804C9F88-804C9FB0	
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_drawinfo.cpp	stripped	1		function __dt__Q36nw4hbm3lyt8DrawInfoFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_group.cpp	extra-symbol	6		reference to EqualsPaneName__Q36nw4hbm3lyt6detailFPCcPCc: not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_layout.cpp	dead-strip	16		reference to typeInfo__Q36nw4hbm3lyt7TextBox: not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_material.cpp	dead-strip	25		.rodata: cannot derive a single base (0x80378620, 0x80378628)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_pane.cpp	stripped	30		function __dt__Q46nw4hbm3lyt6detail8PaneBaseFv not in symbols.txt
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_picture.cpp	ctors	13		function __ct__Q36nw4hbm3lyt7PictureFPCQ46nw4hbm3lyt3res7PictureRCQ36nw4hbm3lyt11ResBlockSet at 0x80357BA0 breaks contiguity (expected 0x80351930)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_resourceAccessor.cpp	codegen	3		.data: cannot derive a single base (0x803b4e70, 0x803b51d0)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_textBox.cpp	stripped	22		function __dt__Q36nw4hbm2ut5ColorFv at 0x803518F0 breaks contiguity (expected 0x803581E4)
+wii-ipl/libs/NW4R/src/lyt_hbm/lyt_window.cpp	ctors	23		function __dt__Q36nw4hbm2ut5ColorFv at 0x803518F0 breaks contiguity (expected 0x803599D4)
+wii-ipl/libs/NW4R/src/math_hbm/math_triangular.cpp	ok	3	.text:8035BC74-8035BEF8 .rodata:803786B0-803786D8 .data:803B5380-803B6498	
+wii-ipl/libs/NW4R/src/snd/snd_AxManager.cpp	codegen	24		function __ct__Q44nw4r3snd6detail9AxManagerFv size 0x530, DOL has 0x4A0
+wii-ipl/libs/NW4R/src/snd/snd_FxReverbStd.cpp	stripped	4		function __dt__Q34nw4r3snd6FxBaseFv not in symbols.txt
+wii-ipl/libs/NW4R/src/snd/snd_SoundArchivePlayer.cpp	stripped	21		function __ct__Q34nw4r3snd18SoundArchivePlayerFv size 0x14C, DOL has 0x12C
+wii-ipl/libs/NW4R/src/snd/snd_WsdPlayer.cpp	stripped	15		function __ct__Q44nw4r3snd6detail9WsdPlayerFv size 0x74, DOL has 0x6C
+wii-ipl/libs/NW4R/src/ut/ut_CharWriter.cpp	dead-strip	4		function SetCursor__Q34nw4r2ut10CharWriterFff at 0x8035D53C breaks contiguity (expected 0x8035C2F8)
+wii-ipl/libs/NW4R/src/ut/ut_LinkList.cpp	duplicate	5		overlaps another library source that places
+wii-ipl/libs/NW4R/src/ut/ut_TextWriterBase.cpp	extra-symbol	0		expected one .text section, found 0
+wii-ipl/libs/NW4R/src/ut_hbm/ut_CharStrmReader.cpp	duplicate	4		overlaps another library source that places
+wii-ipl/libs/NW4R/src/ut_hbm/ut_CharWriter.cpp	ctors	28		function __ct__Q36nw4hbm2ut10CharWriterFv at 0x8035C07C breaks contiguity (expected 0x80351930)
+wii-ipl/libs/NW4R/src/ut_hbm/ut_Font.cpp	extra-symbol	1		reference to ReadNextCharUTF8__Q36nw4hbm2ut14CharStrmReaderFv: not in symbols.txt
+wii-ipl/libs/NW4R/src/ut_hbm/ut_LinkList.cpp	ok	3	.text:8035DC14-8035DD0C	
+wii-ipl/libs/NW4R/src/ut_hbm/ut_ResFont.cpp	shared-data	4		reference to __ct__Q46nw4hbm2ut6detail11ResFontBaseFv: not in symbols.txt
+wii-ipl/libs/NW4R/src/ut_hbm/ut_ResFontBase.cpp	stripped	24		function __dt__Q46nw4hbm2ut6detail11ResFontBaseFv not in symbols.txt
+wii-ipl/libs/NW4R/src/ut_hbm/ut_TagProcessorBase.cpp	dead-strip	8		__ct__Q36nw4hbm2ut19TagProcessorBase<c>Fv is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)
+wii-ipl/libs/NW4R/src/ut_hbm/ut_TextWriterBase.cpp	dead-strip	20		.data: cannot derive a single base (no references from code)
+wii-ipl/libs/NW4R/src/ut_hbm/ut_binaryFileFormat.cpp	duplicate	1		overlaps another library source that places
+wii-ipl/libs/NW4R/src/ut_hbm/ut_list.cpp	duplicate	5		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/ai/ai.c	codegen	10		function AIGetDSPSampleRate at 0x802BCE64 breaks contiguity (expected 0x802BCE5C)
+wii-ipl/libs/RVL_SDK/src/ax/AXAux.c	codegen	22		function AXGetAuxACallback at 0x8031E070 breaks contiguity (expected 0x802BE938)
+wii-ipl/libs/RVL_SDK/src/ax/AXOut.c	codegen	12		function __AXOutAiCallback size 0xB0, DOL has 0xA4
+wii-ipl/libs/RVL_SDK/src/axfx/AXFXChorusExp.c	codegen	7		reference to __AXFXGetLfoSinTable: not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/axfx/AXFXReverbHiExp.c	codegen	10		function AXFXReverbHiExpCallback size 0x51C, DOL has 0x518
+wii-ipl/libs/RVL_SDK/src/bte/bd.c	data-base	2		.sdata2: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/bte/bta_dm_act.c	codegen	56		.data: cannot derive a single base (0x80399048, 0x80399070)
+wii-ipl/libs/RVL_SDK/src/bte/bta_dm_api.c	duplicate	11		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/bta_hh_api.c	duplicate	8		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/bta_hh_utils.c	data-base	5		.rodata: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/bte/bta_sys_conn.c	extra-symbol	8		reference to bta_sys_cb: not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/bte/btm_acl.c	duplicate	29		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/btm_dev.c	duplicate	7		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/btm_devctl.c	duplicate	33		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/btm_inq.c	ok	25	.text:802D0848-802D22E0 .data:8039A348-8039A558 .sdata2:804D1518-804D1520	
+wii-ipl/libs/RVL_SDK/src/bte/btm_sco.c	duplicate	15		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/btm_sec.c	duplicate	31		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/btu_hcif.c	duplicate	12		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/gap_api.c	stripped	1		function GAP_SetDeviceClass not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/bte/gap_conn.c	codegen	8		.data: base 0x8039B26C not aligned to 8
+wii-ipl/libs/RVL_SDK/src/bte/gap_utils.c	codegen	6		lbl_80495A80 (0x80495A80) is referenced from outside the unit (fn_802D8180, fn_802D81E0, fn_802D8250) but the object does not define it
+wii-ipl/libs/RVL_SDK/src/bte/gki_buffer.c	duplicate	18		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/gki_ppc.c	duplicate	13		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/gki_time.c	duplicate	8		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/hcicmds.c	duplicate	59		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/hcisu_h2.c	codegen	8		.text+0x568: hcisu_h2_send_msg_now+0x0 -> 0x802C4B04, DOL has 0x80ECCCF8
+wii-ipl/libs/RVL_SDK/src/bte/hidd_api.c	data-base	1		.data: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/bte/hidd_conn.c	stripped	1		function hidd_conn_disconnect not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/bte/hidd_mgmt.c	stripped	1		function hidd_no_conn_proc_evt not in symbols.txt
+wii-ipl/libs/RVL_SDK/src/bte/hidd_pm.c	data-base	3		.rodata: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/bte/hidh_api.c	duplicate	11		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/l2c_api.c	duplicate	13		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/l2c_link.c	ok	17	.text:802E0E28-802E1FB4 .data:8039CC10-8039CE80	
+wii-ipl/libs/RVL_SDK/src/bte/l2c_main.c	ok	5	.text:802E1FB4-802E2FE4 .data:8039CE80-8039D180 .bss:80496380-80496B68	
+wii-ipl/libs/RVL_SDK/src/bte/l2c_utils.c	duplicate	33		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/port_api.c	ok	1	.text:802E4EA8-802E4EF8	
+wii-ipl/libs/RVL_SDK/src/bte/port_utils.c	data-base	7		.rodata: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/bte/rfc_l2cap_if.c	duplicate	10		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/rfc_ts_frames.c	ok	15	.text:802E9510-802EAB58 .data:8039DE00-8039DED8 .sdata:804CACA0-804CACB0	
+wii-ipl/libs/RVL_SDK/src/bte/sdp_api.c	duplicate	9		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/sdp_db.c	duplicate	10		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/sdp_main.c	ok	11	.text:802EE0E4-802EEC50 .data:8039E1B0-8039E510 .bss:80496F80-8049B5B8	
+wii-ipl/libs/RVL_SDK/src/bte/sdp_utils.c	duplicate	13		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/bte/utl.c	ok	1	.text:802C71FC-802C7240	
+wii-ipl/libs/RVL_SDK/src/bte/uusb_ppc.c	ok	14	.text:802C4DE4-802C62C0 .data:803982F0-80399038 .bss:8048F520-80491580 .sdata:804CAC00-804CAC20 .sbss:804CC3C8-804CC3E0	
+wii-ipl/libs/RVL_SDK/src/bte/wbt_ext.c	ok	1	.text:802D80A0-802D8180	
+wii-ipl/libs/RVL_SDK/src/card/CARDBios.c	ok	23	.text:802F09A0-802F1D20 .data:8039E648-8039E6A8 .bss:8049B5B8-8049B808 .sdata:804CACB0-804CACB8 .sbss:804CC400-804CC408	
+wii-ipl/libs/RVL_SDK/src/card/CARDBlock.c	ok	4	.text:802F2CD8-802F2F24	
+wii-ipl/libs/RVL_SDK/src/card/CARDCheck.c	ok	7	.text:802F3180-802F424C	
+wii-ipl/libs/RVL_SDK/src/card/CARDDir.c	ok	4	.text:802F2F24-802F3180	
+wii-ipl/libs/RVL_SDK/src/card/CARDMount.c	ok	6	.text:802F424C-802F4CB4 .data:8039E820-8039E860	
+wii-ipl/libs/RVL_SDK/src/card/CARDNet.c	ok	1	.text:802F56CC-802F5770 .sdata:804CACC0-804CACC8	
+wii-ipl/libs/RVL_SDK/src/card/CARDOpen.c	ok	3	.text:802F4CB4-802F503C	
+wii-ipl/libs/RVL_SDK/src/card/CARDRdwr.c	ok	4	.text:802F2A88-802F2CD8	
+wii-ipl/libs/RVL_SDK/src/card/CARDRead.c	ok	3	.text:802F503C-802F545C	
+wii-ipl/libs/RVL_SDK/src/card/CARDStat.c	ok	2	.text:802F545C-802F56CC	
+wii-ipl/libs/RVL_SDK/src/card/CARDUnlock.c	ok	6	.text:802F1D20-802F2A88 .data:8039E6C0-8039E820 .sdata:804CACB8-804CACC0	
+wii-ipl/libs/RVL_SDK/src/dvd/dvd_broadway.c	codegen	23		.text: 71 words differ from the DOL (first at 0x802FBFC8)
+wii-ipl/libs/RVL_SDK/src/exi/EXIBios.c	ok	22	.text:802FDB70-802FF530 .data:8039FF40-8039FF88 .bss:804A0780-804A0840 .sdata:804CAD08-804CAD10 .sbss:804CC520-804CC528	
+wii-ipl/libs/RVL_SDK/src/gx/GXFifo.c	duplicate	14		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/gx/GXFrameBuf.c	data-base	15		.data: cannot derive a single base (no references from code)
+wii-ipl/libs/RVL_SDK/src/gx/GXMisc.c	codegen	20		function GXSetDrawSyncCallback at 0x80303EAC breaks contiguity (expected 0x80303E8C)
+wii-ipl/libs/RVL_SDK/src/gx/GXTexture.c	codegen	31		function GXInitTexObjUserData at 0x80305DDC breaks contiguity (expected 0x80305DB4)
+wii-ipl/libs/RVL_SDK/src/gx/GXTransform.c	codegen	16		.sdata2: cannot derive a single base (0x804d1538, 0x804d1638)
+wii-ipl/libs/RVL_SDK/src/mem/mem_expHeap.c	duplicate	8		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/mem/mem_unitHeap.c	ok	5	.text:8030EA0C-8030ECC0	
+wii-ipl/libs/RVL_SDK/src/nand/NANDCore.c	codegen	23		function nandConvertErrorCode size 0x160, DOL has 0xD0
+wii-ipl/libs/RVL_SDK/src/os/OSNandbootInfo.c	ok	2	.text:80322250-80322540 .data:803AEF78-803AEF98	
+wii-ipl/libs/RVL_SDK/src/os/OSSemaphore.c	ok	2	.text:8031F2B4-8031F384	
+wii-ipl/libs/RVL_SDK/src/pad/Pad.c	duplicate	17		overlaps another library source that places
+wii-ipl/libs/RVL_SDK/src/sc/scsystem.c	codegen	23		function __SCGetConfBuf at 0x802C2954 breaks contiguity (expected 0x803257F0)
+wii-ipl/libs/RVL_SDK/src/si/SIBios.c	ok	20	.text:803267B4-80327D34 .data:803AF288-803AF2F8 .bss:804C0BA0-804C0DC0 .sdata:804CAFF0-804CAFF8 .sbss:804CC7B8-804CC7C8	
+wii-ipl/libs/RVL_SDK/src/tpl/TPL.c	ok	3	.text:8032DAD8-8032DCEC .data:803AFE78-803AFEA8 .sdata:804CB000-804CB008 .sdata2:804D17E8-804D17F0	
+wii-ipl/libs/RVL_SDK/src/vi/vi3in1.c	data-base	13		.sbss: cannot derive a single base (0x804cc9cc, 0x804cc9d0)
+wii-ipl/libs/RVL_SDK/src/wpad/WPAD.c	stripped	61		function OnShutdown not in symbols.txt
+wii-ipl/libs/Runtime/src/Gecko_ExceptionPPC.c	ok	2	.text:8028C9FC-8028CA60 .bss:80432F10-80432F20	
+wii-ipl/libs/Runtime/src/NMWException.cpp	ok	4	.text:8028BE18-8028C148 extab:800064E0-80006520 extabindex:80006660-80006690	
+wii-ipl/libs/Runtime/src/__init_cpp_exceptions.cpp	duplicate	2		overlaps another library source that places
+wii-ipl/libs/Runtime/src/runtime.c	stripped	13		function __shr2u not in symbols.txt
+wiiplay/src/MSL/FILE_POS.c	ok	3	.text:8028E22C-8028E49C extab:80006598-800065A0 extabindex:80006744-80006750	
+wiiplay/src/MSL/ansi_files.c	ok	2	.text:8028CF74-8028D084 extab:80006538-80006548 extabindex:800066B4-800066CC	
+wiiplay/src/MSL/ansi_fp.c	extab	6		.data: 15 words differ from the DOL (first at 0x80393578)
+wiiplay/src/MSL/arith.c	ok	2	.text:8028DB44-8028DB64	
+wiiplay/src/MSL/direct_io.c	ok	1	.text:8028DC44-8028DF4C extab:80006578-80006580 extabindex:80006714-80006720	
+wiiplay/src/MSL/extras.c	codegen	3		function __msl_itoa at 0x8028E13C breaks contiguity (expected 0x80291CEC)
+wiiplay/src/MSL/file_io.c	ok	2	.text:8028DF4C-8028E13C extab:80006580-80006590 extabindex:80006720-80006738	
+wiiplay/src/MSL/math_sun.c	ok	1	.text:80291C04-80291C44 extab:80006650-80006658 extabindex:80006858-80006864	
+wiiplay/src/MSL/mbstring.c	extab	3		extabindex entry 0x80006750 for wcstombs is not emitted by the object (exception table)
+wiiplay/src/MSL/printf.c	extab	5		extabindex entry 0x800067D4 for fn_80290B48 is not emitted by the object (exception table)
+wiiplay/src/MSL/scanf.c	stripped	2		function parse_format size 0x6B4, DOL has 0x5FC
+wiiplay/src/MSL/signal.c	ok	1	.text:80290F5C-8029100C extab:80006620-80006628 extabindex:80006810-8000681C .bss:80433258-80433278	
+wiiplay/src/MSL/string.c	extab	9		function strtok at 0x8029135C breaks contiguity (expected 0x80291314)
+wiiplay/src/MSL/strtoul.c	stripped	2		function __strtoull not in symbols.txt
+wiiplay/src/MSL/w_sqrt.c	ok	1	.text:80295CF0-80295CF4	
+wiiplay/src/MSL_C/misc_io.c	ok	1	.text:8028EA94-8028EAA4	
+wiiplay/src/MSL_C/wchar_io.c	ok	1	.text:80291A74-80291AF8	
+wiiplay/src/MSL_C/wstring.c	ok	3	.text:802919E0-80291A74	
+wiiplay/src/revolution/AXFX/AXFXReverbHiExp.c	ok	10	.text:802C0E6C-802C1E50 .data:80397560-80397700 .sdata2:804D1470-804D14B0	
+wiiplay/src/revolution/MEM/mem_list.c	duplicate	4		renames a symbol to MEMInitList, which another symbol already has
+wiiplay/src/revolution/VI/vi.c	ok	28	.text:8032ED8C-80331794 .data:803B04C8-803B0948 .bss:804C4690-804C4800 .sdata:804CB018-804CB038 .sbss:804CC918-804CC9C8	
+wiiplay/src/revolution/WPAD/WPADHIDParser.c	ok	22	.text:8033B0D4-8033FB88 .data:803B11C0-803B1620 .bss:804C7F48-804C7F60 .sbss:804CCA18-804CCA30 .sdata2:804D1800-804D1828	
+xd/libs/dolphin/src/seq/seq.c	ok	11	.text:80325E4C-803267B4 .data:803AF208-803AF288 .sbss:804CC7B0-804CC7B8 .sdata2:804D1750-804D1778	
+xd/libs/dolphin/src/syn/syn.c	codegen	7		.sbss: cannot derive a single base (0x804cc7d0, 0x804cc7d8)
+xd/libs/dolphin/src/syn/synctrl.c	codegen	7		reference to __SYNVolumeAttenuation: not in symbols.txt
+xd/libs/dolphin/src/syn/synenv.c	data-base	4		.sdata2: cannot derive a single base (0x804d1780, 0x804d1784, 0x804d1788, 0x804d1794)
+xd/libs/dolphin/src/syn/synlfo.c	extra-symbol	2		reference to __SYNn128: not in symbols.txt
+xd/libs/dolphin/src/syn/synmix.c	shared-data	5		lbl_803AF6B0 (0x803AF6B0) is referenced from outside the unit (fn_803282F8) but the object does not define it
+xd/libs/dolphin/src/syn/synpitch.c	ok	4	.text:803298F8-80329B7C .data:803AFA40-803AFE30 .sdata2:804D17B0-804D17C8	
+xd/libs/dolphin/src/syn/synsample.c	ok	4	.text:80329B7C-80329FEC	
+xd/libs/dolphin/src/syn/synvoice.c	shared-data	3		lbl_804CC7D0 (0x804CC7D0) is referenced from outside the unit (fn_80327E98, fn_803281A0, fn_80328964) but the object does not define it
+xd/libs/dolphin/src/syn/synwt.c	ok	1	.text:8032A1F0-8032A274	
+xeno/libs/RVL_SDK/src/revolution/hbm/HBMController.cpp	codegen	24		reference to WPADGetRadioSensitivity: not in symbols.txt
+xeno/libs/RVL_SDK/src/revolution/hbm/HBMGUIManager.cpp	stripped	52		function __dt__Q310homebutton3gui9InterfaceFv not in symbols.txt
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/lyt/lyt_arcResourceAccessor.cpp	stripped	7		function __dt__Q36nw4hbm2ut12LinkListNodeFv at 0x803527E0 breaks contiguity (expected 0x803516E0)
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/lyt/lyt_drawInfo.cpp	stripped	1		function __dt__Q36nw4hbm3lyt8DrawInfoFv not in symbols.txt
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/math/math_triangular.cpp	duplicate	3		overlaps another library source that places
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/ut/ut_CharWriter.cpp	ctors	28		function __ct__Q36nw4hbm2ut10CharWriterFv at 0x8035C07C breaks contiguity (expected 0x80351930)
+xeno/libs/RVL_SDK/src/revolution/hbm/nw4hbm/ut/ut_TagProcessorBase.cpp	dead-strip	8		__ct__Q36nw4hbm2ut19TagProcessorBase<c>Fv is referenced nowhere in the DOL and not force_active (MWLD would dead-strip it)

@@ -1,0 +1,79 @@
+#include "game/rB_8002E1C4/types.h"
+
+/* Map-range highlight functor callbacks: visit(self, target) marks the
+ * target's tile in the highlight layer lbl_803E7320 when it qualifies. */
+
+typedef struct MapUnit {
+    u8 pad[0xf4];
+    void* xf4;  /* 0x0f4 faction / army */
+    u8 padf8[0xfc - 0xf8];
+    u8 xfc;     /* 0x0fc */
+    u8 padfd[0x102 - 0xfd];
+    s8 x;       /* 0x102 */
+    s8 y;       /* 0x103 */
+    u8 pad104[0x10c - 0x104];
+    u32 x10c;
+    u16 x110;
+    u8 pad112[2];
+    s8 x114;    /* current HP */
+    u8 pad115[0x12c - 0x115];
+    u8 x12c[0x1bc - 0x12c]; /* skills */
+} MapUnit;
+
+typedef struct Functor {
+    void* vt;
+    MapUnit* u;
+} Functor;
+
+extern u8 lbl_803E7320[];
+void fn_800CFB34(void* map);
+#if TARGET_PC
+FE10_PROTO void fn_800CFC50(void* layer, s8 x, s8 y, u8 v, void *);
+#else
+void fn_800CFC50(void* layer, s8 x, s8 y, u8 v, int mode);
+#endif
+MapUnit* fn_8012CF28(s8 x, s8 y);
+int fn_8010E398(void* a, void* b);
+s16 fn_801237EC(MapUnit* u);
+int fn_80108F68(void* p);
+
+void fn_8003B6D0(Functor* self, MapUnit* t)
+{
+    if ((u8)fn_8010E398(self->u->xf4, t->xf4) == 1 && !(t->x110 & 1))
+        fn_800CFC50(lbl_803E7320, t->x, t->y, t->xfc, 0);
+}
+
+void fn_8003B744(Functor* self, MapUnit* t)
+{
+    if ((u8)fn_8010E398(self->u->xf4, t->xf4) == 1) return;
+    {
+        int hp = t->x114;
+        if (hp == fn_801237EC(t) && fn_80108F68(&t->x110) == 0) return;
+    }
+    fn_800CFC50(lbl_803E7320, t->x, t->y, t->xfc, 0);
+}
+
+extern u8 lbl_803EC898[];
+extern u8 lbl_803CB770[];
+s16 fn_80115CD8(void* map, s8 x, s8 y);
+void* fn_80066130(void* p, s8 x, s8 y, u8 n);
+
+typedef struct Functor8 {
+    void* vt;
+    MapUnit* u;
+    u8 x8;
+} Functor8;
+
+#pragma use_lmw_stmw on
+void fn_8003B7E0(Functor8* self, s8 x, s8 y)
+{
+    u8* m = lbl_803EC898;
+    int idx = x + (y << 6);
+    if ((m + idx)[0xd] != 0) return;
+    if ((m + idx)[0x300d] & 1) return;
+    if (fn_80115CD8(m, x, y) > 30000) return;
+    if (fn_80066130(lbl_803CB770, x, y, self->x8) != 0) return;
+    if ((s8)(m + idx)[0xf18e] != 0) return;
+    fn_800CFC50(lbl_803E7320, x, y, 0, self->x8);
+}
+#pragma use_lmw_stmw reset

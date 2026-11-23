@@ -1,0 +1,817 @@
+Round 6 near misses from hand-written C. Each block names its source file for the structs and externs,
+and the checker result when it was moved here.
+
+/* fn_80103410, from fn_80103638.c: 13 of 41 words differ */
+void* fn_80103410(void* a0, void* b, int fl, void* parent) {
+    void* a = a0;
+    void* p;
+    if (fl & 0x2000) {
+        fn_800F39DC(a, b, fl);
+        return 0;
+    }
+    p = GetOrMake(a, fl, parent);
+    fn_800FFFDC(p, b);
+    fn_80100384(p);
+    return p;
+}
+
+/* fn_80100760, from fn_801006F0.c: size 0xCC, want 0xD4; 1 wrong reference(s); 24 of 51 words differ */
+void fn_80100760(UProc* p) {
+    PA(p->unit, (char*)lbl_80367D50 + 0x15);
+    SpawnFade(p->unit);
+}
+
+/* fn_801010F0, from fn_801006F0.c: size 0x13C, want 0x138; 4 wrong reference(s); 42 of 78 words differ */
+void fn_801010F0(UProc* p) {
+    int n = 0x10;
+    int a;
+    f32 x, y;
+    p->s44.f += 1.0f;
+    a = fn_8001EDF8(2, 255.0f, 0.0f, (f32)n, p->s44.f);
+    x = L(p->s38.f, p->unit->x, n, p->s44.f);
+    y = L(p->s3C.f, p->unit->y, n, p->s44.f);
+    fn_800F3B50(p->s34.m, x, y);
+    fn_800F3F08(p->s34.m, a);
+    if (p->s44.f == (f32)n) {
+        fn_80083B78(p);
+    }
+}
+
+/* fn_80101568, from fn_801006F0.c: 4 of 80 words differ */
+void fn_80101568(UProc* p) {
+    MapUnit* u;
+    MapUnit* q;
+    p->s50.f = 0.0f;
+    u = p->unit;
+    p->s3C.f = u->x;
+    p->s40.f = u->y;
+    fn_800F3B50(p->s34.m, p->s3C.f, p->s40.f);
+    q = p->s38.m;
+    u = p->unit;
+    {
+    int y, x;
+    x = q->x;
+    p->s48.f = q->x;
+    {
+    y = q->y;
+    p->s4C.f = q->y;
+    fn_80102E10(u, 0x10, 0, (f32)(int)fn_800FB100(u, 0.5f + (f32)x, 0.5f + (f32)y), p);
+    }
+    }
+    p->s34.m->angle = 64.0f * fn_800FB100(p->s34.m, p->s48.f, p->s4C.f);
+    fn_800F3F08(p->s34.m, 0);
+}
+
+/* fn_80100C70, from fn_80101E38.cpp: 1 wrong reference(s); 19 of 162 words differ */
+void fn_80100C70(R0C70* p) {
+    if (fn_80008C98((u8*)p->u + 0x28, 0)) {
+        f32 x, y, z, ang;
+        s32 a, b;
+        MapUnit* m = p->q;
+        void* c;
+        if (m) {
+            b = p->y1;
+            a = p->x1;
+            R0C70* n = (R0C70*)fn_800811E4(lbl_8038536C, p);
+            n->u = m;
+            n->x1 = a;
+            n->y1 = b;
+            n->b48 = 0;
+            x = p->q->x;
+            y = p->q->y;
+            z = p->q->z;
+            ang = fn_800FB08C(p->u, p->q);
+        } else {
+            x = 0.5f + (f32)p->x1;
+            y = 0.5f + (f32)p->y1;
+            {
+                f32 t = fn_80113F00(lbl_803EC898, x, y);
+                MapUnit* u = p->u;
+                f32 ux = u->x;
+                z = t;
+                ang = fn_80176A4C(ux, u->y, x, y);
+            }
+        }
+        {
+            int dx = fn_8028DB44(p->x1 - p->x0);
+            int d = dx + fn_8028DB44(p->y1 - p->y0);
+            char* b = (char*)lbl_80367D50;
+            char* n;
+            n = b + 0x28;
+            if (d >= 2) n = b + 0x1E;
+            c = fn_800E3810(n, p);
+        }
+        if (c) {
+            fn_800E48AC(c, x, y, z);
+            fn_800E49AC(c, ang);
+            if (p->cb) {
+                p->cb(p->arg);
+                p->b55 = 1;
+            }
+        }
+        {
+            Vec v = {x, y, z};
+            fn_802549C4((char*)lbl_80367D50 + 0x3C, v, 0.0f);
+        }
+        fn_8013C14C(6, 2, p, 15.0f);
+        lbl_804CB5B8->Rumble(8);
+        fn_80083B78(p);
+    } else if (fn_800FAE98(p->u)) {
+        fn_80083B78(p);
+    }
+}
+
+/* fn_800FDDE8, from fn_800FD7F0.cpp: 2 of 133 words differ */
+void fn_800FDDE8(Mv* p) {
+    int d;
+    int t;
+    p->b54 = 0;
+    t = (f32)p->h3E / 16.666666f;
+    d = (f32)t * lbl_804CDB4C;
+    if (d < 4) d = 4;
+    p->h34 = d;
+    if (p->b55 == 0) {
+        if (p->h52 & 0x30) {
+            fn_80083DC4(p, 2);
+        } else {
+            fn_80083DC4(p, 0);
+        }
+        return;
+    }
+    fn_80102928(p->unit, p->f3A, 8, 0, 0);
+    if (p->h52 & 0x400) {
+        p->b54 = 2;
+        fn_80083DC4(p, 3);
+        return;
+    }
+    if (p->h52 & 0x30) {
+        int c = *p->path;
+        MapUnit* u = p->unit;
+        if (c != 0x40 && c != 0) {
+            fn_80102E10(u, 0, 0, (f32)DirAngle(c), 0);
+        }
+    }
+    p->unit->flags2 &= ~0x40ULL;
+    {
+        Vec v = *(Vec*)&p->unit->x;
+        fn_800FFEB8(p, &v);
+    }
+}
+
+/* fn_800FFEB8, from fn_800FD7F0.cpp: size 0x11C, want 0x124; 1 wrong reference(s); 32 of 71 words differ */
+void fn_800FFEB8(Mv* p, Vec* v) {
+    void* o;
+    if ((o = fn_800F47F4(p->unit)->v10->vC) == 0) return;
+    if (CanFoot(p)) {
+        p->b57 = fn_80254F28(o, *v, 100.0f, 0.0f);
+        if ((s8)p->b57 >= 0) {
+            Ev* e = fn_8024F50C(p->b57);
+            if (e) {
+                if (e->v2()) goto L;
+                goto E;
+            L:
+                if ((p->v58 = e->vC) != 0) {}
+            E:;
+            }
+        }
+    }
+}
+
+/* fn_800FF170, from fn_800FD7F0.cpp: 28 of 172 words differ */
+void fn_800FF170(Mv* p) {
+    u8 c;
+    u8 y;
+    u8 x;
+    u8 i;
+    int dx, dy;
+    x = p->b44;
+    y = p->b45;
+    p->b42 = x;
+    p->b43 = y;
+    i = p->b54;
+    p->b46 = x;
+    p->b47 = y;
+    c = p->path[i];
+    if (c == 0x40) {
+        fn_80102928(p->unit, p->f3B, 0x10, 0, 0);
+        if (p->h52 & 0x30) {
+            fn_80083DC4(p, 2);
+        } else {
+            fn_80083DC4(p, 0);
+        }
+        return;
+    }
+    p->b44 = c;
+    p->b45 = p->path[i + 1];
+    if ((s8)x == (s8)c && (s8)y == (s8)p->b45) {
+        p->b54 = i + 2;
+        fn_80083DC4(p, 3);
+        return;
+    }
+    dx = (s8)c - (s8)x;
+    dy = p->s45 - (s8)p->b43;
+    p->f5C[0] = p->f5C[3];
+    p->f5C[1] = p->f5C[4];
+    p->f5C[2] = p->f5C[5];
+    p->f5C[3] = p->f5C[6];
+    p->f5C[4] = p->f5C[7];
+    p->f5C[5] = p->f5C[8];
+    p->f5C[6] = p->f5C[9];
+    p->f5C[7] = p->f5C[10];
+    p->f5C[8] = p->f5C[11];
+    if (p->b54 == 2) {
+        p->f5C[1] = (f32)((s8)p->b43 - dy);
+        p->f5C[0] = (f32)((s8)p->b42 - dx);
+    }
+    {
+        int cx = p->s44;
+        int cy = p->s45;
+        u8* q = p->path + p->b54;
+        p->f5C[6] = (f32)cx;
+        p->f5C[7] = (f32)cy;
+        if (q[2] == 0x40) {
+            p->f5C[9] = (f32)(cx + dx);
+            p->f5C[10] = (f32)(cy + dy);
+        } else {
+            int a = q[2];
+            int b = q[3];
+            p->f5C[9] = (f32)a;
+            p->f5C[10] = (f32)b;
+        }
+    }
+    {
+        int dd = dx * dx + dy * dy;
+        f32 len = fn_80295CF0(dd);
+        if (len > 0.0f) {
+            p->h36 = 256.0f * len;
+        } else {
+            p->h36 = 0x100;
+        }
+        p->h38 = 0;
+    }
+}
+
+/* fn_800FF998, from fn_800FD7F0.cpp: 22 of 176 words differ */
+void fn_800FF998(Mv* p, MapUnit* u, int fl) {
+    {
+        char* s = (char*)lbl_80367D50;
+        p->unit = u;
+        p->h52 = fl;
+        p->h3E = -1;
+        p->h40 = -1;
+        p->f3B = -1;
+        p->f3A = -1;
+        p->f3C = fn_800F0994(s + 5);
+        p->f3D = fn_800F0994(s + 5);
+    }
+    if (fl & 0x80) {
+        p->f3A = fn_800D858C();
+        p->f3B = fn_800D907C();
+        p->h3E = fn_800D868C();
+        p->h40 = fn_800D878C();
+    }
+    if (p->f3A < 0 || !fn_800F4628(u, p->f3A)) {
+        p->f3A = fn_800F0994((char*)lbl_80367D50 + 5);
+    }
+    if (p->f3B < 0 || !fn_800F4628(u, p->f3B)) {
+        p->f3B = fn_800F760C(u);
+    }
+    if (p->h3E < 0) {
+        u16 t = fn_800F43F0(u)->sub->b14 * 10;
+        p->h3E = t;
+        if ((int)u->unkC6 > 0) {
+            p->h3E = (s16)t * 100 / u->unkC6;
+        }
+    }
+    {
+        char* s = (char*)lbl_80367D50;
+        p->path = fn_80078D9C(-0x100, s + 0xA, 0);
+        p->b55 = 0;
+        p->b56 = 0x40;
+        *(s8*)&p->b57 = -1;
+        p->v58 = 0;
+        p->v90 = fn_80078D9C(-0xC00, s + 0xA, 0);
+    }
+    if (fl & 0x10) {
+        fn_800F3F08(u, 0);
+        u->flags2 |= 0x2000000000ULL;
+    }
+    if (fl & 0x20) {
+        u->flags2 |= 0x4000000000ULL;
+    }
+    {
+        u8 x = (int)u->x;
+        u8 y;
+        f32 i0, h0, g0, e0, d0, c0, k, b0, a0;
+        p->b42 = x;
+        p->b44 = x;
+        y = (int)u->y;
+        p->b43 = y;
+        p->b45 = y;
+        k = 0.0f;
+        p->f5C[2] = k;
+        {
+            a0 = (f32)(s8)x;
+            b0 = (f32)(s8)y;
+            c0 = (f32)(s8)x;
+            d0 = (f32)(s8)y;
+            e0 = (f32)(s8)x;
+            g0 = (f32)(s8)y;
+            h0 = (f32)(s8)x;
+            i0 = (f32)(s8)y;
+            p->f5C[0] = a0;
+            p->f5C[1] = b0;
+            p->f5C[3] = c0;
+            p->f5C[4] = d0;
+            p->f5C[5] = k;
+            p->f5C[6] = e0;
+            p->f5C[7] = g0;
+            p->f5C[8] = k;
+            p->f5C[9] = h0;
+            p->f5C[10] = i0;
+            p->f5C[11] = k;
+        }
+    }
+    u->flags |= 0x4000;
+}
+
+/* fn_800FFFDC, from fn_800FD7F0.cpp: 79 of 234 words differ */
+void fn_800FFFDC(Mv* p, u8* s) {
+    int n = fn_8011806C(s);
+    u8* d = p->path + p->b55;
+    int i;
+    for (i = 0; i < n; i++) {
+        u8 c = *s++;
+        p->b56 = c;
+        *d++ = c;
+    }
+    *d = 0x40;
+    p->b55 += n;
+    if (p->h52 & 0x400) p->b56 = 0x40;
+    {
+        int k = p->h52 & 0xF;
+        if (k) p->b56 = k;
+    }
+    if (p->h52 & 0x800) Flip(p);
+    Tail(p);
+}
+
+/* fn_80102300, from fn_801021D8.c: 3 of 78 words differ */
+void fn_80102300(R21D8* p) {
+    char* s;
+    switch (State(p)) {
+    case 0: {
+        s = (char*)lbl_80367D50;
+        if (fn_800F4700(p->u, s + 0x107)) {
+            MapUnit* u = p->u;
+            fn_80102928(u, fn_800F0994(s + 0x107), 0x10, 0, 0);
+            u = p->u;
+            Fx(u, p);
+            break;
+        }
+    }
+    case 1:
+        fn_80083DC4(p, 0);
+        break;
+    case 2:
+        fn_80083DC4(p, 1);
+        break;
+    }
+}
+
+/* fn_8010403C, from fn_801021D8.c: 14 of 104 words differ */
+void fn_8010403C(Jump* p) {
+    if (p->b6B == 0) {
+        MapUnit* u = p->u;
+        int d;
+        p->f48 = u->x;
+        p->f4C = u->y;
+        p->f50 = u->z;
+        p->f54 = p->f48 + p->f60 * (f32)DirX(p->dir);
+        {
+        int dy = DirY(p->dir);
+        p->f5C = p->f50;
+        p->t = 0;
+        p->f58 = p->f4C + p->f60 * (f32)dy;
+        }
+        d = Scale((f32)p->speed / 16.666666f, p->f60);
+        if (d < 4) d = 4;
+        p->dur = d + 1;
+        PA(p->u, (char*)lbl_80367D50 + 5, 8, 0x20, 0);
+    }
+}
+
+/* fn_8010436C, from fn_801021D8.c: 11 of 79 words differ */
+void fn_8010436C(Jump* p) {
+    if (p->b6B == 0) {
+        MapUnit* u = p->u;
+        int d;
+        p->f48 = u->x;
+        p->f4C = u->y;
+        p->f50 = u->z;
+        p->f54 = 0.5f + (f32)p->x;
+        p->f58 = 0.5f + (f32)p->y;
+        p->f5C = p->f44;
+        p->t = 0;
+        d = Scale((f32)p->speed / 16.666666f, 1.0f - p->f60);
+        if (d < 4) d = 4;
+        p->dur = d + 1;
+        PA(p->u, (char*)lbl_80367D50 + 5, 8, 0x20, 0);
+    }
+}
+
+/* fn_800FD65C, from fn_800FC5D8.c: size 0x108, want 0x10C; 5 wrong reference(s); 52 of 66 words differ */
+void fn_800FD65C(Knock* p) {
+    int n = 0xC;
+    f32 a, b;
+    MapUnit* u;
+    if (p->b6C) n = Half(0xC);
+    p->t++;
+    if (p->t >= n) {
+        p->t = n;
+        fn_80083B78(p);
+    }
+    a = fn_8001EDF8(2, p->sx, p->tx, (f32)n, (f32)p->t);
+    b = fn_8001EDF8(2, p->sy, p->ty, (f32)n, (f32)p->t);
+    u = p->u;
+    u->offX = a;
+    u->offY = b;
+    u->offZ = 0.0f;
+}
+
+/* fn_800ECCCC, from fn_800ECCCC.c: 9 of 49 words differ */
+void fn_800ECCCC(BtlProc* p) {
+    void* a = HandleActor(p->h1);
+    if (fn_801CE474(p->h1)) {
+        GXColor c;
+        Cv(&c, fn_801125B4());
+        fn_80103374(a, &c, p);
+    }
+    fn_80102928(a, p->b47, 8, 0, 0);
+    fn_80102D70(a, (char*)lbl_803672A0 + 0xCA, 4, 0);
+}
+
+/* fn_800ED7E4, from fn_800ECCCC.c: 8 of 69 words differ */
+void fn_800ED7E4(BtlProc* p) {
+    switch (p->seq->kind) {
+    case 0x6E:
+    case 0x6F:
+        if (fn_801CFCE0(p->seq)) {
+            fn_800EBB74(p);
+            break;
+        }
+        fn_800EB988(p);
+        if (fn_801CFC0C(p->seq)) {
+            s16 n = p->h1->unkE;
+            if (n) {
+                fn_800EFEB8(p->h1, n, p);
+                if (p->b40 != 2) {
+                    Pop(fn_800D5C44(p->h1), n, p);
+                }
+                fn_80103234(HandleActor(p->h1), 1, 0x20, p);
+            }
+        }
+        break;
+    case 0x70:
+        fn_800EBE80(p);
+        break;
+    }
+}
+
+/* fn_800EE324, from fn_800ECCCC.c: size 0x15C, want 0x168; 9 wrong reference(s); 73 of 87 words differ */
+void fn_800EE324(Popup* p) {
+    int n = p->n;
+    Vec v;
+    GXColor c;
+    fn_80011B90(0, &p->pos, &v);
+    c.r = lbl_804CD9F8[2].r;
+    c.g = lbl_804CD9F8[2].g;
+    c.b = lbl_804CD9F8[2].b;
+    c.a = lbl_804CD9F8[2].a;
+    if (n < 0) {
+        GXColor t;
+        n -= n * 2;
+        t.r = lbl_804CD9F8[0].r;
+        t.g = lbl_804CD9F8[0].g;
+        t.b = lbl_804CD9F8[0].b;
+        t.a = lbl_804CD9F8[0].a;
+        c = t;
+    } else {
+        GXColor t;
+        t.r = lbl_804CD9F8[1].r;
+        t.g = lbl_804CD9F8[1].g;
+        t.b = lbl_804CD9F8[1].b;
+        t.a = lbl_804CD9F8[1].a;
+        c = t;
+    }
+    fn_8007E154();
+    fn_8007E4E4(v.x, v.y + p->f48, (f32)p->y, lbl_804CD9B8);
+    fn_8007E374(p->font, 0x1B, 0x11);
+    fn_8007E7DC(p->alpha);
+    fn_8007E164();
+    fn_80176B54(0, 0, 2, &c, 0, 0, 0x18, 0x20, 0x10, n);
+    fn_8007E7F4();
+}
+
+/* fn_800F1E9C, from fn_800F080C.c: size 0xB0, want 0xEC; 3 wrong reference(s); 38 of 44 words differ */
+int fn_800F1E9C(void* m, void* p) {
+    if (m == 0) return 0;
+    if (fn_80008C98(m, 0x49)) {
+        u32 v = fn_80008CF0(m, 0x49);
+        int a = v & 0x3FF;
+        int b = (v >> 10) & 0x3F;
+        int i;
+        for (i = 0; i < 4; i++) {
+            fn_8017EA78(i, a, a, b, 0, p);
+        }
+        return 1;
+    }
+    return 0;
+}
+
+/* fn_800EB274, from fn_800EAEA4.c: size 0x15C, want 0x154; 12 wrong reference(s); 50 of 85 words differ */
+void fn_800EB274(EvX* p) {
+    if (p->h88 >= p->h8A - 4) {
+        void* c = fn_800E3A10((char*)lbl_8036707C + 0x1FA, p);
+        if (c) {
+            fn_800E48AC(c, 0.5f + (f32)p->b.unk7E, 0.5f + (f32)p->b.unk7F, p->f84);
+        }
+        {
+            int i;
+            for (i = 0; i < lbl_803E7320[0]; i++) {
+                void* x = fn_800CFB0C(fn_800CFD18(lbl_803E7320, i));
+                if (x) {
+                    fn_80102C6C(x, (char*)lbl_8036707C + 0x11, 8, 0, 0);
+                    fn_80102CD8(x, -1, 0x10, 0);
+                    fn_80103234(x, 1, 2, 0);
+                    c = fn_800E3810((char*)lbl_8036707C + 0x164, p);
+                    if (c) {
+                        fn_800E5878(c, x);
+                    }
+                }
+            }
+        }
+        fn_80083B78(p);
+    }
+}
+
+/* fn_800EC0C8, from fn_800EAEA4.c: size 0x140, want 0x13C; 6 wrong reference(s); 51 of 79 words differ */
+void fn_800EC0C8(BP2* p) {
+    void* a = HandleActor(fn_801D0784(p->seq, 0));
+    void* b = HandleActor(fn_801D0784(p->seq, 1));
+    void* c = HandleActor(fn_801D0784(p->seq, 2));
+    fn_80102C6C(a, (char*)lbl_803672A0 + 0xCA, 0x10, 0, p);
+    if (b) {
+        fn_8010301C(a, b, 0x18, 0, p);
+        fn_8010301C(b, a, 0x18, 0, p);
+        fn_80102C6C(b, (char*)lbl_803672A0 + 0xCA, 0x10, 0, p);
+        if (c) {
+            fn_8010301C(c, b, 0x18, 0, p);
+            fn_80102C6C(c, (char*)lbl_803672A0 + 0xCA, 0x10, 0, p);
+        }
+    }
+}
+
+/* fn_800EF0D8, from fn_800EAEA4.c: 2 of 97 words differ */
+void fn_800EF0D8(Gauge* p, int a, int flag, f32 x, f32 y) {
+    f32 w = 404.0f;
+    int n;
+    int sh = 0x10;
+    s16 dx;
+    if (flag) {
+        w -= lbl_804CD9B8;
+        sh = 0x20;
+    }
+    n = 5;
+    dx = p->b47 == 0 ? 0 : -8;
+    if (p->b47 == 0) n = 0xA;
+    fn_8007E154();
+    fn_8007E4E4(x + (f32)dx, y, w, lbl_804CD9B8);
+    Tex(p->tex, n, sh | 1);
+    fn_8007E7DC(a);
+    fn_8007E164();
+    fn_800800D4(1);
+    {
+        int b = p->b47;
+        int c = 0x58;
+        f32 k;
+        if (b == 0) c = 0x48;
+        k = lbl_804CD9C0;
+        Rect(k, k, k, k, b == 0 ? 0xE8 : 0xF0, c);
+    }
+    fn_80080578(0);
+    fn_80080308();
+    fn_8007E7F4();
+}
+
+/* fn_800EAD10, from fn_800EAEA4.c: 2 of 101 words differ */
+void fn_800EAD10(EvZ* p) {
+    char* s;
+    int i;
+    u8* c = lbl_803CA870;
+    u8* o;
+    p->x6C = c[0x11];
+    p->y6C = c[0x12];
+    p->o = o = fn_80135A54(fn_8013B9A8(), p->x6C, p->y6C, 0x8000, 0);
+    if (o == 0) {
+        fn_80083DC4(p, 0x63);
+        return;
+    }
+    p->x0 = o[1];
+    p->y0 = o[2];
+    p->x1 = c[0x13];
+    p->y1 = c[0x14];
+    p->z0 = fn_801142F0(lbl_803EC898, (f32)p->x0, (f32)p->y0);
+    p->z1 = fn_801142F0(lbl_803EC898, (f32)p->x1, (f32)p->y1);
+    {
+        s = (char*)lbl_8036707C;
+        fn_800E24F8(s + 0x1EF);
+        fn_800E24F8(s + 0x1FA);
+        fn_800E24F8(s + 0x164);
+        for (i = 0; i < lbl_803E7320[0]; i++) {
+            void* x = fn_800CFB0C(fn_800CFD18(lbl_803E7320, i));
+            if (x) {
+                fn_800F6604(x, s + 0x11);
+            }
+        }
+    }
+}
+
+/* fn_800F15AC, from fn_800F130C.c: 1 wrong reference(s); 22 of 96 words differ */
+void fn_800F15AC(Sm* m, f32 x, f32 y, f32 z) {
+    char* s = (char*)lbl_803674B4;
+    Snd* e;
+    int i;
+    void* o;
+    e = m->s;
+    for (i = 0; i < 4; i++, e++) {
+        o = fn_800F14B4(e->id);
+        if (o) {
+            u16 k = e->k;
+            if (k == 1000 && m->f5C < 0.0f) continue;
+            if (k == 2000 && m->f5C > 0.0f) continue;
+            {
+                Vec v;
+                int j;
+                v.x = x;
+                v.y = y;
+                v.z = z;
+                j = fn_80007630(m, s + 0x592);
+                if (j >= 0) {
+                    Vec t;
+                    t = fn_800076E8(m, j);
+                    v.x = t.x;
+                    v.y = t.y;
+                    v.z = t.z;
+                }
+                if (v.z > -1000.0f) {
+                    fn_802549C4(o, v, 0.0f);
+                } else {
+                    fn_80253EE4(o, 0.0f);
+                }
+            }
+        }
+    }
+}
+
+/* fn_800F7890, from fn_800F7890.cpp: size 0x218, want 0x208; 5 wrong reference(s); 89 of 130 words differ */
+void fn_800F7890(MapUnit* m, f32 f) {
+    if (m->flags2 & 0x10000DCULL) return;
+    if (!(m->flags & 2)) return;
+    if (m->unk33 == 0) return;
+    {
+        Vec off;
+        Vec pos = *(Vec*)&m->x;
+        pos.z -= 0.5f;
+        off = *(Vec*)&m->offX;
+        fn_80313460(&pos, &off, &pos);
+        fn_80011B90(0, &pos, (Vec*)&m->f1C);
+    }
+    if (lbl_804CB740) {
+        m->flags2 &= ~0x400000000ULL;
+    } else {
+        Vec s = *(Vec*)&m->f1C;
+        if (InRect(s, f)) {
+            Grow(s);
+            m->flags2 &= ~0x400000000ULL;
+        } else {
+            m->flags2 |= 0x400000000ULL;
+        }
+    }
+}
+
+/* fn_800F97A4, from fn_800F7890.cpp: size 0xE4, want 0xEC; 5 wrong reference(s); 52 of 57 words differ */
+void fn_800F97A4(MapUnit* m, void* a, void* b) {
+    u8 k = Kind(m);
+    {
+        int x = (s8)k;
+        int t = fn_801196F0(k);
+        if (x == lbl_803CAB38[0x92] && fn_80060728(lbl_803CAB38)->b11 != 2) {
+            ((KVt*)lbl_803E7290)->Play2(a, b, t, 1, 0x60, 0x708);
+        } else {
+            ((KVt*)lbl_803E7290)->Play(a, b, t);
+        }
+    }
+}
+
+/* fn_800FC5D8, from fn_800F7890.cpp: 24 of 126 words differ */
+void fn_800FC5D8(UProcM* p) {
+    u8* m = (u8*)p->u + 0x28;
+    if (fn_80008EB4(m)) {
+        Vec v = fn_800F7790(p->u);
+        if (fn_80008C98(m, 0x32)) {
+            Tile* t = fn_801181E8(lbl_803EC898, (s8)v.x, (s8)v.y);
+            CD1* d = fn_800F47F4(p->u);
+            f32 k = 100.0f;
+            if (d) {
+                u8 fl = d->v10->b10;
+                if (!(fl & 8)) {
+                    void* o;
+                    if (fl & 0x20) {
+                        o = t->v8->v10;
+                    } else {
+                        o = t->v8->vC;
+                    }
+                    if (o) {
+                        fn_802549C4(o, v, 0.0f);
+                        k *= 0.7f;
+                    }
+                }
+            }
+            {
+                void* o2;
+                if (t->v8->b7 & 0x80) {
+                    o2 = d->v10->v8;
+                } else {
+                    o2 = d->v10->v4;
+                }
+                if (o2) {
+                    fn_80254F28(o2, v, k, 0.0f);
+                }
+            }
+        }
+        {
+            Vec t2 = v;
+            fn_800F172C(m, &t2);
+        }
+        fn_800F1F88(m);
+        if (fn_80008C98(m, 9)) {
+            fn_8013C14C(6, 2, p, 30.0f);
+        }
+    }
+}
+
+/* fn_800FC7D0, from fn_800F7890.cpp: size 0x280, want 0x270; 16 wrong reference(s); 134 of 156 words differ */
+void fn_800FC7D0(UProcM* p) {
+    u8* m = (u8*)p->u + 0x28;
+    CD1* d = fn_800F47F4(p->u);
+    int x, y, k;
+    Tile* info;
+    if (d == 0) return;
+    if (d->v10->b10 & 8) return;
+    if (fn_80008C98(m, 0x32) == 0) return;
+    {
+        MapUnit* u = p->u;
+        f32 fx = u->x;
+        f32 fy = u->y;
+        u8 tile;
+        x = (s8)fx;
+        y = (s8)fy;
+        tile = fn_80118098(lbl_803EC898, (s8)x, (s8)y);
+        k = fn_8011D260(tile);
+        info = fn_8010B240(tile);
+    }
+    switch (k) {
+    case 0x10:
+    case 0x39: {
+        int i;
+        for (i = 0; i < 4; i++) {
+            s8 j = *((s8*)p->u + 0xD4 + i);
+            if (j >= 0) {
+                Vec r = fn_800076E8(m, j);
+                Vec v = r;
+                fn_800FB904((int)(360.0f - 0.015625f * (f32)p->u->angle), v.x, v.y);
+            }
+        }
+        break;
+    }
+    }
+    if (*(void**)((u8*)info->v8 + 8) == 0) return;
+    if (fn_800E4588() >= 0x20) return;
+    {
+        f32 z = fn_80113F00(lbl_803EC898, (f32)x, (f32)y);
+        void* c;
+        if (k == 0x60) {
+            if (z > *(f32*)(fn_8013B9A8() + 0x78)) {
+                z = *(f32*)(fn_8013B9A8() + 0x78);
+            }
+        }
+        {
+            void* nm = *(void**)((u8*)info->v8 + 8);
+            c = fn_800E3810(nm, fn_80068DE4());
+        }
+        fn_800E48AC(c, p->u->x, p->u->y, z);
+        fn_800E49AC(c, 0.015625f * (f32)p->u->angle);
+    }
+}
+
