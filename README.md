@@ -46,6 +46,11 @@ CodeWarrior compilers run through a wrapper. See [docs/dependencies.md](docs/dep
 objdiff report that ByteMatch reads. [objdiff](https://github.com/encounter/objdiff) can be pointed at
 the project root to diff single functions.
 
+## Contributing
+
+Help with matching is welcome, including work done with AI agents such as
+[decompdecomp](https://github.com/n-delic/decompdecomp). See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Layout
 
 - `config/RFEE01/`: decomp-toolkit config, `symbols.txt`, `splits.txt` and the generated unit list
